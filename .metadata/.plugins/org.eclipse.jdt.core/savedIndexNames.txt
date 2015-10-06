@@ -14,7 +14,10 @@ INDEX VERSION 1.127+D:\GitHub\RecuperacionInformacion\.metadata\.plugins\org.ecl
 766596693.index
 1094395942.index
 4070956152.index
+3052092696.index
 1711765710.index
+3810838645.index
+2436439167.index
 1063367808.index
 1524953806.index
 2591297871.index

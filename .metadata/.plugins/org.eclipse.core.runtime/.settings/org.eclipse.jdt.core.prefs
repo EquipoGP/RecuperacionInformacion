@@ -6,4 +6,3 @@ org.eclipse.jdt.core.compiler.compliance=1.8
 org.eclipse.jdt.core.compiler.problem.assertIdentifier=error
 org.eclipse.jdt.core.compiler.problem.enumIdentifier=error
 org.eclipse.jdt.core.compiler.source=1.8
-org.eclipse.jdt.core.userLibrary.Lucene=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<userlibrary systemlibrary\="true" version\="2">\r\n\t<archive path\="D\:/GitHub/RecuperacionInformacion/lucene-4.10.4/core/lucene-core-4.10.4.jar"/>\r\n\t<archive path\="D\:/GitHub/RecuperacionInformacion/lucene-4.10.4/queryparser/lucene-queryparser-4.10.4.jar"/>\r\n\t<archive path\="D\:/GitHub/RecuperacionInformacion/lucene-4.10.4/analysis/common/lucene-analyzers-common-4.10.4.jar"/>\r\n</userlibrary>\r\n
