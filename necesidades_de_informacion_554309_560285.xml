@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<informationNeeds>
+
+	<informationNeed>
+		<identifier>1</identifier>
+		<text>¿Qué trabajos de fin de grado y proyectos de fin de carrera hay que traten sobre videojuegos?</text>
+	</informationNeed>
+	
+	<informationNeed>
+		<identifier>2</identifier>
+		<text>Trabajos de fin de máster que traten sobre el turismo en España.</text>
+	</informationNeed>
+	
+	<informationNeed>
+		<identifier>3</identifier>
+		<text>Tesis que traten de energías renovables, en el período de 2010 a 2015.</text>
+	</informationNeed>
+	
+	<informationNeed>
+		<identifier>4</identifier>
+		<text>Documentos entre 2013 y 2014 del departamento de informática que traten de impresión en 3D.</text>
+	</informationNeed>
+	
+	<informationNeed>
+		<identifier>5</identifier>
+		<text>Proyectos de fin de carrera que traten de inteligencia artificial o animación en los videojuegos.</text>
+	</informationNeed>
+
+</informationNeeds>
