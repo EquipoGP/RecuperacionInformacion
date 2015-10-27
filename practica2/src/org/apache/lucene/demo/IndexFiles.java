@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
+import java.util.Scanner;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -31,6 +32,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.es.SpanishAnalyzer;
 import org.apache.lucene.document.Document;
+import org.apache.lucene.document.DoubleField;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.LongField;
 import org.apache.lucene.document.StringField;
@@ -42,6 +44,7 @@ import org.apache.lucene.index.Term;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
@@ -181,7 +184,7 @@ public class IndexFiles {
 
 					// make a new, empty document
 					Document doc = new Document();
-
+					
 					// Add the path of the file as a field named "path". Use a
 					// field that is indexed (i.e. searchable), but don't
 					// tokenize
@@ -295,6 +298,39 @@ public class IndexFiles {
 			if (nl != null && nl.getLength() > 0)
 				doc.add(new StringField("language", nl.item(0).getTextContent(), Field.Store.YES));
 
+			// ows:BoundingBox
+			nl = d.getElementsByTagName("ows:BoundingBox");
+			if (nl != null && nl.getLength() > 0) {
+				Node n = nl.item(0);
+				NodeList bblist = n.getChildNodes();
+				
+				for (int i = 0; i < bblist.getLength(); i++) {
+					n = bblist.item(i);
+					
+					if(n.getNodeName().equals("ows:LowerCorner")) {
+						String coords = n.getTextContent();
+						Scanner s = new Scanner(coords);
+						double longitude = Double.parseDouble(s.next());
+						double latitude = Double.parseDouble(s.next());
+						s.close();
+						
+						doc.add(new DoubleField("west", longitude, Field.Store.YES));
+						doc.add(new DoubleField("south", latitude, Field.Store.YES));
+					}
+					else if(n.getNodeName().equals("ows:UpperCorner")) {
+						String coords = n.getTextContent();
+						Scanner s = new Scanner(coords);
+						double longitude = Double.parseDouble(s.next());
+						double latitude = Double.parseDouble(s.next());
+						s.close();
+						
+						doc.add(new DoubleField("east", longitude, Field.Store.YES));
+						doc.add(new DoubleField("north", latitude, Field.Store.YES));
+					}
+					
+				}
+			}
+			
 		} catch (ParserConfigurationException | SAXException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
