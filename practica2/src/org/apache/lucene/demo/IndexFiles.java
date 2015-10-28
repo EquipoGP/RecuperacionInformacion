@@ -332,7 +332,6 @@ public class IndexFiles {
 			}
 			
 		} catch (ParserConfigurationException | SAXException | IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
