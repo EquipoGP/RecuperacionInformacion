@@ -31,7 +31,6 @@ public class TradicionalAnalyzer extends Analyzer {
 
 		TokenFilter filters = new StandardFilter(source);
 		filters = new LowerCaseFilter(filters);
-		filters = new StopFilter(filters, stopTable);
 		filters = new StopFilter(filters, SpanishAnalyzer.getDefaultStopSet());
 		filters = new SnowballFilter(filters, new SpanishStemmer());
 		filters = new StopFilter(filters, stopTable);
