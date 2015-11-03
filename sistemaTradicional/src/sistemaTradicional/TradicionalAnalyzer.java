@@ -39,7 +39,6 @@ public class TradicionalAnalyzer extends Analyzer {
 	@SuppressWarnings("deprecation")
 	@Override
 	protected TokenStreamComponents createComponents(String field, Reader reader) {
-
 		CharArraySet stopTable = StopFilter.makeStopSet(CUSTOM_STOP_WORDS, true);
 
 		Tokenizer source = new StandardTokenizer(Version.LUCENE_44, reader);
