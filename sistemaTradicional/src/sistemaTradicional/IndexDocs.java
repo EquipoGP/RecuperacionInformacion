@@ -12,6 +12,7 @@ import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.DoubleField;
 import org.apache.lucene.document.Field;
+import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
@@ -24,7 +25,6 @@ import org.w3c.dom.NodeList;
 public class IndexDocs {
 	/**
 	 * Clase auxiliar para la indexacion de documentos
-	 * 
 	 * @version 1.0
 	 */
 
@@ -61,9 +61,11 @@ public class IndexDocs {
 			
 			/* Indexar ficheros */
 			for (String file : files) {
-				FileInputStream fis = new FileInputStream(new File(fileDir, file));
+				File f = new File(fileDir, file);
+				FileInputStream fis = new FileInputStream(f);
 				Document doc = new Document();
 				doc = parse(fis, doc);
+				doc.add(new StringField("path", f.getPath(), Field.Store.YES));
 				writer.addDocument(doc);
 			}
 			

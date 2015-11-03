@@ -20,26 +20,34 @@ public class SearchFiles {
 		String infoNeedsFile = null;
 		String resultsFile = null;
 		
+		/* obtener argumentos */
 		for (int i = 0; i < args.length; i++) {
 			String s = args[i];
 
 			if(s.equals("-index")){
+				/* indexPath */
 				i++;
 				indexPath = args[i];
 			}
 			else if(s.equals("-infoNeeds")){
+				/* infoNeeds */
 				i++;
-				indexPath = args[i];
+				infoNeedsFile = args[i];
 			}
 			else if(s.equals("-output")){
+				/* resultsFile */
 				i++;
 				resultsFile = args[i];
 			}
 		}
 		
+		/* comprobar argumentos */
 		if(indexPath == null || infoNeedsFile == null || resultsFile == null){
 			System.err.println(uso);
 			return ;
 		}
+		
+		/* continuar busqueda */
+		SearchDocs.search(indexPath, infoNeedsFile, resultsFile);
 	}
 }
