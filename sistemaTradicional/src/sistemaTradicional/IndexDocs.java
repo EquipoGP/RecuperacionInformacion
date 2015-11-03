@@ -47,7 +47,7 @@ public class IndexDocs {
 		try {
 			/* Creacion del directorio y analizador */
 			Directory dir = FSDirectory.open(new File(indexPath));
-			String[] files = dir.listAll();
+			String[] files = fileDir.list();
 			
 			/* Analizador */
 			Analyzer analyzer = new TradicionalAnalyzer();
@@ -61,7 +61,7 @@ public class IndexDocs {
 			
 			/* Indexar ficheros */
 			for (String file : files) {
-				FileInputStream fis = new FileInputStream(file);
+				FileInputStream fis = new FileInputStream(new File(fileDir, file));
 				Document doc = new Document();
 				doc = parse(fis, doc);
 				writer.addDocument(doc);
@@ -103,7 +103,7 @@ public class IndexDocs {
 			System.err.println("ERROR: error inesperado");
 		}
 		
-		return null;
+		return doc;
 	}
 	
 	/**
@@ -132,7 +132,7 @@ public class IndexDocs {
 		int date = -1;
 		
 		if(dates != null && dates.getLength() > 0){
-			date = Integer.parseInt(dates.item(0).getTextContent());
+			date = Integer.parseInt(dates.item(0).getTextContent().trim());
 		}
 		
 		return date;

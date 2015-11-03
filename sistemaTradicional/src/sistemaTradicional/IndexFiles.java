@@ -1,5 +1,7 @@
 package sistemaTradicional;
 
+import java.util.Date;
+
 public class IndexFiles {
 	/**
 	 * Clase para indexar los ficheros
@@ -38,6 +40,11 @@ public class IndexFiles {
 		}
 		
 		/* continuar la indexacion */
+		System.out.println("Indexando...");
+		Date start = new Date();
+		IndexDocs.index(indexPath, docsPath);
+		Date end = new Date();
+		System.out.println("Finalizada indexacion. Tiempo: " + (end.getTime() - start.getTime()));
 	}
 
 }
