@@ -15,10 +15,12 @@ import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.Term;
+import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.BooleanClause;
 import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.PrefixQuery;
+import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.FSDirectory;
@@ -51,14 +53,16 @@ public class SearchDocs {
 			int max_docs = reader.maxDoc();
 
 			Map<String, String> consultas = parse(infoNeedsFile);
+			QueryParser qp = new QueryParser("sumario", analyzer);
 
 			for (Map.Entry<String, String> consulta : consultas.entrySet()) {
 				BooleanQuery q = new BooleanQuery();
+				Query query = qp.parse(consulta.getValue());
+				
+//				String query = parse(consulta.getValue(), analyzer);
+//				q.add(new PrefixQuery(new Term("sumario", query)), BooleanClause.Occur.SHOULD);
 
-				String query = parse(consulta.getValue(), analyzer);
-				q.add(new PrefixQuery(new Term("sumario", query)), BooleanClause.Occur.SHOULD);
-
-				TopDocs results = searcher.search(q, max_docs);
+				TopDocs results = searcher.search(query, max_docs);
 				ScoreDoc[] scores = results.scoreDocs;
 
 				for (int i = 0; i < scores.length; i++) {
