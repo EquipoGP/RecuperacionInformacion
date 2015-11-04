@@ -2,8 +2,10 @@ package sistemaTradicional;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.regex.Pattern;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -15,13 +17,12 @@ import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.Term;
-import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.BooleanClause;
 import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.IndexSearcher;
-import org.apache.lucene.search.PrefixQuery;
-import org.apache.lucene.search.Query;
+import org.apache.lucene.search.NumericRangeQuery;
 import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.FSDirectory;
 import org.w3c.dom.Document;
@@ -46,25 +47,68 @@ public class SearchDocs {
 	 */
 	public static void search(String indexPath, String infoNeedsFile, String resultsFile) {
 		try {
+			/* archivo de resultados */
+			File f = new File(resultsFile);
+			PrintWriter out = new PrintWriter(f);
+			
+			/* preparacion para la busqueda */
 			IndexReader reader = DirectoryReader.open(FSDirectory.open(new File(indexPath)));
 			IndexSearcher searcher = new IndexSearcher(reader);
 			Analyzer analyzer = new TradicionalAnalyzer();
 
+			/* mostrar todos los resultados */
 			int max_docs = reader.maxDoc();
-
+			/* conseguir consultas */
 			Map<String, String> consultas = parse(infoNeedsFile);
-			QueryParser qp = new QueryParser("sumario", analyzer);
 
 			for (Map.Entry<String, String> consulta : consultas.entrySet()) {
-				BooleanQuery q = new BooleanQuery();
-				Query query = qp.parse(consulta.getValue());
+				BooleanQuery q = new BooleanQuery();				
+				String query = parse(consulta.getValue(), analyzer);
 				
-//				String query = parse(consulta.getValue(), analyzer);
-//				q.add(new PrefixQuery(new Term("sumario", query)), BooleanClause.Occur.SHOULD);
+				/* parsear los terminos */
+				String[] terms = query.split(" ");
+				for(String term: terms){
+					/* buscar la consulta en el sumario */
+					q.add(new TermQuery(new Term("sumario", term)), BooleanClause.Occur.SHOULD);
+					q.add(new TermQuery(new Term("titulo", term)), BooleanClause.Occur.SHOULD);
+				}
+				
+				/* parsear consulta en mayor profundidad */
+				Map<String, String> terminos = getFields(consulta.getValue());
+				for(Map.Entry<String, String> termino : terminos.entrySet()){
+					/* buscar en creador */
+					if(termino.getKey().equals("creador")){
+						q.add(new TermQuery(new Term("creador", termino.getValue())), 
+								BooleanClause.Occur.SHOULD);
+					}
+					/* buscar por fecha */
+					else if(termino.getKey().equals("anio")){
+						String[] split = termino.getValue().split(" ");
+						/* entre dos fechas */
+						if(split.length == 2){
+							int no1 = Integer.parseInt(split[0]);
+							int no2 = Integer.parseInt(split[1]);
+							
+							int min = Math.min(no1, no2);
+							int max = Math.max(no1, no2);
+							
+							q.add(NumericRangeQuery.newIntRange("fecha", min, max, true, true), 
+									BooleanClause.Occur.SHOULD);
+						}
+						/* en una fecha concreta */
+						else if(split.length == 1){
+							int no = Integer.parseInt(split[0]);
+							q.add(NumericRangeQuery.newIntRange("fecha", no, no, true, true), 
+							BooleanClause.Occur.SHOULD);
+						}
+					}
+				}
 
-				TopDocs results = searcher.search(query, max_docs);
+				/* realizar la busqueda */
+				TopDocs results = searcher.search(q, max_docs);
 				ScoreDoc[] scores = results.scoreDocs;
 
+				/* parsear el resultado de la busqueda */
 				for (int i = 0; i < scores.length; i++) {
 					org.apache.lucene.document.Document doc = searcher.doc(scores[i].doc);
 					String path = doc.get("path");
@@ -73,10 +117,11 @@ public class SearchDocs {
 						String[] folders = path.split(Pattern.quote(File.separator));
 						path = folders[folders.length - 1];
 					}
-
-					System.out.println(consulta.getKey() + "\t" + path);
+					out.println(consulta.getKey() + "\t" + path);
 				}
 			}
+			out.flush();
+			out.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -140,7 +185,7 @@ public class SearchDocs {
 	 * @param consulta: necesidad de informacion
 	 * @param a: analizador que usar
 	 */
-	public static String parse(String consulta, Analyzer a) {
+	private static String parse(String consulta, Analyzer a) {
 		String query = "";
 		try {
 			TokenStream ts = a.tokenStream(null, consulta);
@@ -153,6 +198,49 @@ public class SearchDocs {
 			e.printStackTrace();
 		}
 		return query;
+	}
+	
+	/**
+	 * Devuelve una estructura con los campos en los que realizar la consulta 
+	 * y que consulta realizar 
+	 * @param consulta: consulta sin parsear
+	 */
+	private static Map<String, String> getFields(String consulta){
+		String[] split = consulta.split("cuy*");
+		
+		Map<String, String> terminos = new HashMap<String, String>();
+		terminos.put("principal", split[0]);
+		
+		for (int i = 1; i < split.length; i++) {
+			String s = split[i].trim().toLowerCase();
+			
+			// cuyo autor/director/creador...
+			if(s.contains("autor") || s.contains("director") 
+					|| s.contains("creador")){
+				String content = s.replace("autor", "")
+						.replace("director", "").replace("creador", "");
+				terminos.put("creador", content);
+			}
+			// cuyo.... [anio] ... [anio] ...
+			else if(s.contains(".*\\d+.*")){
+				Scanner sc = new Scanner(s);
+				while(sc.hasNext()){
+					if(sc.hasNextInt()){
+						String content = terminos.get("anio");
+						if(content != null){
+							content = content + " " + sc.nextInt();
+						}
+						else{
+							content = sc.nextInt() + "";
+						}
+						terminos.put("anio", content);
+					}
+				}
+				sc.close();
+			}
+		}
+		
+		return terminos;
 	}
 
 }
