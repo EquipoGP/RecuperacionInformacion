@@ -75,7 +75,7 @@ public class SearchDocs {
 						
 						for(String s : split){
 							q.add(new TermQuery(new Term("creador", s)), 
-									BooleanClause.Occur.MUST);
+									BooleanClause.Occur.SHOULD);
 						}
 					}
 					/* buscar por fecha */
@@ -90,13 +90,13 @@ public class SearchDocs {
 							int max = Math.max(no1, no2);
 							
 							q.add(NumericRangeQuery.newIntRange("fecha", min, max, true, true), 
-									BooleanClause.Occur.MUST);
+									BooleanClause.Occur.SHOULD);
 						}
 						/* en una fecha concreta */
 						else if(split.length == 1){
 							int no = Integer.parseInt(split[0]);
 							q.add(NumericRangeQuery.newIntRange("fecha", no, no, true, true), 
-							BooleanClause.Occur.MUST);
+							BooleanClause.Occur.SHOULD);
 						}
 					}
 					else if(termino.getKey().equals("principal")){
@@ -113,7 +113,10 @@ public class SearchDocs {
 				/* realizar la busqueda */
 				TopDocs results = searcher.search(q, max_docs);
 				ScoreDoc[] scores = results.scoreDocs;
-
+				
+				System.out.println(consulta.getKey() + " score: " + scores.length);
+				
+				
 				/* parsear el resultado de la busqueda */
 				for (int i = 0; i < scores.length; i++) {
 					org.apache.lucene.document.Document doc = searcher.doc(scores[i].doc);
@@ -216,6 +219,7 @@ public class SearchDocs {
 		
 		terminos.putAll(getFieldsCuyo(consulta, terminos));
 		terminos.putAll(getFieldsSobre(consulta, terminos));
+		terminos.putAll(getFieldsAnio(consulta, terminos));
 		
 		if(!terminos.containsKey("principal")){
 			terminos.put("principal", consulta);
@@ -224,6 +228,12 @@ public class SearchDocs {
 		return terminos;
 	}
 	
+	/**
+	 * 
+	 * @param consulta
+	 * @param terms
+	 * @return
+	 */
 	private static Map<String, String> getFieldsCuyo(String consulta, Map<String, String> terms){
 		String[] split = consulta.split("cuy.");
 		
@@ -266,6 +276,12 @@ public class SearchDocs {
 		return terms;
 	}
 
+	/**
+	 * 
+	 * @param consulta
+	 * @param terms
+	 * @return
+	 */
 	private static Map<String, String> getFieldsSobre(String consulta, Map<String, String> terms){
 		String[] split = consulta.split("sobre");
 		
@@ -273,6 +289,31 @@ public class SearchDocs {
 			terms.put("principal", split[1]);
 		}
 		
+		return terms;
+	}
+	
+	/**
+	 * 
+	 * @param consulta
+	 * @param terms
+	 * @return
+	 */
+	private static Map<String, String> getFieldsAnio(String consulta, Map<String, String> terms){
+		Scanner s = new Scanner(consulta);
+		while(s.hasNext()){
+			if(s.hasNextInt()){
+				if(terms.get("anio") != null){
+					terms.put("anio", terms.get("anio") + " " + s.nextInt());
+				}
+				else{
+					terms.put("anio", "" + s.nextInt());
+				}
+			}
+			else{
+				s.next();
+			}
+		}
+		s.close();
 		return terms;
 	}
 }
