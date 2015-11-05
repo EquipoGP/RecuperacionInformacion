@@ -62,15 +62,21 @@ public class SearchDocs {
 			Map<String, String> consultas = parse(infoNeedsFile);
 
 			for (Map.Entry<String, String> consulta : consultas.entrySet()) {
-				BooleanQuery q = new BooleanQuery();				
+				BooleanQuery q = new BooleanQuery();
 				
 				/* parsear consulta en mayor profundidad */
 				Map<String, String> terminos = getFields(consulta.getValue());
 				for(Map.Entry<String, String> termino : terminos.entrySet()){
+					
 					/* buscar en creador */
 					if(termino.getKey().equals("creador")){
-						q.add(new TermQuery(new Term("creador", termino.getValue())), 
-								BooleanClause.Occur.MUST);
+						String creador = parse(termino.getValue(), analyzer);
+						String[]split = creador.split(" ");
+						
+						for(String s : split){
+							q.add(new TermQuery(new Term("creador", s)), 
+									BooleanClause.Occur.MUST);
+						}
 					}
 					/* buscar por fecha */
 					else if(termino.getKey().equals("anio")){
@@ -206,10 +212,24 @@ public class SearchDocs {
 	 * @param consulta: consulta sin parsear
 	 */
 	private static Map<String, String> getFields(String consulta){
-		String[] split = consulta.split("cuy*");
-		
 		Map<String, String> terminos = new HashMap<String, String>();
-		terminos.put("principal", split[0]);
+		
+		terminos.putAll(getFieldsCuyo(consulta, terminos));
+		terminos.putAll(getFieldsSobre(consulta, terminos));
+		
+		if(!terminos.containsKey("principal")){
+			terminos.put("principal", consulta);
+		}
+		
+		return terminos;
+	}
+	
+	private static Map<String, String> getFieldsCuyo(String consulta, Map<String, String> terms){
+		String[] split = consulta.split("cuy.");
+		
+		if(split.length > 1){
+			terms.put("principal", split[0]);
+		}
 		
 		for (int i = 1; i < split.length; i++) {
 			String s = split[i].trim().toLowerCase();
@@ -219,31 +239,40 @@ public class SearchDocs {
 					|| s.contains("creador")){
 				String content = s.replace("autor", "")
 						.replace("director", "").replace("creador", "");
-				terminos.put("creador", content);
+				terms.put("creador", content);
 			}
 			// cuyo.... [anio] ... [anio] ...
 			else if(s.contains(".*\\d+.*")){
 				Scanner sc = new Scanner(s);
 				while(sc.hasNext()){
 					if(sc.hasNextInt()){
-						String content = terminos.get("anio");
+						String content = terms.get("anio");
 						if(content != null){
 							content = content + " " + sc.nextInt();
 						}
 						else{
 							content = sc.nextInt() + "";
 						}
-						terminos.put("anio", content);
+						terms.put("anio", content);
 					}
 				}
 				sc.close();
 			}
 			else{
-				terminos.put("principal", consulta);
+				terms.put("principal", consulta);
 			}
 		}
 		
-		return terminos;
+		return terms;
 	}
 
+	private static Map<String, String> getFieldsSobre(String consulta, Map<String, String> terms){
+		String[] split = consulta.split("sobre");
+		
+		if(split.length > 1){
+			terms.put("principal", split[1]);
+		}
+		
+		return terms;
+	}
 }
