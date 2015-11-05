@@ -63,15 +63,6 @@ public class SearchDocs {
 
 			for (Map.Entry<String, String> consulta : consultas.entrySet()) {
 				BooleanQuery q = new BooleanQuery();				
-				String query = parse(consulta.getValue(), analyzer);
-				
-				/* parsear los terminos */
-				String[] terms = query.split(" ");
-				for(String term: terms){
-					/* buscar la consulta en el sumario */
-					q.add(new TermQuery(new Term("sumario", term)), BooleanClause.Occur.SHOULD);
-					q.add(new TermQuery(new Term("titulo", term)), BooleanClause.Occur.SHOULD);
-				}
 				
 				/* parsear consulta en mayor profundidad */
 				Map<String, String> terminos = getFields(consulta.getValue());
@@ -79,7 +70,7 @@ public class SearchDocs {
 					/* buscar en creador */
 					if(termino.getKey().equals("creador")){
 						q.add(new TermQuery(new Term("creador", termino.getValue())), 
-								BooleanClause.Occur.SHOULD);
+								BooleanClause.Occur.MUST);
 					}
 					/* buscar por fecha */
 					else if(termino.getKey().equals("anio")){
@@ -93,13 +84,22 @@ public class SearchDocs {
 							int max = Math.max(no1, no2);
 							
 							q.add(NumericRangeQuery.newIntRange("fecha", min, max, true, true), 
-									BooleanClause.Occur.SHOULD);
+									BooleanClause.Occur.MUST);
 						}
 						/* en una fecha concreta */
 						else if(split.length == 1){
 							int no = Integer.parseInt(split[0]);
 							q.add(NumericRangeQuery.newIntRange("fecha", no, no, true, true), 
-							BooleanClause.Occur.SHOULD);
+							BooleanClause.Occur.MUST);
+						}
+					}
+					else if(termino.getKey().equals("principal")){
+						String query = parse(termino.getValue(), analyzer);
+						String[] terms = query.split(" ");
+						for(String term: terms){
+							/* buscar la consulta en el sumario y titulo */
+							q.add(new TermQuery(new Term("sumario", term)), BooleanClause.Occur.SHOULD);
+							q.add(new TermQuery(new Term("titulo", term)), BooleanClause.Occur.SHOULD);
 						}
 					}
 				}
@@ -237,6 +237,9 @@ public class SearchDocs {
 					}
 				}
 				sc.close();
+			}
+			else{
+				terminos.put("principal", consulta);
 			}
 		}
 		
