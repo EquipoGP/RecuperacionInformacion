@@ -10,8 +10,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.Document;
-import org.apache.lucene.document.DoubleField;
 import org.apache.lucene.document.Field;
+import org.apache.lucene.document.IntField;
 import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.IndexWriter;
@@ -97,7 +97,7 @@ public class IndexDocs {
 			String summary = getSummary(d);
 			
 			doc.add(new TextField("creador", creators, Field.Store.YES));
-			doc.add(new DoubleField("fecha", date, Field.Store.YES));
+			doc.add(new IntField("fecha", date, Field.Store.YES));
 			doc.add(new TextField("titulo", title, Field.Store.YES));
 			doc.add(new TextField("sumario", summary, Field.Store.YES));
 		}

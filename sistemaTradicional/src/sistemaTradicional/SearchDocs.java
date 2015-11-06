@@ -59,61 +59,13 @@ public class SearchDocs {
 
 			/* mostrar todos los resultados */
 			int max_docs = reader.maxDoc();
+		
 			/* conseguir consultas */
 			Map<String, String> consultas = parse(infoNeedsFile);
 
 			for (Map.Entry<String, String> consulta : consultas.entrySet()) {
 				BooleanQuery q = new BooleanQuery();
-				
-				/* parsear consulta en mayor profundidad */
-//				Map<String, String> terminos = getFields(consulta.getValue());
-//				for(Map.Entry<String, String> termino : terminos.entrySet()){
-//					
-//					/* buscar en creador */
-//					if(termino.getKey().equals("creador")){
-//						String creador = parse(termino.getValue(), analyzer);
-//						String[]split = creador.split(" ");
-//						
-//						for(String s : split){
-//							q.add(new TermQuery(new Term("creador", s)), 
-//									BooleanClause.Occur.SHOULD);
-//						}
-//					}
-//					/* buscar por fecha */
-//					else if(termino.getKey().equals("anio")){
-//						String[] split = termino.getValue().split(" ");
-//						/* entre dos fechas */
-//						if(split.length == 2){
-//							int no1 = Integer.parseInt(split[0]);
-//							int no2 = Integer.parseInt(split[1]);
-//							
-//							int min = Math.min(no1, no2);
-//							int max = Math.max(no1, no2);
-//							
-//							q.add(NumericRangeQuery.newIntRange("fecha", min, max, true, true), 
-//									BooleanClause.Occur.SHOULD);
-//						}
-//						/* en una fecha concreta */
-//						else if(split.length == 1){
-//							int no = Integer.parseInt(split[0]);
-//							q.add(NumericRangeQuery.newIntRange("fecha", no, no, true, true), 
-//							BooleanClause.Occur.SHOULD);
-//						}
-//					}
-//					else if(termino.getKey().equals("principal")){
-//						String query = parse(termino.getValue(), analyzer);
-//						String[] terms = query.split(" ");
-//						for(String term: terms){
-//							/* buscar la consulta en el sumario y titulo */
-//							q.add(new TermQuery(new Term("sumario", term)), BooleanClause.Occur.SHOULD);
-//							q.add(new TermQuery(new Term("titulo", term)), BooleanClause.Occur.SHOULD);
-//						}
-//					}
-//				}
-				
-				
-				
-				
+
 				Map<String, String> terms = get(parse(consulta.getValue(), analyzer));
 				for(Map.Entry<String, String> term: terms.entrySet()){
 					if(term.getKey().equals("principal")){
@@ -134,12 +86,12 @@ public class SearchDocs {
 						if(terminos.length == 2){
 							q.add(NumericRangeQuery.newIntRange("fecha", Integer.parseInt(terminos[0]), 
 									Integer.parseInt(terminos[1]), true, true), 
-									BooleanClause.Occur.SHOULD);
+									BooleanClause.Occur.MUST);
 						}
 						else if(terminos.length == 1){
 							q.add(NumericRangeQuery.newIntRange("fecha", null, 
 									Integer.parseInt(terminos[0]), true, true), 
-									BooleanClause.Occur.SHOULD);
+									BooleanClause.Occur.MUST);
 						}
 					}
 					else if(term.getKey().equals("creator")){
@@ -185,9 +137,6 @@ public class SearchDocs {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
 	
 	private static Map<String, String> get(String query){
 		Map<String, String> terms = new HashMap<String, String>();
@@ -252,7 +201,7 @@ public class SearchDocs {
 				terms.put("anio", min + " " + max);
 			}
 			
-			terms.put("principal", main);
+			terms.put("principal", main + " " + min + " " + max);
 		}
 		else{
 			terms.put("principal", query);
@@ -260,26 +209,7 @@ public class SearchDocs {
 		
 		return terms;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
+		
 	/**
 	 * Parsea el fichero de necesidades de informacion y devuelve las parejas
 	 * identificador-texto para cada necesidad de informacion.
@@ -351,113 +281,5 @@ public class SearchDocs {
 			e.printStackTrace();
 		}
 		return query;
-	}
-	
-	/**
-	 * Devuelve una estructura con los campos en los que realizar la consulta 
-	 * y que consulta realizar 
-	 * @param consulta: consulta sin parsear
-	 */
-	private static Map<String, String> getFields(String consulta){
-		Map<String, String> terminos = new HashMap<String, String>();
-		
-		terminos.putAll(getFieldsCuyo(consulta, terminos));
-		terminos.putAll(getFieldsSobre(consulta, terminos));
-		terminos.putAll(getFieldsAnio(consulta, terminos));
-		
-		if(!terminos.containsKey("principal")){
-			terminos.put("principal", consulta);
-		}
-		
-		return terminos;
-	}
-	
-	/**
-	 * 
-	 * @param consulta
-	 * @param terms
-	 * @return
-	 */
-	private static Map<String, String> getFieldsCuyo(String consulta, Map<String, String> terms){
-		String[] split = consulta.split("cuy.");
-		
-		if(split.length > 1){
-			terms.put("principal", split[0]);
-		}
-		
-		for (int i = 1; i < split.length; i++) {
-			String s = split[i].trim().toLowerCase();
-			
-			// cuyo autor/director/creador...
-			if(s.contains("autor") || s.contains("director") 
-					|| s.contains("creador")){
-				String content = s.replace("autor", "")
-						.replace("director", "").replace("creador", "");
-				terms.put("creador", content);
-			}
-			// cuyo.... [anio] ... [anio] ...
-			else if(s.contains(".*\\d+.*")){
-				Scanner sc = new Scanner(s);
-				while(sc.hasNext()){
-					if(sc.hasNextInt()){
-						String content = terms.get("anio");
-						if(content != null){
-							content = content + " " + sc.nextInt();
-						}
-						else{
-							content = sc.nextInt() + "";
-						}
-						terms.put("anio", content);
-					}
-				}
-				sc.close();
-			}
-			else{
-				terms.put("principal", consulta);
-			}
-		}
-		
-		return terms;
-	}
-
-	/**
-	 * 
-	 * @param consulta
-	 * @param terms
-	 * @return
-	 */
-	private static Map<String, String> getFieldsSobre(String consulta, Map<String, String> terms){
-		String[] split = consulta.split("sobre");
-		
-		if(split.length > 1){
-			terms.put("principal", split[1]);
-		}
-		
-		return terms;
-	}
-	
-	/**
-	 * 
-	 * @param consulta
-	 * @param terms
-	 * @return
-	 */
-	private static Map<String, String> getFieldsAnio(String consulta, Map<String, String> terms){
-		Scanner s = new Scanner(consulta);
-		while(s.hasNext()){
-			if(s.hasNextInt()){
-				if(terms.get("anio") != null){
-					terms.put("anio", terms.get("anio") + " " + s.nextInt());
-				}
-				else{
-					terms.put("anio", "" + s.nextInt());
-				}
-			}
-			else{
-				s.next();
-			}
-		}
-		s.close();
-		return terms;
 	}
 }
