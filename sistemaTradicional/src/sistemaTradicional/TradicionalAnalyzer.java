@@ -25,7 +25,7 @@ public class TradicionalAnalyzer extends Analyzer {
 	public static final String[] CUSTOM_STOP_WORDS = { 
 			"interes", "cuy", "relacion", "quier", "gust", "trat", "encontr", 
 			"llam", "mund", "sab", "hech", "englob", "period", "document", 
-			"pertenezc", "situ" 
+			"pertenezc", "situ", "trabaj", "articul", "tesis" 
 			};
 	
 	/**

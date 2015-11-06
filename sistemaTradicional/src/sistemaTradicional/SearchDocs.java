@@ -3,6 +3,7 @@ package sistemaTradicional;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.PrintWriter;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -65,50 +66,99 @@ public class SearchDocs {
 				BooleanQuery q = new BooleanQuery();
 				
 				/* parsear consulta en mayor profundidad */
-				Map<String, String> terminos = getFields(consulta.getValue());
-				for(Map.Entry<String, String> termino : terminos.entrySet()){
-					
-					/* buscar en creador */
-					if(termino.getKey().equals("creador")){
-						String creador = parse(termino.getValue(), analyzer);
-						String[]split = creador.split(" ");
+//				Map<String, String> terminos = getFields(consulta.getValue());
+//				for(Map.Entry<String, String> termino : terminos.entrySet()){
+//					
+//					/* buscar en creador */
+//					if(termino.getKey().equals("creador")){
+//						String creador = parse(termino.getValue(), analyzer);
+//						String[]split = creador.split(" ");
+//						
+//						for(String s : split){
+//							q.add(new TermQuery(new Term("creador", s)), 
+//									BooleanClause.Occur.SHOULD);
+//						}
+//					}
+//					/* buscar por fecha */
+//					else if(termino.getKey().equals("anio")){
+//						String[] split = termino.getValue().split(" ");
+//						/* entre dos fechas */
+//						if(split.length == 2){
+//							int no1 = Integer.parseInt(split[0]);
+//							int no2 = Integer.parseInt(split[1]);
+//							
+//							int min = Math.min(no1, no2);
+//							int max = Math.max(no1, no2);
+//							
+//							q.add(NumericRangeQuery.newIntRange("fecha", min, max, true, true), 
+//									BooleanClause.Occur.SHOULD);
+//						}
+//						/* en una fecha concreta */
+//						else if(split.length == 1){
+//							int no = Integer.parseInt(split[0]);
+//							q.add(NumericRangeQuery.newIntRange("fecha", no, no, true, true), 
+//							BooleanClause.Occur.SHOULD);
+//						}
+//					}
+//					else if(termino.getKey().equals("principal")){
+//						String query = parse(termino.getValue(), analyzer);
+//						String[] terms = query.split(" ");
+//						for(String term: terms){
+//							/* buscar la consulta en el sumario y titulo */
+//							q.add(new TermQuery(new Term("sumario", term)), BooleanClause.Occur.SHOULD);
+//							q.add(new TermQuery(new Term("titulo", term)), BooleanClause.Occur.SHOULD);
+//						}
+//					}
+//				}
+				
+				
+				
+				
+				Map<String, String> terms = get(parse(consulta.getValue(), analyzer));
+				for(Map.Entry<String, String> term: terms.entrySet()){
+					if(term.getKey().equals("principal")){
+						BooleanQuery mainbq = new BooleanQuery();
+						System.out.println("Principal: " + term.getValue());
 						
-						for(String s : split){
-							q.add(new TermQuery(new Term("creador", s)), 
+						String[] terminos = term.getValue().split(" ");
+						for(String t: terminos){
+							mainbq.add(new TermQuery(new Term("sumario", t)), BooleanClause.Occur.SHOULD);
+							mainbq.add(new TermQuery(new Term("titulo", t)), BooleanClause.Occur.SHOULD);
+						}
+						q.add(mainbq, BooleanClause.Occur.MUST);
+					}
+					else if(term.getKey().equals("anio")){
+						System.out.println("Anio: " + term.getValue());
+						
+						String[] terminos = term.getValue().split(" ");
+						if(terminos.length == 2){
+							q.add(NumericRangeQuery.newIntRange("fecha", Integer.parseInt(terminos[0]), 
+									Integer.parseInt(terminos[1]), true, true), 
+									BooleanClause.Occur.SHOULD);
+						}
+						else if(terminos.length == 1){
+							q.add(NumericRangeQuery.newIntRange("fecha", null, 
+									Integer.parseInt(terminos[0]), true, true), 
 									BooleanClause.Occur.SHOULD);
 						}
 					}
-					/* buscar por fecha */
-					else if(termino.getKey().equals("anio")){
-						String[] split = termino.getValue().split(" ");
-						/* entre dos fechas */
-						if(split.length == 2){
-							int no1 = Integer.parseInt(split[0]);
-							int no2 = Integer.parseInt(split[1]);
-							
-							int min = Math.min(no1, no2);
-							int max = Math.max(no1, no2);
-							
-							q.add(NumericRangeQuery.newIntRange("fecha", min, max, true, true), 
-									BooleanClause.Occur.SHOULD);
+					else if(term.getKey().equals("creator")){
+						BooleanQuery creatorbq = new BooleanQuery();
+						
+						System.out.println("Creator: " + term.getValue());
+						
+						String[] terminos = term.getValue().split(" ");
+						for(String t: terminos){
+							q.add(new TermQuery(new Term("creador", t)), 
+									BooleanClause.Occur.MUST);
 						}
-						/* en una fecha concreta */
-						else if(split.length == 1){
-							int no = Integer.parseInt(split[0]);
-							q.add(NumericRangeQuery.newIntRange("fecha", no, no, true, true), 
-							BooleanClause.Occur.SHOULD);
-						}
-					}
-					else if(termino.getKey().equals("principal")){
-						String query = parse(termino.getValue(), analyzer);
-						String[] terms = query.split(" ");
-						for(String term: terms){
-							/* buscar la consulta en el sumario y titulo */
-							q.add(new TermQuery(new Term("sumario", term)), BooleanClause.Occur.SHOULD);
-							q.add(new TermQuery(new Term("titulo", term)), BooleanClause.Occur.SHOULD);
-						}
+						q.add(creatorbq, BooleanClause.Occur.SHOULD);
 					}
 				}
+				
+				
+				
+				
 
 				/* realizar la busqueda */
 				TopDocs results = searcher.search(q, max_docs);
@@ -135,6 +185,100 @@ public class SearchDocs {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
+	
+	private static Map<String, String> get(String query){
+		Map<String, String> terms = new HashMap<String, String>();
+		
+		if(query.contains("autor") || query.contains("director")){
+			// autor o director
+			String[] split = query.split("autor|director");
+			
+			terms.put("principal", split[0].replaceAll("autor|director", "").trim());			
+			terms.put("creator", split[split.length - 1].replaceAll("autor|director", "").trim());
+		}
+		else if(query.contains("ultim")){
+			// ultimos x anios
+			String[] split = query.split("ultim");
+			terms.put("principal", split[0].replaceAll("ultim", "").trim());
+			
+			int year = Calendar.getInstance().get(Calendar.YEAR);
+			int rango = 0;
+			Scanner s = new Scanner(split[1]);
+			while(s.hasNext()){
+				if(s.hasNextInt()){
+					rango = s.nextInt();
+					break;
+				}
+				s.next();
+			}
+			s.close();
+			if(year-rango >= 2008){
+				terms.put("anio", (year - rango) + " " + year);
+			}
+		}
+		else if(query.matches(".*\\d+.*")){
+			// anios
+			String main = "";
+			
+			int no1 = 0;
+			int no2 = 0;
+			
+			Scanner s = new Scanner(query);
+			while(s.hasNext()){
+				if(s.hasNextInt()){
+					if(no1 == 0){
+						no1 = s.nextInt();
+					}
+					else{
+						no2 = s.nextInt();
+					}
+				}
+				else{
+					main = main + " " + s.next();
+				}
+			}
+			s.close();
+			
+			int min = Math.min(no1, no2);
+			int max = Math.max(no1, no2);
+			
+			if(max < 2008){
+				;
+			}
+			else{
+				terms.put("anio", min + " " + max);
+			}
+			
+			terms.put("principal", main);
+		}
+		else{
+			terms.put("principal", query);
+		}
+		
+		return terms;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	/**
 	 * Parsea el fichero de necesidades de informacion y devuelve las parejas

@@ -1,0 +1,18 @@
+music son autor director javi 
+	"autor director" -> lo siguiente es nombre creador
+	"music son" -> buscarlo en titulo y sumario
+
+histor guerr independent 1808 1814 histori españ 
+	Buscar todo en titulo sumario
+	"1808 1814" -> buscar en años (<2008, no buscar)
+
+energ renov 2010 2015 
+	"2010 2015" -> buscar en años (>=2008, buscar)
+	"energ renov" -> buscar en titulo sumario
+
+desarroll videojueg diseñ personaj ultim 5 años 
+	"ultim" -> lo siguiente no se busca, o se busca en años
+	"desarrollo videojueg diseñ personaj" -> buscar en titulo sumario
+
+construccion arquitecton españ element decor edad medi epoc gotic conserv optim 
+	Buscar todo en titulo sumario
