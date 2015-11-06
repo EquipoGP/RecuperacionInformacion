@@ -62,15 +62,17 @@ public class SearchDocs {
 		
 			/* conseguir consultas */
 			Map<String, String> consultas = parse(infoNeedsFile);
-
 			for (Map.Entry<String, String> consulta : consultas.entrySet()) {
+				
 				BooleanQuery q = new BooleanQuery();
-
+				
+				/* parsear consulta */
 				Map<String, String> terms = get(parse(consulta.getValue(), analyzer));
 				for(Map.Entry<String, String> term: terms.entrySet()){
+					/* terminos de la consulta */
 					if(term.getKey().equals("principal")){
+						// buscar en titulo y sumario
 						BooleanQuery mainbq = new BooleanQuery();
-						System.out.println("Principal: " + term.getValue());
 						
 						String[] terminos = term.getValue().split(" ");
 						for(String t: terminos){
@@ -80,7 +82,7 @@ public class SearchDocs {
 						q.add(mainbq, BooleanClause.Occur.MUST);
 					}
 					else if(term.getKey().equals("anio")){
-						System.out.println("Anio: " + term.getValue());
+						// buscar en el anio
 						
 						String[] terminos = term.getValue().split(" ");
 						if(terminos.length == 2){
@@ -95,9 +97,8 @@ public class SearchDocs {
 						}
 					}
 					else if(term.getKey().equals("creator")){
+						// buscar en el creador
 						BooleanQuery creatorbq = new BooleanQuery();
-						
-						System.out.println("Creator: " + term.getValue());
 						
 						String[] terminos = term.getValue().split(" ");
 						for(String t: terminos){
@@ -107,17 +108,10 @@ public class SearchDocs {
 						q.add(creatorbq, BooleanClause.Occur.SHOULD);
 					}
 				}
-				
-				
-				
-				
 
 				/* realizar la busqueda */
 				TopDocs results = searcher.search(q, max_docs);
 				ScoreDoc[] scores = results.scoreDocs;
-				
-				System.out.println(consulta.getKey() + " score: " + scores.length);
-				
 				
 				/* parsear el resultado de la busqueda */
 				for (int i = 0; i < scores.length; i++) {
@@ -137,7 +131,12 @@ public class SearchDocs {
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * Parsea la entrada y la divide en subconsultas
+	 * @param query: necesidad de informacion ya parseada con el analizador
+	 * @return un mapa con aquello que hay que buscar en el campo adecuado
+	 */
 	private static Map<String, String> get(String query){
 		Map<String, String> terms = new HashMap<String, String>();
 		
