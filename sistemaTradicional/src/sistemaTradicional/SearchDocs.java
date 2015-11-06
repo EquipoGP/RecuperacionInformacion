@@ -83,7 +83,6 @@ public class SearchDocs {
 					}
 					else if(term.getKey().equals("anio")){
 						// buscar en el anio
-						
 						String[] terminos = term.getValue().split(" ");
 						if(terminos.length == 2){
 							q.add(NumericRangeQuery.newIntRange("fecha", Integer.parseInt(terminos[0]), 
