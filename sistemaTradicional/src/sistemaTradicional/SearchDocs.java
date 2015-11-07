@@ -162,9 +162,7 @@ public class SearchDocs {
 				s.next();
 			}
 			s.close();
-			if(year-rango >= 2008){
-				terms.put("anio", (year - rango) + " " + year);
-			}
+			terms.put("anio", (year - rango) + " " + year);
 		}
 		else if(query.matches(".*\\d+.*")){
 			// anios
