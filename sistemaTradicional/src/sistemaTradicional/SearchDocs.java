@@ -102,9 +102,9 @@ public class SearchDocs {
 						String[] terminos = term.getValue().split(" ");
 						for(String t: terminos){
 							q.add(new TermQuery(new Term("creador", t)), 
-									BooleanClause.Occur.MUST);
+									BooleanClause.Occur.SHOULD);
 						}
-						q.add(creatorbq, BooleanClause.Occur.SHOULD);
+						q.add(creatorbq, BooleanClause.Occur.MUST);
 					}
 				}
 
