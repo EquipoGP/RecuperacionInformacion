@@ -112,6 +112,11 @@ public class SearchDocs {
 				TopDocs results = searcher.search(q, max_docs);
 				ScoreDoc[] scores = results.scoreDocs;
 				
+				System.out.println(consulta.getKey() + " " + scores.length);
+				
+				/* explica el primer resultado */
+				System.out.println(searcher.explain(q, scores[0].doc));
+				
 				/* parsear el resultado de la busqueda */
 				for (int i = 0; i < scores.length; i++) {
 					org.apache.lucene.document.Document doc = searcher.doc(scores[i].doc);
