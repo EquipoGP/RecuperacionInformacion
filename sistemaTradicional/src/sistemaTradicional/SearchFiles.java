@@ -1,3 +1,9 @@
+/*
+ * Fichero: SearchFiles.java
+ * Autores: Patricia Lazaro Tello (554309)
+ * 			Alejandro Royo Amondarain (560285)
+ */
+
 package sistemaTradicional;
 
 public class SearchFiles {

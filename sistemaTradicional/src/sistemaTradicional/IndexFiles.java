@@ -1,6 +1,10 @@
-package sistemaTradicional;
+/*
+ * Fichero: IndexFiles.java
+ * Autores: Patricia Lazaro Tello (554309)
+ * 			Alejandro Royo Amondarain (560285)
+ */
 
-import java.util.Date;
+package sistemaTradicional;
 
 public class IndexFiles {
 	/**
@@ -40,11 +44,7 @@ public class IndexFiles {
 		}
 		
 		/* continuar la indexacion */
-		System.out.println("Indexando...");
-		Date start = new Date();
 		IndexDocs.index(indexPath, docsPath);
-		Date end = new Date();
-		System.out.println("Finalizada indexacion. Tiempo: " + (end.getTime() - start.getTime()));
 	}
 
 }

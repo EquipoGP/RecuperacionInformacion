@@ -1,3 +1,9 @@
+/*
+ * Fichero: SearchDocs.java
+ * Autores: Patricia Lazaro Tello (554309)
+ * 			Alejandro Royo Amondarain (560285)
+ */
+
 package sistemaTradicional;
 
 import java.io.File;
@@ -111,11 +117,6 @@ public class SearchDocs {
 				/* realizar la busqueda */
 				TopDocs results = searcher.search(q, max_docs);
 				ScoreDoc[] scores = results.scoreDocs;
-				
-				System.out.println(consulta.getKey() + " " + scores.length);
-				
-				/* explica el primer resultado */
-				System.out.println(searcher.explain(q, scores[0].doc));
 				
 				/* parsear el resultado de la busqueda */
 				for (int i = 0; i < scores.length; i++) {
