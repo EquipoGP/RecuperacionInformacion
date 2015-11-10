@@ -96,7 +96,7 @@ public class IndexFiles {
 			System.out.println("Indexing to directory '" + indexPath + "'...");
 
 			Directory dir = FSDirectory.open(new File(indexPath));
-			Analyzer analyzer = new SpanishAnalyzer(Version.LUCENE_44);
+			Analyzer analyzer = new SpanishAnalyzer();
 			IndexWriterConfig iwc = new IndexWriterConfig(Version.LUCENE_44, analyzer);
 
 			if (create) {
@@ -298,6 +298,50 @@ public class IndexFiles {
 			if (nl != null && nl.getLength() > 0)
 				doc.add(new StringField("language", nl.item(0).getTextContent(), Field.Store.YES));
 
+			// dcterms:issued
+			nl = d.getElementsByTagName("dcterms:issued");
+			if(nl != null && nl.getLength() > 0){
+				String[] issues = nl.item(0).getTextContent().split("-");
+				if(issues.length == 3){
+					doc.add(new StringField("issued", issues[0].trim() 
+							+ issues[1].trim() + issues[2].trim(), Field.Store.YES));
+				}
+			}
+			
+			// dcterms:created
+			nl = d.getElementsByTagName("dcterms:created");
+			if(nl != null && nl.getLength() > 0){
+				String[] creates = nl.item(0).getTextContent().split("-");
+				if(creates.length == 3){
+					doc.add(new StringField("created", creates[0].trim() 
+							+ creates[1].trim() + creates[2].trim(), Field.Store.YES));
+				}
+			}
+			
+			// dcterms:temporal
+			nl = d.getElementsByTagName("dcterms:temporal");
+			if(nl != null && nl.getLength() > 0){
+				String[] terms = nl.item(0).getTextContent().split(" ");
+				for(String t: terms){
+					String[] campos = t.split("=");
+					
+					if(campos.length > 1){
+					
+						String date = campos[1].replaceAll("-", "").trim();
+						String field = "";
+						
+						if(campos[0].contains("begin")){
+							field = "begin";
+						}
+						else{
+							field = "end";
+						}
+						
+						doc.add(new StringField(field, date, Field.Store.YES));
+					}
+				}
+			}
+			
 			// ows:BoundingBox
 			nl = d.getElementsByTagName("ows:BoundingBox");
 			if (nl != null && nl.getLength() > 0) {
