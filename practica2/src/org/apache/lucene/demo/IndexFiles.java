@@ -96,7 +96,7 @@ public class IndexFiles {
 			System.out.println("Indexing to directory '" + indexPath + "'...");
 
 			Directory dir = FSDirectory.open(new File(indexPath));
-			Analyzer analyzer = new SpanishAnalyzer(Version.LUCENE_44);
+			Analyzer analyzer = new SpanishAnalyzer();
 			IndexWriterConfig iwc = new IndexWriterConfig(Version.LUCENE_44, analyzer);
 
 			if (create) {
@@ -301,15 +301,21 @@ public class IndexFiles {
 			// dcterms:issued
 			nl = d.getElementsByTagName("dcterms:issued");
 			if(nl != null && nl.getLength() > 0){
-				String issued = nl.item(0).getTextContent().replaceAll("-", "").trim();
-				doc.add(new StringField("issued", issued, Field.Store.YES));
+				String[] issues = nl.item(0).getTextContent().split("-");
+				if(issues.length == 3){
+					doc.add(new StringField("issued", issues[0].trim() 
+							+ issues[1].trim() + issues[2].trim(), Field.Store.YES));
+				}
 			}
 			
 			// dcterms:created
 			nl = d.getElementsByTagName("dcterms:created");
 			if(nl != null && nl.getLength() > 0){
-				String created = nl.item(0).getTextContent().replaceAll("-", "").trim();
-				doc.add(new StringField("created", created , Field.Store.YES));
+				String[] creates = nl.item(0).getTextContent().split("-");
+				if(creates.length == 3){
+					doc.add(new StringField("created", creates[0].trim() 
+							+ creates[1].trim() + creates[2].trim(), Field.Store.YES));
+				}
 			}
 			
 			// ows:BoundingBox
