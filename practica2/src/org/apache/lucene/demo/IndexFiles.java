@@ -298,6 +298,20 @@ public class IndexFiles {
 			if (nl != null && nl.getLength() > 0)
 				doc.add(new StringField("language", nl.item(0).getTextContent(), Field.Store.YES));
 
+			// dcterms:issued
+			nl = d.getElementsByTagName("dcterms:issued");
+			if(nl != null && nl.getLength() > 0){
+				String issued = nl.item(0).getTextContent().replaceAll("-", "").trim();
+				doc.add(new StringField("issued", issued, Field.Store.YES));
+			}
+			
+			// dcterms:created
+			nl = d.getElementsByTagName("dcterms:created");
+			if(nl != null && nl.getLength() > 0){
+				String created = nl.item(0).getTextContent().replaceAll("-", "").trim();
+				doc.add(new StringField("created", created , Field.Store.YES));
+			}
+			
 			// ows:BoundingBox
 			nl = d.getElementsByTagName("ows:BoundingBox");
 			if (nl != null && nl.getLength() > 0) {

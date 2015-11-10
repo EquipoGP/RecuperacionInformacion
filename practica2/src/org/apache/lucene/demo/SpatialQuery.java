@@ -2,16 +2,19 @@ package org.apache.lucene.demo;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Scanner;
 import java.util.regex.Pattern;
 
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
+import org.apache.lucene.index.Term;
 import org.apache.lucene.search.BooleanClause;
 import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.NumericRangeQuery;
 import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.FSDirectory;
 
@@ -31,6 +34,22 @@ public class SpatialQuery {
 			System.out.println(s);
 			bbQueryParser(s);
 		}
+
+		String[] bbQueries2 = { "spatial:-180.0,180.0,-90.0,90.0 title:natura",
+				"spatial:-180.0,180.0,-90.0,90.0 title:nacional" };
+
+		for (String s : bbQueries2) {
+			System.out.println(s);
+			bbQueryParser(s);
+		}
+
+		String[] bbQueries3 = { "issued:[1980 TO 2010]", "created:[1980 TO 2010]",
+				"issued:[1980 TO 2010] created:[1980 TO 2010]", "issued:[19890101 TO 19950101]", "issued:19940101" };
+
+		for (String s : bbQueries3) {
+			System.out.println(s);
+			bbQueryParser(s);
+		}
 	}
 
 	/**
@@ -43,30 +62,82 @@ public class SpatialQuery {
 			String index = "index";
 			IndexReader reader = DirectoryReader.open(FSDirectory.open(new File(index)));
 			IndexSearcher searcher = new IndexSearcher(reader);
+			
+			bbQuery = bbQuery.replaceAll(" TO ", "/");
 
-			String[] terms = bbQuery.split(":");
+			String[] queries = bbQuery.split(" ");
+			for (String q : queries) {
 
-			if (terms[0].equals("spatial")) {
-				String[] coords = terms[1].split(",");
-				double w = Double.parseDouble(coords[0]);
-				double e = Double.parseDouble(coords[1]);
-				double s = Double.parseDouble(coords[2]);
-				double n = Double.parseDouble(coords[3]);
+				String[] terms = q.split(":");
 
-				/* Xmin <= EAST, Xmax >= WEST, Ymin <= NORTH, Ymax >= SOUTH */
-				NumericRangeQuery<Double> westRangeQuery = NumericRangeQuery.newDoubleRange("west", null, e, true,
-						true);
-				NumericRangeQuery<Double> eastRangeQuery = NumericRangeQuery.newDoubleRange("east", w, null, true,
-						true);
-				NumericRangeQuery<Double> southRangeQuery = NumericRangeQuery.newDoubleRange("south", null, n, true,
-						true);
-				NumericRangeQuery<Double> northRangeQuery = NumericRangeQuery.newDoubleRange("north", s, null, true,
-						true);
+				if (terms[0].equals("spatial")) {
+					String[] coords = terms[1].split(",");
+					double w = Double.parseDouble(coords[0]);
+					double e = Double.parseDouble(coords[1]);
+					double s = Double.parseDouble(coords[2]);
+					double n = Double.parseDouble(coords[3]);
 
-				query.add(westRangeQuery, BooleanClause.Occur.MUST);
-				query.add(eastRangeQuery, BooleanClause.Occur.MUST);
-				query.add(southRangeQuery, BooleanClause.Occur.MUST);
-				query.add(northRangeQuery, BooleanClause.Occur.MUST);
+					/*
+					 * Xmin <= EAST, Xmax >= WEST, Ymin <= NORTH, Ymax >= SOUTH
+					 */
+					NumericRangeQuery<Double> westRangeQuery = NumericRangeQuery.newDoubleRange("west", null, e, true,
+							true);
+					NumericRangeQuery<Double> eastRangeQuery = NumericRangeQuery.newDoubleRange("east", w, null, true,
+							true);
+					NumericRangeQuery<Double> southRangeQuery = NumericRangeQuery.newDoubleRange("south", null, n, true,
+							true);
+					NumericRangeQuery<Double> northRangeQuery = NumericRangeQuery.newDoubleRange("north", s, null, true,
+							true);
+
+					BooleanQuery bbq = new BooleanQuery();
+					bbq.add(westRangeQuery, BooleanClause.Occur.MUST);
+					bbq.add(eastRangeQuery, BooleanClause.Occur.MUST);
+					bbq.add(southRangeQuery, BooleanClause.Occur.MUST);
+					bbq.add(northRangeQuery, BooleanClause.Occur.MUST);
+
+					query.add(bbq, BooleanClause.Occur.SHOULD);
+				} else if (terms[0].contains("issued") || terms[0].contains("created")) {
+					String date = terms[1].replaceAll("\\[", "").replaceAll("\\]", "").trim();
+					
+					int n1 = 0;
+					int n2 = 0;
+
+					String[] dates = date.split("\\/");
+
+					// rango
+					if (dates.length == 2) {
+						String no1 = dates[0];
+						String no2 = dates[1];
+
+						if (no1.length() == 4) {
+							no1 = no1 + "0101";
+						}
+						if (no2.length() == 4) {
+							no2 = no2 + "0101";
+						}
+
+						n1 = Integer.parseInt(no1);
+						n2 = Integer.parseInt(no2);
+					}
+					// no rango
+					else {
+						String no = dates[0];
+
+						if (no.length() == 4) {
+							no = no + "0101";
+						}
+
+						n1 = Integer.parseInt(no);
+						n2 = n1;
+					}
+
+					System.out.println("Term: " + terms[0].trim() + " N1: " + n1 + " N2: " + n2);
+					NumericRangeQuery datequery = NumericRangeQuery.newIntRange(terms[0].trim(),
+							n1, n2, true, true);
+					query.add(datequery, BooleanClause.Occur.SHOULD);
+				} else {
+					query.add(new TermQuery(new Term(terms[0], terms[1])), BooleanClause.Occur.SHOULD);
+				}
 			}
 
 			/* Realiza la busqueda */
