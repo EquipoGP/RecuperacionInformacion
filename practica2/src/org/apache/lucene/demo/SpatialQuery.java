@@ -27,26 +27,33 @@ public class SpatialQuery {
 	 */
 	public static void main(String[] args) {
 
-//		String[] bbQueries = { "spatial:-180.0,180.0,-90.0,90.0", "spatial:-15.6,6.6,35.0,44.7",
-//				"spatial:-15.6,6.6,50.0,72.0", "spatial:-135.0,-110.0,50.0,72.0" };
-//
-//		for (String s : bbQueries) {
-//			System.out.println(s);
-//			bbQueryParser(s);
-//		}
-//
-//		String[] bbQueries2 = { "spatial:-180.0,180.0,-90.0,90.0 title:natura",
-//				"spatial:-180.0,180.0,-90.0,90.0 title:nacional" };
-//
-//		for (String s : bbQueries2) {
-//			System.out.println(s);
-//			bbQueryParser(s);
-//		}
+		String[] bbQueries = { "spatial:-180.0,180.0,-90.0,90.0", "spatial:-15.6,6.6,35.0,44.7",
+				"spatial:-15.6,6.6,50.0,72.0", "spatial:-135.0,-110.0,50.0,72.0" };
+
+		for (String s : bbQueries) {
+			System.out.println(s);
+			bbQueryParser(s);
+		}
+
+		String[] bbQueries2 = { "spatial:-180.0,180.0,-90.0,90.0 title:natura",
+				"spatial:-180.0,180.0,-90.0,90.0 title:nacional" };
+
+		for (String s : bbQueries2) {
+			System.out.println(s);
+			bbQueryParser(s);
+		}
 
 		String[] bbQueries3 = { "issued:[1980 TO 2010]", "created:[1980 TO 2010]",
 				"issued:[1980 TO 2010] created:[1980 TO 2010]", "issued:[19890101 TO 19950101]", "issued:19940101" };
 
 		for (String s : bbQueries3) {
+			System.out.println(s);
+			bbQueryParser(s);
+		}
+		
+		String[] bbQueries4 = { "temporal:[1980 TO 2010]" };
+
+		for (String s : bbQueries4) {
 			System.out.println(s);
 			bbQueryParser(s);
 		}
@@ -96,7 +103,8 @@ public class SpatialQuery {
 					bbq.add(northRangeQuery, BooleanClause.Occur.MUST);
 
 					query.add(bbq, BooleanClause.Occur.SHOULD);
-				} else if (terms[0].contains("issued") || terms[0].contains("created")) {
+				} else if (terms[0].contains("issued") || terms[0].contains("created") 
+						|| terms[0].contains("temporal")) {
 					String date = terms[1].replaceAll("\\[", "").replaceAll("\\]", "").trim();
 					
 					String n1 = "";
@@ -131,10 +139,22 @@ public class SpatialQuery {
 						n2 = n1;
 					}
 
-					System.out.println("Term: " + terms[0].trim() + " N1: " + n1 + " N2: " + n2);
-					TermRangeQuery datequery = TermRangeQuery.newStringRange(terms[0].trim(),
-							n1, n2, true, true);
-					query.add(datequery, BooleanClause.Occur.SHOULD);
+					if(terms[0].contains("temporal")){
+						BooleanQuery bqq = new BooleanQuery();
+						
+						TermRangeQuery beginquery = TermRangeQuery.newStringRange("begin", n1, null, true, true);
+						TermRangeQuery endquery = TermRangeQuery.newStringRange("end", null, n2, true, true);
+						
+						bqq.add(beginquery, BooleanClause.Occur.MUST);
+						bqq.add(endquery, BooleanClause.Occur.MUST);
+						
+						query.add(bqq, BooleanClause.Occur.SHOULD);
+					}
+					else{
+						TermRangeQuery datequery = TermRangeQuery.newStringRange(terms[0].trim(),
+								n1, n2, true, true);
+						query.add(datequery, BooleanClause.Occur.SHOULD);
+					}
 				} else {
 					query.add(new TermQuery(new Term(terms[0], terms[1])), BooleanClause.Occur.SHOULD);
 				}

@@ -318,6 +318,30 @@ public class IndexFiles {
 				}
 			}
 			
+			// dcterms:temporal
+			nl = d.getElementsByTagName("dcterms:temporal");
+			if(nl != null && nl.getLength() > 0){
+				String[] terms = nl.item(0).getTextContent().split(" ");
+				for(String t: terms){
+					String[] campos = t.split("=");
+					
+					if(campos.length > 1){
+					
+						String date = campos[1].replaceAll("-", "").trim();
+						String field = "";
+						
+						if(campos[0].contains("begin")){
+							field = "begin";
+						}
+						else{
+							field = "end";
+						}
+						
+						doc.add(new StringField(field, date, Field.Store.YES));
+					}
+				}
+			}
+			
 			// ows:BoundingBox
 			nl = d.getElementsByTagName("ows:BoundingBox");
 			if (nl != null && nl.getLength() > 0) {
