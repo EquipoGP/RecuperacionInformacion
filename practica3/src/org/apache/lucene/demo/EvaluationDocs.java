@@ -3,7 +3,7 @@ package org.apache.lucene.demo;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
-import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Scanner;
 
 public class EvaluationDocs {
@@ -27,52 +27,55 @@ public class EvaluationDocs {
 	public static void evaluate(String qrelsFileName, String resultsFileName, String outputFileName){
 		
 		/* Obtiene los juicios de relevancia a partir del fichero <qrelsFileName> */
-		HashMap<Object, HashMap<Object,Object>> juicios = obtenerRelevancia(qrelsFileName);
+		HashMap<Integer, HashMap<Integer,Boolean>> qrels 
+			= obtenerRelevancia(qrelsFileName);
 		
 		/* Calcula las medidas de evaluacion de los juicios obtenidos */
 		
-		
+		for (Entry<Integer, HashMap<Integer, Boolean>> entry : qrels.entrySet()){
+			System.out.println("INFO NEED: " + entry.getKey());
+			
+			for(Entry<Integer, Boolean> entry2 : entry.getValue().entrySet()){
+				System.out.println("DOC_ID: " + entry2.getKey() 
+					+ " RELEVANCY: " + entry2.getValue());
+			}
+		}
 	}
 	
-	private static HashMap<Object, HashMap<Object,Object>> obtenerRelevancia(String qrelsFileName){
-		
-		HashMap<Object, HashMap<Object,Object>> juicios = new HashMap<Object, HashMap<Object,Object>>();
+	private static HashMap<Integer, HashMap<Integer,Boolean>> obtenerRelevancia(String qrelsFileName){
+		HashMap<Integer, HashMap<Integer,Boolean>> qrels
+			= new HashMap<Integer, HashMap<Integer,Boolean>>();
 		
 		try {
-			Scanner leer = new Scanner(new File(qrelsFileName));
+			Scanner s = new Scanner(new File(qrelsFileName));
 			
-			/* Informacion del fichero */
-			int infoNeed = 0;
-			int prevInfoNeed = infoNeed;
-			int docID = 0;
-			int rel = 0;
-			HashMap<Object,Object> infoDocs = new HashMap<Object,Object>();
-			
-			/* Lee el fichero qrelsFileName */
-			while(leer.hasNextLine()){
-				prevInfoNeed = infoNeed;
+			while(s.hasNextLine()){
+				// obtener datos
+				int infoNeed = s.nextInt();
+				int docid = s.nextInt();
+				boolean relevancy = s.nextInt() == 1;
 				
-				infoNeed = leer.nextInt();
-				docID = leer.nextInt();
-				rel = leer.nextInt();
+				// obtener el mapa de infoNeed
+				HashMap<Integer, Boolean> docs = qrels.get(infoNeed);
 				
-				if (infoNeed > prevInfoNeed) {
-					juicios.put(infoNeed, infoDocs);
-					
-					infoDocs = new HashMap<Object,Object>();
-					infoDocs.put(docID, rel);
+				// crear el mapa si no existe todavia
+				if(docs == null){
+					docs = new HashMap<Integer, Boolean>();
 				}
-				else {
-					infoDocs.put(docID, rel);
-				}
+				
+				// agregar el nuevo valor al mapa
+				docs.put(docid, relevancy);
+				qrels.put(infoNeed, docs);
+				
+				s.nextLine();
 			}
 			
-			leer.close();
+			s.close();
 			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		
-		return juicios;
+		return qrels;
 	}
 }

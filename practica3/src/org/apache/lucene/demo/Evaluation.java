@@ -28,12 +28,12 @@ public class Evaluation {
 		for (int i = 0; i < args.length; i++) {
 			String s = args[i];
 
-			if(s.equals("-index")){
+			if(s.equals("-qrels")){
 				/* qrelsFileName */
 				i++;
 				qrelsFileName = args[i];
 			}
-			else if(s.equals("-infoNeeds")){
+			else if(s.equals("-results")){
 				/* resultsFileName */
 				i++;
 				resultsFileName = args[i];
