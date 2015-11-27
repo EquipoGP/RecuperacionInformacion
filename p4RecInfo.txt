@@ -1,0 +1,42 @@
+Apache Solr solo permite buscar por palabras clave y no por frases de busqueda
+
+delay del fetcher (tiempo entre consultas de descarga, por defecto es 1 segundo, educado):
+
+añadir al fichero nutch_site.xml: (propiedad fetcher.server.delay,0.1) - (propiedad,valor(segs))
+
+ejecucion de una iteracion: s1=`ls -d e09crawl/segments/2* | tail -1`
+(las comillas son acentos graves)
+
+EJERCICIO 1:
+
+	-Se ha procesado la primera pagina semilla, el resto estan accesibles (en la frontera) pero
+	todavia no han sido procesadas.
+	
+	-Una vez mas, ya que se procesan todas las paginas de incluidas en la base de datos
+	e09crawl/crawldb
+	
+EJERCICIO 2:
+
+bin/nutch readseg -list -dir e09crawl/segments -dum ../prueba -nogenerate....
+	-Para crear un buscador web, habria que quedarse solo con el contenido original etiquetado de
+	los documentos descargados, asi hay que activar los siguientes flags:
+		-nogenerate
+		-nofetch
+		-noparse
+		-noparsetext
+		-noparsedata
+		
+
+APACHE SOLR:
+
+EJERCICIO 1:
+	-Hecho "quimica organica" ~4 (no es -4 como dice el guion, el simbolo se hace con altgr + 4)
+	
+EJERCICIO 2:
+	-
+	
+PARA EL TRABAJO:
+
+	-FORMA CACA PERO LA QUE PIDEN: Volcar segmentos y parsear los ficheros de texto
+	-FORMA COOL: Usar API de Apache para acceder desde la nueva clase para leer los datos
+					de los segmentos directamente (sin volcado en ficheros de texto)
