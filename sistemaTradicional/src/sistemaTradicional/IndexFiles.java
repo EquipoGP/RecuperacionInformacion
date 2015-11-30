@@ -18,9 +18,12 @@ public class IndexFiles {
 	 * - <docsPath>: directorio que contiene los ficheros a indexar
 	 */
 	public static void main(String[] args) {
-		String uso = "java IndexFiles -index <indexPath> -docs <docsPath>";
+		String uso = "java IndexFiles -index <indexPath> [-docs <docsPath> | -dump <dumpPath>]";
 		String indexPath = null;
 		String docsPath = null;
+		String dumpPath = null;
+		
+		boolean dump = false;
 		
 		/* obtener argumentos */
 		for (int i = 0; i < args.length; i++) {
@@ -35,16 +38,27 @@ public class IndexFiles {
 				i++;
 				docsPath = args[i];
 			}
+			else if(s.equals("-dump")){
+				/* dumpPath */
+				i++;
+				dumpPath = args[i];
+				dump = true;
+			}
 		}
 		
 		/* comprobar argumentos */
-		if(indexPath == null || docsPath == null){
+		if(indexPath == null || 
+				(!dump && docsPath == null) ||
+				(dump && dumpPath == null)){
 			System.err.println(uso);
 			return ;
 		}
 		
 		/* continuar la indexacion */
-		IndexDocs.index(indexPath, docsPath);
+		if(!dump)
+			IndexDocs.index(indexPath, docsPath);
+		else
+			IndexDocsFromDump.index(indexPath, dumpPath);
 	}
 
 }

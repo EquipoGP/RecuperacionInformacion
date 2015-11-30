@@ -89,7 +89,7 @@ public class IndexDocs {
 	 * @param doc: documento donde introducir los campos
 	 * @return
 	 */
-	private static Document parse(InputStream fis, Document doc){
+	public static Document parse(InputStream fis, Document doc){
 		try{
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			DocumentBuilder db = dbf.newDocumentBuilder();
