@@ -38,5 +38,12 @@ EJERCICIO 2:
 PARA EL TRABAJO:
 
 	-FORMA CACA PERO LA QUE PIDEN: Volcar segmentos y parsear los ficheros de texto
+
+		Aplicar ejecucion automatica del crawler (el comando del punto 3.4 de la practica). Despues, mergear los segmentos de la siguiente manera:
+			bin/nutch mergesegs crawl/merged crawl/segments/*
+		Y despues bin/nutch readseg -dump crawl/merged/* ../prueba -nogenerate -noparsetext -noparsedata -noparse -nofetch
+
+		Mas info there -> http://stackoverflow.com/questions/7968534/dump-all-segments-from-nutch
+
 	-FORMA COOL: Usar API de Apache para acceder desde la nueva clase para leer los datos
 					de los segmentos directamente (sin volcado en ficheros de texto)
