@@ -79,7 +79,7 @@ public class IndexDocsFromDump {
 			s.close();
 			writer.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.err.println("ERROR: error inesperado");
 		}
 	}
 
