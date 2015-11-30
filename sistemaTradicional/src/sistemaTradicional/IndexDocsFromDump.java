@@ -67,9 +67,19 @@ public class IndexDocsFromDump {
 					 * los ficheros XML se encuentran en una unica linea,
 					 * comenzando por "<?xml"
 					 */
+					
+					while(s.hasNextLine()){
+						String aux = s.nextLine();
+						if(aux.contains("Recno::")){
+							break;
+						}
+						else{
+							line = line.concat(aux);
+						}
+					}
+					
 					Document doc = new Document();
 					InputStream fis = new ByteArrayInputStream(line.getBytes(StandardCharsets.UTF_8));
-
 					doc = IndexDocs.parse(fis, doc);
 					doc.add(new StringField("path", url, Field.Store.YES));
 					writer.addDocument(doc);
