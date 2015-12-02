@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<informationNeeds>
+  <informationNeed>
+    <identifier>13-2</identifier>
+      <text>musica sonido autor director Javier</text>
+  </informationNeed>
+  <informationNeed>
+    <identifier>02-4</identifier>
+    <text>Guerra de Independencia (1808-1814) trabajos artículos historia España</text>
+  </informationNeed>
+  <informationNeed>
+    <identifier>09-3</identifier>
+    <text>Tesis energías renovables 2010 2015.</text>
+  </informationNeed>
+  <informationNeed>
+    <identifier>07-2</identifier>
+    <text>desarrollo videojuegos diseño personajes últimos 5 años.</text>
+  </informationNeed>
+  <informationNeed>
+    <identifier>05-5</identifier>
+    <text>construcciones arquitectónicas España elementos decorativos Edad Media época gótica estado de conservación óptimo.</text>
+  </informationNeed>
+</informationNeeds>
