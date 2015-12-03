@@ -158,14 +158,7 @@ public class Measures {
 	 * 
 	 */
 	private static double getPrecK(int k, LinkedList<Double> precisiones){
-		double preck = 0.0;
-		if(precisiones.size() < k){
-			preck =(precisiones.getLast() * precisiones.size()) / k;
-		}
-		else{
-			preck = precisiones.get(k-1);
-		}
-		return preck;
+		return (double) (((double) precisiones.getLast() *(double) precisiones.size()) / (double) k);
 	}
 	
 	/**

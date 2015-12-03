@@ -38,15 +38,6 @@ public class EvaluationDocs {
 		
 		/* Calcula las medidas de evaluacion de los juicios obtenidos */
 		Measures.measures(outputFileName, docs_relevantes, relevancia);
-		
-//		for (Entry<String, HashMap<String, Boolean>> entry : qrels.entrySet()){
-//			System.out.println("INFO NEED: " + entry.getKey());
-//			
-//			for(Entry<String, Boolean> entry2 : entry.getValue().entrySet()){
-//				System.out.println("DOC_ID: " + entry2.getKey() 
-//					+ " RELEVANCY: " + entry2.getValue());
-//			}
-//		}
 	}
 	
 	/**
@@ -112,7 +103,8 @@ public class EvaluationDocs {
 				}
 				
 				// agregar datos
-				lista.add(docid);
+				if(lista.size() < 50)
+					lista.add(docid);
 				results.put(infoNeed, lista);
 				
 				s.nextLine();
