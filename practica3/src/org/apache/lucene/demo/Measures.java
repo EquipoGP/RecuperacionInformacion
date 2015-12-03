@@ -24,6 +24,8 @@ public class Measures {
 	 */
 	public static void measures(String outputFileName, HashMap<String, Integer> docs_relevantes,
 			HashMap<String, LinkedList<Boolean>> relevancia) {
+		
+		LinkedList<Data> data = new LinkedList<Data>();
 
 		try {
 			// printear en el fichero
@@ -61,40 +63,52 @@ public class Measures {
 				f1 = getF1(precision, recall);
 				prec10 = getPrecK(10, precisiones);
 				avg_prec = getAvgPrecision(docs_rel, precisiones, drels);
-
+				
+				recall_precision = merge(precisiones, recalls);
+				int_recall_precision = mergeInterpolated(recall_precision);
+				
 				out.println("INFORMATION_NEED" + "\t" + key);
-				out.println(PRECISION + "\t" + precision);
-				out.println(RECALL + "\t" + recall);
-				out.println(F1 + "\t" + f1);
-				out.println(PREC10 + "\t" + prec10);
-				out.println(AVRG_PREC + "\t" + avg_prec);
-
-				System.out.println(REC_PREC);
+				out.printf("%s \t %.2f%n", PRECISION, precision);
+				out.printf("%s \t %.2f%n", RECALL, recall);
+				out.printf("%s \t %.2f%n", F1, f1);
+				out.printf("%s \t %.2f%n", PREC10, prec10);
+				out.printf("%s \t %.2f%n", AVRG_PREC, avg_prec);
+				
+				out.println(REC_PREC);
 				for (RecallPrecision rc : recall_precision) {
-					System.out.println(rc.getRecall() + "\t" + rc.getPrecision());
+					out.printf("%.2f \t %.2f%n", rc.getRecall(), rc.getPrecision());
 				}
 
-				System.out.println(INT_REC_PREC);
+				out.println(INT_REC_PREC);
 				for (RecallPrecision rc : int_recall_precision) {
-					System.out.println(rc.getRecall() + "\t" + rc.getPrecision());
+					out.printf("%.2f \t %.2f%n", rc.getRecall(), rc.getPrecision());
 				}
+				
+				Data d = new Data(precision, recall, f1, avg_prec, prec10, recall_precision, int_recall_precision);
+				data.add(d);
+				
+				out.println();
 			}
-
+			
+			Data d = calcularMedias(data);
+			precision = d.getPrecision();
+			recall = d.getRecall();
+			f1 = d.getF1();
+			prec10 = d.getPrec10();
+			avg_prec = d.getAvg_prec();
+			recall_precision = d.getRec_prec();
+			int_recall_precision = d.getInt_rec_prec();
+			
 			out.println("TOTAL");
-			out.println(PRECISION + "\t" + precision);
-			out.println(RECALL + "\t" + recall);
-			out.println(F1 + "\t" + f1);
-			out.println(PREC10 + "\t" + prec10);
-			out.println(MAP + "\t" + avg_prec);
+			out.printf("%s \t %.2f%n", PRECISION, precision);
+			out.printf("%s \t %.2f%n", RECALL, recall);
+			out.printf("%s \t %.2f%n", F1, f1);
+			out.printf("%s \t %.2f%n", PREC10, prec10);
+			out.printf("%s \t %.2f%n", MAP, avg_prec);
 
-			System.out.println(REC_PREC);
-			for (RecallPrecision rc : recall_precision) {
-				System.out.println(rc.getRecall() + "\t" + rc.getPrecision());
-			}
-
-			System.out.println(INT_REC_PREC);
+			out.println(INT_REC_PREC);
 			for (RecallPrecision rc : int_recall_precision) {
-				System.out.println(rc.getRecall() + "\t" + rc.getPrecision());
+				out.printf("%.2f \t %.2f%n", rc.getRecall(), rc.getPrecision());
 			}
 
 			out.flush();
@@ -158,7 +172,7 @@ public class Measures {
 	 * 
 	 */
 	private static double getPrecK(int k, LinkedList<Double> precisiones){
-		return (double) (((double) precisiones.getLast() *(double) precisiones.size()) / (double) k);
+		return (double) ((double) precisiones.getLast() / (double) k);
 	}
 	
 	/**
@@ -178,5 +192,90 @@ public class Measures {
 		avg_precision = avg_precision / docs_rel;
 		
 		return avg_precision;
+	}
+	
+	/**
+	 * 
+	 * @param precs
+	 * @param recs
+	 * @return
+	 */
+	private static LinkedList<RecallPrecision> merge(LinkedList<Double> precs, LinkedList<Double> recs){
+		LinkedList<RecallPrecision> rec_prec = new LinkedList<RecallPrecision>();
+		
+		for (int i = 0; i < precs.size(); i++) {
+			double p = precs.get(i);
+			double r = recs.get(i);
+			rec_prec.add(i, new RecallPrecision(r, p));
+		}
+		return rec_prec;
+	}
+	private static LinkedList<RecallPrecision> mergeInterpolated(LinkedList<RecallPrecision> rec_prec){
+		LinkedList<RecallPrecision> int_rec_prec = new LinkedList<RecallPrecision>();
+		
+		double prec_at_rec = 0.0;
+		for(double recall = 0.0; recall <= 1.0; recall = recall + 0.1){
+			double minR = recall;
+			double maxR = recall + 0.1;
+			
+			for(RecallPrecision rp : rec_prec){
+				double r = rp.getRecall();
+				double p = rp.getPrecision();
+				
+				if(r >= minR && r <= maxR){
+					prec_at_rec = Math.max(prec_at_rec, p);
+				}
+			}
+			int_rec_prec.add(new RecallPrecision(recall, prec_at_rec));
+		}
+		return int_rec_prec;
+	}
+	
+	private static Data calcularMedias(LinkedList<Data> data){
+		double precision = 0.0, recall = 0.0, f1 = 0.0, avg_prec = 0.0, prec10 = 0.0;
+		LinkedList<RecallPrecision> rec_prec = new LinkedList<RecallPrecision>(),
+				int_rec_prec = new LinkedList<RecallPrecision>();
+		
+		// acumular
+		for(Data d: data){
+			precision = precision + d.getPrecision();
+			recall = recall + d.getRecall();
+			f1 = f1 + d.getF1();
+			avg_prec = avg_prec + d.getAvg_prec();
+			prec10 = prec10 + d.getPrec10();
+			
+			for(int i = 0; i < d.getInt_rec_prec().size(); i++){
+				double r = d.getInt_rec_prec().get(i).getRecall();
+				double p = d.getInt_rec_prec().get(i).getPrecision();
+				
+				if(int_rec_prec.size() > i){
+					double rr = int_rec_prec.get(i).getRecall();
+					double pp = int_rec_prec.get(i).getPrecision();
+					
+					r += rr;
+					p += pp;
+				}
+				
+				int_rec_prec.add(i, new RecallPrecision(r, p));
+			}
+		}
+		
+		// media
+		precision = precision / data.size();
+		recall = recall / data.size();
+		f1 = f1 / data.size();
+		avg_prec = avg_prec / data.size();
+		prec10 = prec10 / data.size();
+		
+		for(int i = 0; i < int_rec_prec.size(); i++){
+			double r = int_rec_prec.get(i).getRecall() / data.size();
+			double p = int_rec_prec.get(i).getPrecision() / data.size();
+			
+			int_rec_prec.remove(i);
+			int_rec_prec.add(i, new RecallPrecision(r, p));
+		}
+		
+		Data d = new Data(precision, recall, f1, avg_prec, prec10, rec_prec, int_rec_prec);
+		return d;
 	}
 }
