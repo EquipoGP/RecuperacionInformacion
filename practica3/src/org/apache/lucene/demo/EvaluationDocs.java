@@ -28,48 +28,49 @@ public class EvaluationDocs {
 	public static void evaluate(String qrelsFileName, String resultsFileName, String outputFileName){
 		
 		/* Obtiene los juicios de relevancia a partir del fichero <qrelsFileName> */
-		HashMap<Integer, HashMap<Integer,Boolean>> qrels 
+		HashMap<String, HashMap<String,Boolean>> qrels 
 			= obtenerRelevancia(qrelsFileName);
 		
-		HashMap<Integer, LinkedList<Integer>> results = obtenerResultados(resultsFileName);
+		HashMap<String, LinkedList<String>> results = obtenerResultados(resultsFileName);
 		
-		HashMap<Integer, LinkedList<Boolean>> relevancia = merge(qrels, results);
-		HashMap<Integer, Integer> docs_relevantes = documentos_relevantes(qrels);
+		HashMap<String, LinkedList<Boolean>> relevancia = merge(qrels, results);
+		HashMap<String, Integer> docs_relevantes = documentos_relevantes(qrels);
 		
 		/* Calcula las medidas de evaluacion de los juicios obtenidos */
+		Measures.measures(outputFileName, docs_relevantes, relevancia);
 		
-		for (Entry<Integer, HashMap<Integer, Boolean>> entry : qrels.entrySet()){
-			System.out.println("INFO NEED: " + entry.getKey());
-			
-			for(Entry<Integer, Boolean> entry2 : entry.getValue().entrySet()){
-				System.out.println("DOC_ID: " + entry2.getKey() 
-					+ " RELEVANCY: " + entry2.getValue());
-			}
-		}
+//		for (Entry<String, HashMap<String, Boolean>> entry : qrels.entrySet()){
+//			System.out.println("INFO NEED: " + entry.getKey());
+//			
+//			for(Entry<String, Boolean> entry2 : entry.getValue().entrySet()){
+//				System.out.println("DOC_ID: " + entry2.getKey() 
+//					+ " RELEVANCY: " + entry2.getValue());
+//			}
+//		}
 	}
 	
 	/**
 	 * Obtiene los datos de @param qrelsFileName en un TAD
 	 */
-	private static HashMap<Integer, HashMap<Integer,Boolean>> obtenerRelevancia(String qrelsFileName){
-		HashMap<Integer, HashMap<Integer,Boolean>> qrels
-			= new HashMap<Integer, HashMap<Integer,Boolean>>();
+	private static HashMap<String, HashMap<String,Boolean>> obtenerRelevancia(String qrelsFileName){
+		HashMap<String, HashMap<String,Boolean>> qrels
+			= new HashMap<String, HashMap<String,Boolean>>();
 		
 		try {
 			Scanner s = new Scanner(new File(qrelsFileName));
 			
 			while(s.hasNextLine()){
 				// obtener datos
-				int infoNeed = s.nextInt();
-				int docid = s.nextInt();
+				String infoNeed = s.next();
+				String docid = s.next();
 				boolean relevancy = s.nextInt() == 1;
 				
 				// obtener el mapa de infoNeed
-				HashMap<Integer, Boolean> docs = qrels.get(infoNeed);
+				HashMap<String, Boolean> docs = qrels.get(infoNeed);
 				
 				// crear el mapa si no existe todavia
 				if(docs == null){
-					docs = new HashMap<Integer, Boolean>();
+					docs = new HashMap<String, Boolean>();
 				}
 				
 				// agregar el nuevo valor al mapa
@@ -93,21 +94,21 @@ public class EvaluationDocs {
 	 * @param resultsFileName
 	 * @return
 	 */
-	private static HashMap<Integer, LinkedList<Integer>> obtenerResultados(String resultsFileName){
-		HashMap<Integer, LinkedList<Integer>> results = new HashMap<Integer, LinkedList<Integer>>();
+	private static HashMap<String, LinkedList<String>> obtenerResultados(String resultsFileName){
+		HashMap<String, LinkedList<String>> results = new HashMap<String, LinkedList<String>>();
 		
 		try{
 			Scanner s = new Scanner(new File(resultsFileName));
 			
 			while(s.hasNextLine()){
 				// obtener datos
-				int infoNeed = s.nextInt();
-				int docid = s.nextInt();
+				String infoNeed = s.next();
+				String docid = s.next();
 				
 				// obtener la lista y crearla si es necesario
-				LinkedList<Integer> lista = results.get(infoNeed);
+				LinkedList<String> lista = results.get(infoNeed);
 				if(lista == null){
-					lista = new LinkedList<Integer>();
+					lista = new LinkedList<String>();
 				}
 				
 				// agregar datos
@@ -128,19 +129,19 @@ public class EvaluationDocs {
 	/**
 	 * 
 	 */
-	private static HashMap<Integer, LinkedList<Boolean>> merge(HashMap<Integer, HashMap<Integer, Boolean>> qrels,
-			HashMap<Integer, LinkedList<Integer>> results){
+	private static HashMap<String, LinkedList<Boolean>> merge(HashMap<String, HashMap<String, Boolean>> qrels,
+			HashMap<String, LinkedList<String>> results){
 		// crear el TAD para devolver resultados
-		HashMap<Integer, LinkedList<Boolean>> relevancia = new HashMap<Integer, LinkedList<Boolean>>();
+		HashMap<String, LinkedList<Boolean>> relevancia = new HashMap<String, LinkedList<Boolean>>();
 		
-		for (Entry<Integer, LinkedList<Integer>> entry : results.entrySet()){
+		for (Entry<String, LinkedList<String>> entry : results.entrySet()){
 			// necesidad de informacion
-			int infoNeed = entry.getKey();
+			String infoNeed = entry.getKey();
 			LinkedList<Boolean> rel = new LinkedList<Boolean>();
 			
 			for (int i = 0; i < entry.getValue().size(); i++) {
 				// doc id
-				int docid = entry.getValue().get(i);
+				String docid = entry.getValue().get(i);
 				
 				// obtener relevancia
 				Boolean relevante = qrels.get(infoNeed).get(docid);
@@ -160,14 +161,14 @@ public class EvaluationDocs {
 	/**
 	 * 
 	 */
-	private static HashMap<Integer, Integer> documentos_relevantes(HashMap<Integer, HashMap<Integer, Boolean>> qrels){
-		HashMap<Integer, Integer> docs_rels = new HashMap<Integer, Integer>();
+	private static HashMap<String, Integer> documentos_relevantes(HashMap<String, HashMap<String, Boolean>> qrels){
+		HashMap<String, Integer> docs_rels = new HashMap<String, Integer>();
 		
-		for (Entry<Integer,  HashMap<Integer, Boolean>> entry : qrels.entrySet()){
-			int infoNeed = entry.getKey();
+		for (Entry<String,  HashMap<String, Boolean>> entry : qrels.entrySet()){
+			String infoNeed = entry.getKey();
 			
 			int relevantes = 0;
-			for(Entry<Integer, Boolean> entry2 : entry.getValue().entrySet()){
+			for(Entry<String, Boolean> entry2 : entry.getValue().entrySet()){
 				if(entry2.getValue()){
 					relevantes++;
 				}

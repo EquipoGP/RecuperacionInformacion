@@ -22,32 +22,32 @@ public class Measures {
 	 * @param qrels
 	 * @param results
 	 */
-	public static void measures(String outputFileName, HashMap<Integer, Integer> docs_relevantes,
-			HashMap<Integer, LinkedList<Boolean>> relevancia) {
+	public static void measures(String outputFileName, HashMap<String, Integer> docs_relevantes,
+			HashMap<String, LinkedList<Boolean>> relevancia) {
 
 		try {
 			// printear en el fichero
 			PrintWriter out = new PrintWriter(new File(outputFileName));
 
 			// variables a reutilizar
-			LinkedList<Double> precisiones;
-			LinkedList<Double> recalls;
-			double precision;
-			double recall;
-			double f1;
-			double prec10;
-			double avg_prec;
-			LinkedList<RecallPrecision> recall_precision;
-			LinkedList<RecallPrecision> int_recall_precision;
+			LinkedList<Double> precisiones = null;
+			LinkedList<Double> recalls = null;
+			double precision = -1;
+			double recall = -1;
+			double f1 = -1;
+			double prec10 = -1;
+			double avg_prec = -1;
+			LinkedList<RecallPrecision> recall_precision = null;
+			LinkedList<RecallPrecision> int_recall_precision = null;
 
 			// pasar todas las infoNeeds a una lista ordenada
-			Set<Integer> keys_set = relevancia.keySet();
-			List<Integer> keys = new LinkedList<Integer>(keys_set);
+			Set<String> keys_set = relevancia.keySet();
+			List<String> keys = new LinkedList<String>(keys_set);
 			java.util.Collections.sort(keys);
 
 			for (int i = 0; i < keys.size(); i++) {
 				// para cada clave, obtener medidas de evaluacion
-				int key = keys.get(i);
+				String key = keys.get(i);
 
 				int docs_rel = docs_relevantes.get(key);
 				LinkedList<Boolean> drels = relevancia.get(key);
@@ -102,9 +102,7 @@ public class Measures {
 
 		} catch (
 
-		FileNotFoundException e)
-
-		{
+		FileNotFoundException e){
 			e.printStackTrace();
 		}
 	}
@@ -121,7 +119,7 @@ public class Measures {
 			if (relevantes.get(i)) {
 				rels_parcial++;
 			}
-			precisiones.add((double)(rels_parcial / relevantes.size()));
+			precisiones.add((double)(rels_parcial / (double) relevantes.size()));
 		}
 		return precisiones;
 	}
@@ -138,7 +136,7 @@ public class Measures {
 			if (relevantes.get(i)) {
 				rels_parcial++;
 			}
-			recalls.add((double) (rels_parcial / total_rels));
+			recalls.add((double) ((double) rels_parcial / (double) total_rels));
 		}
 
 		return recalls;
