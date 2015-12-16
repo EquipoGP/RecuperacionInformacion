@@ -107,7 +107,7 @@ public class EvaluationDocs {
 				}
 				
 				// agregar datos
-				if(lista.size() <= 50)
+				if(lista.size() < 50)
 					lista.add(docid);
 				results.put(infoNeed, lista);
 				
