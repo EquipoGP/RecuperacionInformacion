@@ -36,8 +36,9 @@ public class Measures {
 	 * 
 	 * @param outputFileName : nombre del fichero en el que volcar los 
 	 * 	resultados
-	 * @param docs_relevantes : 
-	 * @param relevancia : 
+	 * @param docs_relevantes : documentos relevantes para cada query
+	 * @param relevancia : documentos considerados relevantes por el sistema
+	 * para cada query
 	 */
 	public static void measures(String outputFileName, HashMap<String, Integer> docs_relevantes,
 			HashMap<String, LinkedList<Boolean>> relevancia) {
@@ -68,9 +69,15 @@ public class Measures {
 				// para cada clave, obtener medidas de evaluacion
 				String key = keys.get(i);
 
+				// obtener datos
 				int docs_rel = docs_relevantes.get(key);
 				LinkedList<Boolean> drels = relevancia.get(key);
 
+				/* 
+				 * calculo de precision, recall, f1, prec@10,
+				 * average precision, curva de recall-precision
+				 * y curva de recall precision interpolada
+				 */
 				precisiones = getPrecisiones(drels);
 				recalls = getRecalls(docs_rel, drels);
 				
@@ -84,6 +91,7 @@ public class Measures {
 				recall_precision = merge(precisiones, recalls);
 				int_recall_precision = mergeInterpolated(recall_precision);
 				
+				// printear en el fichero
 				out.println("INFORMATION_NEED" + "\t" + key);
 				out.printf("%s \t %.3f%n", PRECISION, precision);
 				out.printf("%s \t %.3f%n", RECALL, recall);
@@ -101,12 +109,14 @@ public class Measures {
 					out.printf("%.3f \t %.3f%n", rc.getRecall(), rc.getPrecision());
 				}
 				
+				// agregar los datos a la lista de datos de queries
 				Data d = new Data(precision, recall, f1, avg_prec, prec10, recall_precision, int_recall_precision);
 				data.add(d);
 				
 				out.println();
 			}
 			
+			// obtener los datos medios de todas las queries
 			Data d = calcularMedias(data);
 			precision = d.getPrecision();
 			recall = d.getRecall();
@@ -116,6 +126,7 @@ public class Measures {
 			recall_precision = d.getRec_prec();
 			int_recall_precision = d.getInt_rec_prec();
 			
+			// printear en el fichero
 			out.println("TOTAL");
 			out.printf("%s \t %.3f%n", PRECISION, precision);
 			out.printf("%s \t %.3f%n", RECALL, recall);
@@ -158,6 +169,7 @@ public class Measures {
 
 	/**
 	 * Obtiene el recall con cada documento
+	 * @param total_rels : total de documentos relevantes
 	 * @param relevantes : lista de documentos con su relevancia (si/no)
 	 */
 	private static LinkedList<Double> getRecalls(int total_rels, LinkedList<Boolean> relevantes) {
@@ -226,6 +238,9 @@ public class Measures {
 		return avg_precision;
 	}
 	
+	/**
+	 * Obtiene el MAP de las queries
+	 */
 	private static double getMAP(LinkedList<Double> precisiones, int queries){
 		double prec = 0.0;
 		for(Double d : precisiones)
