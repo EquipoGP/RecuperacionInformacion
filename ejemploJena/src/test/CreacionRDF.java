@@ -47,18 +47,38 @@ public class CreacionRDF {
 
         // crea un modelo vacio
         Model model = ModelFactory.createDefaultModel();
-        Property type = model.createProperty("http://somewhere/type");
-        Resource person =model.createResource("http://somewhere/person");
+        Property type = model.createProperty("http://www.w3.org/1999/02/22-rdf-syntax-ns#type");
+        Resource person = model.createResource("http://xmlns.com/foaf/0.1/person");
+        Property knows = model.createProperty("http://xmlns.com/foaf/0.1/knows");
 
         // le añade las propiedades
         Resource johnSmith  = model.createResource(personURI)
-             .addProperty(VCARD.FN, fullName)
-             .addProperty(VCARD.N, 
+        		.addProperty(VCARD.FN, fullName)
+        		.addProperty(VCARD.N, 
                       model.createResource()
                            .addProperty(VCARD.Given, givenName)
                            .addProperty(VCARD.Family, familyName));
-        johnSmith.addProperty(type, person) ;
-        return model;
+    	johnSmith.addProperty(type, person);
+        
+    	Resource ladyPeanut  = model.createResource("http://somewhere/LadyPeanut")
+    			.addProperty(VCARD.FN, "Lady Peanut")
+	            .addProperty(VCARD.N, 
+	                     model.createResource()
+	                          .addProperty(VCARD.Given, "Lady")
+	                          .addProperty(VCARD.Family, "Peanut"));
+       	ladyPeanut.addProperty(type, person);
+        
+       	Resource donRondon  = model.createResource("http://somewhere/DonRondon")
+       			.addProperty(VCARD.FN, "Don Rondon")
+       			.addProperty(VCARD.N, 
+                        model.createResource()
+                             .addProperty(VCARD.Given, "Don")
+                             .addProperty(VCARD.Family, "Rondon"));
+       	donRondon.addProperty(type, person);
+        
+        ladyPeanut.addProperty(knows, donRondon);
+       	
+       	return model;
 	}
 	
 	

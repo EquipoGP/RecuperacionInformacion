@@ -1,5 +1,8 @@
 package test;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.RDFNode;
@@ -11,10 +14,44 @@ import com.hp.hpl.jena.util.FileManager;
 
 public class AccesoRDF {
 
+	public static void main(String[] args) {
+
+		// cargamos el fichero deseado
+		Model model = FileManager.get().loadModel("card.rdf");
+
+		// obtenemos todos los statements del modelo con uri = URI
+		String URI = "http://www.w3.org/People/Berners-Lee/card#i";
+		Resource tim = model.createResource(URI);
+		
+		StmtIterator it = model.listStatements(tim, null, (RDFNode) null);
+
+		// obtenemos las propiedades de la URI
+		Set<Property> properties = new HashSet<Property>();
+		
+		while (it.hasNext()) {
+			Statement st = it.next();
+			properties.add(st.getPredicate());
+		}
+		it.close();
+		
+		// obtenemos para cada propiedad las tripletas que la contienen
+		for (Property p : properties) {
+			it = model.listStatements(null, p, (RDFNode) null);
+			
+			while (it.hasNext()) {
+				Statement st = it.next();
+				
+				System.out.println(st.getSubject().getURI());
+			}
+			it.close();
+		}
+		
+	}
+	
 	/**
 	 * accede de diferentes maneras a las propiedades de un modelo rdf
 	 */
-	public static void main(String args[]) {
+	public static void main2(String args[]) {
 
 		// cargamos el fichero deseado
 		Model model = FileManager.get().loadModel("card.rdf");
