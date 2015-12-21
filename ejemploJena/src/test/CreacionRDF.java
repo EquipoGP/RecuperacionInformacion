@@ -20,6 +20,7 @@ package test;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.vocabulary.VCARD;
 
@@ -46,6 +47,8 @@ public class CreacionRDF {
 
         // crea un modelo vacio
         Model model = ModelFactory.createDefaultModel();
+        Property type = model.createProperty("http://somewhere/type");
+        Resource person =model.createResource("http://somewhere/person");
 
         // le añade las propiedades
         Resource johnSmith  = model.createResource(personURI)
@@ -54,6 +57,7 @@ public class CreacionRDF {
                       model.createResource()
                            .addProperty(VCARD.Given, givenName)
                            .addProperty(VCARD.Family, familyName));
+        johnSmith.addProperty(type, person) ;
         return model;
 	}
 	
