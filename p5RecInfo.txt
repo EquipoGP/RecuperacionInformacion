@@ -1,0 +1,8 @@
+Diferencia entre resource y nodeID:
+	- resource tiene un identificador único (URI)
+	- nodeID no tiene un identificador único asociado de forma
+		explícita (blank node)
+
+Diferencia nodeID y estar dentro de la etiqueta:
+	- nodeID hace referencia a un nodo con información
+	- Literal
