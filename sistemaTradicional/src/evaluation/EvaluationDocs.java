@@ -87,7 +87,7 @@ public class EvaluationDocs {
 	}
 	
 	/**
-	 * Obtiene los datos de @param resultsFileName en un TAD 
+	 * Obtiene los datos de @param resultsFileName en un TAD (maximo 50 docs por query)
 	 */
 	private static HashMap<String, LinkedList<String>> obtenerResultados(String resultsFileName){
 		HashMap<String, LinkedList<String>> results = new HashMap<String, LinkedList<String>>();
