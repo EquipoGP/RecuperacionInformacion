@@ -13,11 +13,35 @@ import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.util.FileManager;
 
 public class AccesoSPARQL {
+	
+public static void main(String args[]) {
+		
+		// cargamos el fichero deseado
+		Model model = FileManager.get().loadModel("card.rdf");
+
+		//definimos la consulta (tipo query)
+		String queryString = "Select ?x ?y ?z WHERE  {?x ?y \"Berners-Lee\" }" ;
+		
+		//ejecutamos la consulta y obtenemos los resultados
+		  Query query = QueryFactory.create(queryString) ;
+		  QueryExecution qexec = QueryExecutionFactory.create(query, model) ;
+		  try {
+		    ResultSet results = qexec.execSelect() ;
+		    for ( ; results.hasNext() ; )
+		    {
+		      QuerySolution soln = results.nextSolution() ;
+		      Resource x = soln.getResource("x");
+		      Resource y = soln.getResource("y");
+		      System.out.println(x.getURI() + " - "
+		    		  + y.getURI());
+		    }
+		  } finally { qexec.close() ; }
+	}
 
 	/**
 	 * ejecución de consultas sparql
 	 */
-	public static void main(String args[]) {
+	public static void main2(String args[]) {
 		
 		// cargamos el fichero deseado
 		Model model = FileManager.get().loadModel("card.rdf");
