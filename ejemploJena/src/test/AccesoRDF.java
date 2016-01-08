@@ -30,20 +30,40 @@ public class AccesoRDF {
 		
 		while (it.hasNext()) {
 			Statement st = it.next();
-			properties.add(st.getPredicate());
+			Property p = st.getPredicate();
+			properties.add(p);
 		}
 		it.close();
+		
+		Set<Resource> recursos = new HashSet<Resource>();
 		
 		// obtenemos para cada propiedad las tripletas que la contienen
 		for (Property p : properties) {
 			it = model.listStatements(null, p, (RDFNode) null);
 			
+			/* Obtiene los recursos diferentes que cumplen la condicion */
 			while (it.hasNext()) {
 				Statement st = it.next();
+				Resource r = st.getSubject();
+				boolean esta = false;
 				
-				System.out.println(st.getSubject().getURI());
+				/* Comprueba si el nuevo recurso ya estaba en la coleccion */
+				for (Resource rr : recursos) {
+					if (rr.equals(r)) {
+						esta = true;
+						break;
+					}
+				}
+				if (!esta && r != null) {
+					recursos.add(r);
+				}
 			}
 			it.close();
+		}
+		
+		/* Muestra los recursos distintos del modelo que cumplen la condicion */
+		for (Resource r : recursos) {
+			System.out.println(r);
 		}
 		
 	}
