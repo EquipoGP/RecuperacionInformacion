@@ -42,5 +42,7 @@ public class SemanticSearcher {
 					+ "-output <resultsFile>");
 			System.exit(1);
 		}
+		
+		SearchDocs.searchDocs(rdfPath, rdfsPath, infoNeeds, resultsFile);
 	}
 }
