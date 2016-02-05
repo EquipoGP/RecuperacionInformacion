@@ -21,9 +21,9 @@ public class Modelo {
 		/* +++++++++ Propiedades +++++++++ */
 
 		/* Documento -> title -> Literal */
-		Property title = model.createProperty(prefix + "#title");
-		title.addProperty(RDFS.domain, documento);
-		title.addProperty(RDFS.range, RDFS.Literal);
+//		Property title = model.createProperty(prefix + "#title");
+//		title.addProperty(RDFS.domain, documento);
+//		title.addProperty(RDFS.range, RDFS.Literal);
 
 		/* Documento -> creator -> Persona */
 		Property creator = model.createProperty(prefix + "#creator");
@@ -43,7 +43,7 @@ public class Modelo {
 		/* Documento -> date -> integer */
 		Property date = model.createProperty(prefix + "#date");
 		date.addProperty(RDFS.domain, documento);
-		date.addProperty(RDFS.range, XSD.integer);
+		date.addProperty(RDFS.range, XSD.xint);
 
 		/* Documento -> keyword -> SKOS:concept */
 		Property keyword = model.createProperty(prefix + "#keyword");

@@ -9,6 +9,7 @@ package sistemaSemantico;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -20,15 +21,20 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.Resource;
 
 public class IndexDocs {
+	
+	private static Model rdfs, skos;
+	
 	/**
 	 * Clase auxiliar para la indexacion de documentos
 	 * 
 	 * @version 1.0
 	 */
 
-	public static void index(String docsPath)
+	public static void index(String rdfPath, String skosPath, String docsPath)
 			throws ParserConfigurationException, FileNotFoundException, SAXException, IOException {
 		final File fileDir = new File(docsPath); // directorio corpus
 
@@ -43,27 +49,84 @@ public class IndexDocs {
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db = dbf.newDocumentBuilder();
 
-		Model rdfs = Modelo.crearModelo();
-		Model skos = Modelo.crearSkosModel();
+		rdfs = Modelo.crearModelo();
+		skos = Modelo.crearSkosModel();
 
 		/* Indexar ficheros */
 		for (String file : files) {
 			File f = new File(fileDir, file);
-			introducir(db, rdfs, skos, f);
+			introducir(db, f);
 		}
+		
+		// escribir los modelos
+		rdfs.write(new FileOutputStream(new File(rdfPath)));
+		skos.write(new FileOutputStream(new File(skosPath)));
 	}
 
-	private static void introducir(DocumentBuilder db, Model rdfs, Model skos, File f)
+	private static void introducir(DocumentBuilder db, File f)
 			throws FileNotFoundException, SAXException, IOException {
 		Document d = db.parse(new FileInputStream(f));
 		d.getDocumentElement().normalize();
+		
+		Property type = rdfs.createProperty("http://www.w3.org/1999/02/22-rdf-syntax-ns#type");
+		Property name = rdfs.getProperty(Modelo.prefix + "#name");
+		Property identifier = rdfs.getProperty(Modelo.prefix + "#identifier");
+		Property creator = rdfs.getProperty(Modelo.prefix + "#creator");
+		Property date = rdfs.getProperty(Modelo.prefix + "#date");
 
-		String[] creators = parseCreator(d);
-		String title = parseTitle(d);
-		int date = parseDate(d);
-		String description = parseSummary(d);
-		String identifier = f.getPath();
+		String[] d_creators = parseCreator(d);
+		String d_title = parseTitle(d);
+		int d_date = parseDate(d);
+		String d_description = parseSummary(d);
+		String d_identifier = f.getPath();
 
+		/* Documento */
+		Resource documento = rdfs.createResource(Modelo.prefix + d_identifier);
+		documento.addProperty(type, rdfs.getResource(Modelo.prefix + "#Documento"));
+		// Propiedad date
+		documento.addProperty(date, rdfs.createTypedLiteral(d_date));
+		// Propiedad identifier
+		documento.addProperty(identifier, rdfs.createTypedLiteral(d_identifier));
+		
+		/* Autores */
+		if(d_creators != null && d_creators.length > 0){
+			for(String autor : d_creators){
+				// obtener persona
+				Resource persona = rdfs.getResource(Modelo.prefix + autor);
+				if(!rdfs.containsResource(persona)){
+					// si lo acabamos de crear, ponerle name
+					persona.addProperty(type, rdfs.getResource(Modelo.prefix + "#Persona"));
+					persona.addProperty(name, autor);
+				}
+				// Propiedad creator
+				documento.addProperty(creator, persona);
+			}
+		}
+		tesauro(documento, d_title, d_description);
+	}
+
+	private static void tesauro(Resource documento, String d_title, String d_description) {
+		// TODO stub SUCH WOW AMAZING LOL NO DEJAR ESTO
+		Property keyword = rdfs.getProperty(Modelo.prefix + "#keyword");
+		
+		Resource energiaRenovable = skos.getResource(Modelo.prefix + "EnergiaRenovable");
+		Resource energiaSolar = skos.getResource(Modelo.prefix + "EnergiaSolar");
+		
+		Resource musica = skos.getResource(Modelo.prefix + "Musica");
+		
+		Resource guerraIndependencia = skos.getResource(Modelo.prefix + "GuerraIndependencia");
+		Resource historia = skos.getResource(Modelo.prefix + "Historia");
+		
+		Resource videojuegos = skos.getResource(Modelo.prefix + "Videojuegos");
+		Resource personajes = skos.getResource(Modelo.prefix + "Personajes");
+		
+		Resource edadMediaGotico = skos.getResource(Modelo.prefix + "EdadMediaGotico");
+		Resource edadMedia = skos.getResource(Modelo.prefix + "EdadMedia");
+		Resource gotico = skos.getResource(Modelo.prefix + "Gotico");
+		Resource arquitectura = skos.getResource(Modelo.prefix + "Arquitectura");
+		
+		// Para agregar el concepto de energia renovable a un documento
+		documento.addProperty(keyword, energiaRenovable);
 	}
 
 	/**
