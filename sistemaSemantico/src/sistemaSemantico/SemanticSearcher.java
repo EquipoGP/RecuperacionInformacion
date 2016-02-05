@@ -1,8 +1,10 @@
 package sistemaSemantico;
 
+import java.io.FileNotFoundException;
+
 public class SemanticSearcher {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		String rdfPath = null;
 		String rdfsPath = null;
 		String infoNeeds = null;
