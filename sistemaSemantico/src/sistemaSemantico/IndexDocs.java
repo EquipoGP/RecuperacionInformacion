@@ -20,7 +20,6 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.util.FileManager;
 
 public class IndexDocs {
 	/**
@@ -43,20 +42,28 @@ public class IndexDocs {
 
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db = dbf.newDocumentBuilder();
-		Model model = FileManager.get().loadModel("card.rdf");
+
+		Model rdfs = Modelo.crearModelo();
+		Model skos = Modelo.crearSkosModel();
 
 		/* Indexar ficheros */
 		for (String file : files) {
 			File f = new File(fileDir, file);
-			Document d = db.parse(new FileInputStream(f));
-			d.getDocumentElement().normalize();
-
-			String[] creators = parseCreator(d);
-			String title = parseTitle(d);
-			int date = parseDate(d);
-			String description = parseSummary(d);
-			String identifier = f.getPath();
+			introducir(db, rdfs, skos, f);
 		}
+	}
+
+	private static void introducir(DocumentBuilder db, Model rdfs, Model skos, File f)
+			throws FileNotFoundException, SAXException, IOException {
+		Document d = db.parse(new FileInputStream(f));
+		d.getDocumentElement().normalize();
+
+		String[] creators = parseCreator(d);
+		String title = parseTitle(d);
+		int date = parseDate(d);
+		String description = parseSummary(d);
+		String identifier = f.getPath();
+
 	}
 
 	/**
