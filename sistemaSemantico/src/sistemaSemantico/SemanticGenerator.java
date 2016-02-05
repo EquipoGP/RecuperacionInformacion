@@ -1,8 +1,16 @@
 package sistemaSemantico;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
+
 public class SemanticGenerator {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+			throws FileNotFoundException, ParserConfigurationException, SAXException, IOException {
 		String rdfPath = null;
 		String skosPath = null;
 		String docsPath = null;
@@ -25,7 +33,7 @@ public class SemanticGenerator {
 				i++;
 				skosPath = args[i];
 			}
-			else if(arg.equals("-docsPath")){
+			else if(arg.equals("-docs")){
 				i++;
 				docsPath = args[i];
 			}
@@ -37,5 +45,7 @@ public class SemanticGenerator {
 					+ "-skos <skosPath> -docs <docsPath>");
 			System.exit(1);
 		}
+		
+		IndexDocs.index(rdfPath, skosPath, docsPath);
 	}
 }

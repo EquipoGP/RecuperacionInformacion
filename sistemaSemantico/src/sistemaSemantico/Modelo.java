@@ -56,10 +56,10 @@ public class Modelo {
 	public static Model crearSkosModel() {
 		Model model = ModelFactory.createDefaultModel();
 
-		Resource concept = model.createResource(prefix + "#Concept");
-		Property prefLabel = model.createProperty(skos + "#prefLabel");
-		Property narrower = model.createProperty(skos + "#narrower");
-		Property broader = model.createProperty(skos + "#broader");
+		Resource concept = model.createResource(skos + "Concept");
+		Property prefLabel = model.createProperty(skos + "prefLabel");
+		Property narrower = model.createProperty(skos + "narrower");
+		Property broader = model.createProperty(skos + "broader");
 
 		/* energias renovables */
 		Resource energiaRenovable = model.createResource(prefix + "EnergiaRenovable");

@@ -52,10 +52,13 @@ public class IndexDocs {
 		rdfs = Modelo.crearModelo();
 		skos = Modelo.crearSkosModel();
 
+		int i = 0;
 		/* Indexar ficheros */
 		for (String file : files) {
 			File f = new File(fileDir, file);
 			introducir(db, f);
+			i++;
+			System.out.println(i + "/" + files.length);
 		}
 		
 		// escribir los modelos
@@ -78,7 +81,7 @@ public class IndexDocs {
 		String d_title = parseTitle(d);
 		int d_date = parseDate(d);
 		String d_description = parseSummary(d);
-		String d_identifier = f.getPath();
+		String d_identifier = f.getName();
 
 		/* Documento */
 		Resource documento = rdfs.createResource(Modelo.prefix + d_identifier);
@@ -109,21 +112,21 @@ public class IndexDocs {
 		// TODO stub SUCH WOW AMAZING LOL NO DEJAR ESTO
 		Property keyword = rdfs.getProperty(Modelo.prefix + "#keyword");
 		
-		Resource energiaRenovable = skos.getResource(Modelo.prefix + "EnergiaRenovable");
-		Resource energiaSolar = skos.getResource(Modelo.prefix + "EnergiaSolar");
+		Resource energiaRenovable = skos.getResource(Modelo.skos + "EnergiaRenovable");
+		Resource energiaSolar = skos.getResource(Modelo.skos + "EnergiaSolar");
 		
-		Resource musica = skos.getResource(Modelo.prefix + "Musica");
+		Resource musica = skos.getResource(Modelo.skos + "Musica");
 		
-		Resource guerraIndependencia = skos.getResource(Modelo.prefix + "GuerraIndependencia");
-		Resource historia = skos.getResource(Modelo.prefix + "Historia");
+		Resource guerraIndependencia = skos.getResource(Modelo.skos + "GuerraIndependencia");
+		Resource historia = skos.getResource(Modelo.skos + "Historia");
 		
-		Resource videojuegos = skos.getResource(Modelo.prefix + "Videojuegos");
-		Resource personajes = skos.getResource(Modelo.prefix + "Personajes");
+		Resource videojuegos = skos.getResource(Modelo.skos + "Videojuegos");
+		Resource personajes = skos.getResource(Modelo.skos + "Personajes");
 		
-		Resource edadMediaGotico = skos.getResource(Modelo.prefix + "EdadMediaGotico");
-		Resource edadMedia = skos.getResource(Modelo.prefix + "EdadMedia");
-		Resource gotico = skos.getResource(Modelo.prefix + "Gotico");
-		Resource arquitectura = skos.getResource(Modelo.prefix + "Arquitectura");
+		Resource edadMediaGotico = skos.getResource(Modelo.skos + "EdadMediaGotico");
+		Resource edadMedia = skos.getResource(Modelo.skos + "EdadMedia");
+		Resource gotico = skos.getResource(Modelo.skos + "Gotico");
+		Resource arquitectura = skos.getResource(Modelo.skos + "Arquitectura");
 		
 		// Para agregar el concepto de energia renovable a un documento
 		documento.addProperty(keyword, energiaRenovable);
