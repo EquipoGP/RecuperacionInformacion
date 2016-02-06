@@ -305,7 +305,7 @@ public class Tesauro {
 		sonido = new HashSet<String>();
 		sonido.add("sonido");
 		sonido.add("sonoro");
-//		sonido.add("audio");
+		sonido.add("audio");
 //		sonido.add("ruido");
 
 		musica = new HashSet<String>();
