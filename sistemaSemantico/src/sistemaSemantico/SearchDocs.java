@@ -67,6 +67,7 @@ public class SearchDocs {
 			ids = executeQuery(query, base);
 
 			if (ids != null) {
+				System.out.println(info + "\t" + ids.size());
 				for (String id : ids) {
 					out.println(info + "\t" + id);
 				}

@@ -46,7 +46,7 @@ public class Tesauro {
 		description = normalizar(description);
 
 		for (String s : guerraIndependencia) {
-			if (title.contains(s) || description.contains(s)) {
+			if (title.matches(s) || description.matches(s)) {
 				return true;
 			}
 		}
@@ -68,7 +68,7 @@ public class Tesauro {
 		description = normalizar(description);
 
 		for (String s : sonido) {
-			if (title.contains(s) || description.contains(s)) {
+			if (title.matches(s) || description.matches(s)) {
 				return true;
 			}
 		}
@@ -90,7 +90,7 @@ public class Tesauro {
 		description = normalizar(description);
 
 		for (String s : musica) {
-			if (title.contains(s) || description.contains(s)) {
+			if (title.matches(s) || description.matches(s)) {
 				return true;
 			}
 		}
@@ -112,7 +112,7 @@ public class Tesauro {
 		description = normalizar(description);
 
 		for (String s : energiaRenovable) {
-			if (title.contains(s) || description.contains(s)) {
+			if (title.matches(s) || description.matches(s)) {
 				return true;
 			}
 		}
@@ -134,7 +134,7 @@ public class Tesauro {
 		description = normalizar(description);
 
 		for (String s : disenio) {
-			if (title.contains(s) || description.contains(s)) {
+			if (title.matches(s) || description.matches(s)) {
 				return true;
 			}
 		}
@@ -156,7 +156,7 @@ public class Tesauro {
 		description = normalizar(description);
 
 		for (String s : desarrollo) {
-			if (title.contains(s) || description.contains(s)) {
+			if (title.matches(s) || description.matches(s)) {
 				return true;
 			}
 		}
@@ -178,7 +178,7 @@ public class Tesauro {
 		description = normalizar(description);
 
 		for (String s : programacion) {
-			if (title.contains(s) || description.contains(s)) {
+			if (title.matches(s) || description.matches(s)) {
 				return true;
 			}
 		}
@@ -200,7 +200,7 @@ public class Tesauro {
 		description = normalizar(description);
 
 		for (String s : videojuego) {
-			if (title.contains(s) || description.contains(s)) {
+			if (title.matches(s) || description.matches(s)) {
 				return true;
 			}
 		}
@@ -222,7 +222,7 @@ public class Tesauro {
 		description = normalizar(description);
 
 		for (String s : arquitectura) {
-			if (title.contains(s) || description.contains(s)) {
+			if (title.matches(s) || description.matches(s)) {
 				return true;
 			}
 		}
@@ -244,7 +244,7 @@ public class Tesauro {
 		description = normalizar(description);
 
 		for (String s : epoca) {
-			if (title.contains(s) || description.contains(s)) {
+			if (title.matches(s) || description.matches(s)) {
 				return true;
 			}
 		}
@@ -266,7 +266,7 @@ public class Tesauro {
 		description = normalizar(description);
 
 		for (String s : conservacion) {
-			if (title.contains(s) || description.contains(s)) {
+			if (title.matches(s) || description.matches(s)) {
 				return true;
 			}
 		}
