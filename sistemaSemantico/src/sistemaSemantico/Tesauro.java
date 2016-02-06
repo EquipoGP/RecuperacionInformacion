@@ -206,8 +206,8 @@ public class Tesauro {
 		energiaRenovable.add("biomasa");
 		// energiaRenovable.add("biodiesel");
 		// energiaRenovable.add("eficiencia energetica");
-		 energiaRenovable.add("medio ambiente");
-		// energiaRenovable.add("medioambiental");
+//		 energiaRenovable.add("medio ambiente");
+		 energiaRenovable.add("medioambiental");
 		// energiaRenovable.add("cambio climatico");
 	}
 
