@@ -63,15 +63,12 @@ public class SearchDocs {
 			String info = entry.getKey();
 			String query = entry.getValue();
 
-			System.out.println("Info: " + info);
-			System.out.println("Query: " + query);
 			List<String> ids = null;
 			ids = executeQuery(query, base);
 
 			if (ids != null) {
 				for (String id : ids) {
 					out.println(info + "\t" + id);
-					System.out.println(info + "\t" + id);
 				}
 			}
 		}
