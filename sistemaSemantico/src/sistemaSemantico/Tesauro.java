@@ -291,11 +291,11 @@ public class Tesauro {
 	private static void prepararConsulta02_4() {
 		guerraIndependencia = new HashSet<String>();
 		guerraIndependencia.add("guerra de la independencia");
-		guerraIndependencia.add("guerra");
-		guerraIndependencia.add("ejercito");
+//		guerraIndependencia.add("guerra");
+//		guerraIndependencia.add("ejercito");
 		guerraIndependencia.add("1808-1814");
-		guerraIndependencia.add("1808");
-		guerraIndependencia.add("espana");
+//		guerraIndependencia.add("1808");
+//		guerraIndependencia.add("espana");
 	}
 
 	/**
@@ -304,16 +304,16 @@ public class Tesauro {
 	private static void prepararConsulta13_2() {
 		sonido = new HashSet<String>();
 		sonido.add("sonido");
-		sonido.add("sonoro");
-		sonido.add("audio");
-		sonido.add("ruido");
+//		sonido.add("sonoro");
+//		sonido.add("audio");
+//		sonido.add("ruido");
 
 		musica = new HashSet<String>();
 		musica.add("musica");
 		musica.add("musical");
-		musica.add("musico");
+//		musica.add("musico");
 		musica.add("cancion");
-		musica.add("ritmo");
+//		musica.add("ritmo");
 	}
 
 	/**
@@ -321,12 +321,12 @@ public class Tesauro {
 	 */
 	private static void prepararConsulta09_3() {
 		energiaRenovable = new HashSet<String>();
-		energiaRenovable.add("renovable");
-		energiaRenovable.add("energia");
+//		energiaRenovable.add("renovable");
+//		energiaRenovable.add("energia");
 		energiaRenovable.add("energia renovable");
 		energiaRenovable.add("energias renovables");
-		energiaRenovable.add("combustibles fosiles");
-		energiaRenovable.add("pilas de combustible");
+//		energiaRenovable.add("combustibles fosiles");
+//		energiaRenovable.add("pilas de combustible");
 		energiaRenovable.add("energia geotermica");
 		energiaRenovable.add("energia cinetica");
 		energiaRenovable.add("solar");
@@ -338,7 +338,7 @@ public class Tesauro {
 		energiaRenovable.add("eficiencia energetica");
 		energiaRenovable.add("medio ambiente");
 		energiaRenovable.add("medioambiental");
-		energiaRenovable.add("cambio climatico");
+//		energiaRenovable.add("cambio climatico");
 	}
 
 	/**
@@ -347,27 +347,28 @@ public class Tesauro {
 	 */
 	private static void prepararConsulta07_2() {
 		disenio = new HashSet<String>();
-		disenio.add("diseno");
-		disenio.add("disenar");
-		disenio.add("diseno de personajes");
+//		disenio.add("diseno");
+//		disenio.add("disenar");
+//		disenio.add("diseno de personajes");
 
 		desarrollo = new HashSet<String>();
-		desarrollo.add("desarrollo");
-		desarrollo.add("desarrollo de videojuegos");
+//		desarrollo.add("desarrollo");
+//		desarrollo.add("desarrollo de videojuegos");
 
 		programacion = new HashSet<String>();
-		programacion.add("procedural");
+//		programacion.add("programacion");
+//		programacion.add("procedural");
 
 		videojuego = new HashSet<String>();
 		videojuego.add("videojuego");
 		videojuego.add("diseno de personajes");
 		videojuego.add("desarrollo de videojuegos");
 		videojuego.add("agente inteligente");
-		videojuego.add("bots");
+//		videojuego.add("bots");
 		videojuego.add("motor grafico");
-		videojuego.add("animacion");
+//		videojuego.add("animacion");
 		videojuego.add("animaciones");
-		videojuego.add("multiples jugadores");
+//		videojuego.add("multiples jugadores");
 		videojuego.add("realidad aumentada");
 		videojuego.add("realidad virtual");
 		videojuego.add("videojuego educativo");
@@ -381,7 +382,7 @@ public class Tesauro {
 	private static void prepararConsulta05_5() {
 		arquitectura = new HashSet<String>();
 		arquitectura.add("construccion arquitectoniva");
-		arquitectura.add("edificios");
+//		arquitectura.add("edificios");
 		arquitectura.add("escultura");
 
 		epoca = new HashSet<String>();
@@ -393,9 +394,9 @@ public class Tesauro {
 
 		conservacion = new HashSet<String>();
 		conservacion.add("conservacion");
-		conservacion.add("rehabilitacion");
-		conservacion.add("restauracion");
-		conservacion.add("restauraciones");
+//		conservacion.add("rehabilitacion");
+//		conservacion.add("restauracion");
+//		conservacion.add("restauraciones");
 	}
 
 	/**
