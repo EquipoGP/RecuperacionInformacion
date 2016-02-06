@@ -5,28 +5,16 @@
     <j.0:prefLabel>Arquitectura</j.0:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://recinfo.org/Desarrollo">
-    <j.0:prefLabel>Desarrollo</j.0:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://recinfo.org/Conservacion">
-    <j.0:prefLabel>Arquitectura</j.0:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://recinfo.org/GuerraIndependencia">
     <j.0:prefLabel>GuerraIndependencia</j.0:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://recinfo.org/Epoca">
-    <j.0:prefLabel>Arquitectura</j.0:prefLabel>
+    <j.0:prefLabel>Epoca</j.0:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://recinfo.org/EnergiaRenovable">
     <j.0:prefLabel>EnergiaRenovable</j.0:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://recinfo.org/Programacion">
-    <j.0:prefLabel>Programacion</j.0:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://recinfo.org/Videojuegos">
@@ -39,10 +27,6 @@
   </rdf:Description>
   <rdf:Description rdf:about="http://recinfo.org/Musica">
     <j.0:prefLabel>Musica</j.0:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://recinfo.org/Diseno">
-    <j.0:prefLabel>Diseño</j.0:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
   </rdf:Description>
 </rdf:RDF>
