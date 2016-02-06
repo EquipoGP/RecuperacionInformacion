@@ -86,25 +86,9 @@
 		<skos:prefLabel>Videojuegos</skos:prefLabel>
 	</skos:Concept>
 	
-	<skos:Concept rdf:about="Diseño">
-		<skos:prefLabel>Diseño</skos:prefLabel>
-	</skos:Concept>
-	
-	<skos:Concept rdf:about="Desarrollo">
-		<skos:prefLabel>Desarrollo</skos:prefLabel>
-	</skos:Concept>
-	
-	<skos:Concept rdf:about="Programacion">
-		<skos:prefLabel>Programacion</skos:prefLabel>
-	</skos:Concept>
-	
 	<!-- Edad Media y Gotico -->
 	<skos:Concept rdf:about="Arquitectura">
 		<skos:prefLabel>Arquitectura</skos:prefLabel>
-	</skos:Concept>
-	
-	<skos:Concept rdf:about="Conservacion">
-		<skos:prefLabel>Conservacion</skos:prefLabel>
 	</skos:Concept>
 	
 	<skos:Concept rdf:about="Epoca">
