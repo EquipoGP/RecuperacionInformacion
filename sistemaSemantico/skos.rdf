@@ -1,16 +1,16 @@
 <rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:j.0="http://www.w3.org/2004/02/skos/core#" > 
+  <rdf:Description rdf:about="http://recinfo.org/Sociedad">
+    <j.0:prefLabel>Sociedad</j.0:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://recinfo.org/Arquitectura">
     <j.0:prefLabel>Arquitectura</j.0:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://recinfo.org/GuerraIndependencia">
     <j.0:prefLabel>GuerraIndependencia</j.0:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://recinfo.org/Epoca">
-    <j.0:prefLabel>Epoca</j.0:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://recinfo.org/EnergiaRenovable">
