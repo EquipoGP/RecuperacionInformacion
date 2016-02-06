@@ -91,8 +91,8 @@
 		<skos:prefLabel>Arquitectura</skos:prefLabel>
 	</skos:Concept>
 	
-	<skos:Concept rdf:about="Epoca">
-		<skos:prefLabel>Epoca</skos:prefLabel>
+	<skos:Concept rdf:about="Sociedad">
+		<skos:prefLabel>Sociedad</skos:prefLabel>
 	</skos:Concept>
 	
 </rdf:RDF>

@@ -106,9 +106,9 @@ public class Modelo {
 		arquitectura.addProperty(RDF.type, concept);
 		arquitectura.addProperty(prefLabel, "Arquitectura");
 
-		Resource epoca = model.createResource(prefix + "Epoca");
+		Resource epoca = model.createResource(prefix + "Sociedad");
 		epoca.addProperty(RDF.type, concept);
-		epoca.addProperty(prefLabel, "Epoca");
+		epoca.addProperty(prefLabel, "Sociedad");
 
 		return model;
 	}

@@ -17,7 +17,7 @@ public class Tesauro {
 
 	/* atributos privados */
 	private static Set<String> guerraIndependencia, sonido, musica,
-			energiaRenovable, videojuego, arquitectura, epoca;
+			energiaRenovable, videojuego, arquitectura, sociedad;
 
 	/**
 	 * Metodo para la inicializacion del tesauro
@@ -124,8 +124,8 @@ public class Tesauro {
 	 *            titulo del documento
 	 * @return true si tiene que ver con el tema, false en caso contrario
 	 */
-	public static boolean epoca(String description, String title) {
-		return buscar(description, title, epoca);
+	public static boolean sociedad(String description, String title) {
+		return buscar(description, title, sociedad);
 	}
 
 	/**
@@ -243,10 +243,15 @@ public class Tesauro {
 //		arquitectura.add("edificio");
 //		arquitectura.add("restauracion");
 		arquitectura.add("monasterio");
+		arquitectura.add("castillo-abadia");
 //		 arquitectura.add("edificios");
 		// arquitectura.add("escultura");
 
-		epoca = new HashSet<String>();
+		sociedad = new HashSet<String>();
+		sociedad.add("arquitectura social");
+		sociedad.add("oligarquia urbana");
+		sociedad.add("concejo");
+		sociedad.add("patrimonio historico");
 		// epoca.add("epoca");
 //		epoca.add("Edad Media");
 		// epoca.add("medieval");

@@ -172,7 +172,7 @@ public class IndexDocs {
 
 		Resource arquitectura = skos
 				.getResource(Modelo.prefix + "Arquitectura");
-		Resource epoca = skos.getResource(Modelo.prefix + "Epoca");
+		Resource sociedad = skos.getResource(Modelo.prefix + "Sociedad");
 
 		// comprobar en que conceptos va el documento
 		if (Tesauro.energiaRenovable(d_description, d_title)) {
@@ -193,8 +193,8 @@ public class IndexDocs {
 		if (Tesauro.arquitectura(d_description, d_title)) {
 			documento.addProperty(keyword, arquitectura);
 		}
-		if (Tesauro.epoca(d_description, d_title)) {
-			documento.addProperty(keyword, epoca);
+		if (Tesauro.sociedad(d_description, d_title)) {
+			documento.addProperty(keyword, sociedad);
 		}
 	}
 
