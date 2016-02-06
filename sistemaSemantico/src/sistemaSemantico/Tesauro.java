@@ -327,17 +327,17 @@ public class Tesauro {
 		energiaRenovable.add("energias renovables");
 //		energiaRenovable.add("combustibles fosiles");
 //		energiaRenovable.add("pilas de combustible");
-		energiaRenovable.add("energia geotermica");
-		energiaRenovable.add("energia cinetica");
+//		energiaRenovable.add("energia geotermica");
+//		energiaRenovable.add("energia cinetica");
 		energiaRenovable.add("solar");
 		energiaRenovable.add("paneles solares");
 		energiaRenovable.add("eolica");
 		energiaRenovable.add("parques eolicos");
 		energiaRenovable.add("biomasa");
 //		energiaRenovable.add("biodiesel");
-		energiaRenovable.add("eficiencia energetica");
+//		energiaRenovable.add("eficiencia energetica");
 //		energiaRenovable.add("medio ambiente");
-		energiaRenovable.add("medioambiental");
+//		energiaRenovable.add("medioambiental");
 //		energiaRenovable.add("cambio climatico");
 	}
 
@@ -383,10 +383,10 @@ public class Tesauro {
 		arquitectura = new HashSet<String>();
 		arquitectura.add("construccion arquitectoniva");
 //		arquitectura.add("edificios");
-		arquitectura.add("escultura");
+//		arquitectura.add("escultura");
 
 		epoca = new HashSet<String>();
-		epoca.add("epoca");
+//		epoca.add("epoca");
 		epoca.add("edad media");
 //		epoca.add("medieval");
 		epoca.add("epoca gotica");
