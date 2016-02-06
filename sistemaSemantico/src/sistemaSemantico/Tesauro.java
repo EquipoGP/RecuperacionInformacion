@@ -45,7 +45,7 @@ public class Tesauro {
 		description = normalizar(description);
 
 		for (String s : guerraIndependencia) {
-			String regex = "^" + s + ".*|.* " + s +".*";
+			String regex = "^" + s + ".*|.* " + s +".*|-" + s +".*";
 			if (title.matches(regex) || description.matches(regex)) {
 				return true;
 			}
@@ -68,7 +68,7 @@ public class Tesauro {
 		description = normalizar(description);
 
 		for (String s : sonido) {
-			String regex = "^" + s + ".*|.* " + s +".*";
+			String regex = "^" + s + ".*|.* " + s +".*|-" + s +".*";
 			if (title.matches(regex) || description.matches(regex)) {
 				return true;
 			}
@@ -91,7 +91,7 @@ public class Tesauro {
 		description = normalizar(description);
 
 		for (String s : musica) {
-			String regex = "^" + s + ".*|.* " + s +".*";
+			String regex = "^" + s + ".*|.* " + s +".*|-" + s +".*";
 			if (title.matches(regex) || description.matches(regex)) {
 				return true;
 			}
@@ -114,7 +114,7 @@ public class Tesauro {
 		description = normalizar(description);
 
 		for (String s : energiaRenovable) {
-			String regex = "^" + s + ".*|.* " + s +".*";
+			String regex = "^" + s + ".*|.* " + s +".*|-" + s +".*";
 			if (title.matches(regex) || description.matches(regex)) {
 				return true;
 			}
@@ -137,7 +137,7 @@ public class Tesauro {
 		description = normalizar(description);
 
 		for (String s : videojuego) {
-			String regex = "^" + s + ".*|.* " + s +".*";
+			String regex = "^" + s + ".*|.* " + s +".*|-" + s +".*";
 			if (title.matches(regex) || description.matches(regex)) {
 				return true;
 			}
@@ -160,7 +160,7 @@ public class Tesauro {
 		description = normalizar(description);
 
 		for (String s : arquitectura) {
-			String regex = "^" + s + ".*|.* " + s +".*";
+			String regex = "^" + s + ".*|.* " + s +".*|-" + s +".*";
 			if (title.matches(regex) || description.matches(regex)) {
 				return true;
 			}
@@ -183,7 +183,7 @@ public class Tesauro {
 		description = normalizar(description);
 
 		for (String s : epoca) {
-			String regex = "^" + s + ".*|.* " + s +".*";
+			String regex = "^" + s + ".*|.* " + s +".*|-" + s +".*";
 			if (title.matches(regex) || description.matches(regex)) {
 				return true;
 			}
