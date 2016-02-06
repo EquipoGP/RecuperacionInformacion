@@ -169,7 +169,7 @@ public class IndexDocs {
 				+ "GuerraIndependencia");
 
 		Resource videojuegos = skos.getResource(Modelo.prefix + "Videojuegos");
-		Resource diseño = skos.getResource(Modelo.prefix + "Diseño");
+		Resource diseño = skos.getResource(Modelo.prefix + "Diseno");
 		Resource desarrollo = skos.getResource(Modelo.prefix + "Desarrollo");
 		Resource programacion = skos
 				.getResource(Modelo.prefix + "Programacion");
@@ -235,7 +235,7 @@ public class IndexDocs {
 						.replaceAll("á", "a").replaceAll("é", "e")
 						.replaceAll("í", "i").replaceAll("ó",  "o")
 						.replaceAll("ú", "u").replaceAll(",", "")
-						.replaceAll(" ", "");
+						.replaceAll(" ", "").replaceAll("ñ", "n");
 			}
 		}
 		return owners;

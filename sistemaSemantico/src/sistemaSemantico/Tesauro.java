@@ -283,7 +283,7 @@ public class Tesauro {
 		guerraIndependencia.add("ejercito");
 		guerraIndependencia.add("1808-1814");
 		guerraIndependencia.add("1808");
-		guerraIndependencia.add("españa");
+		guerraIndependencia.add("espana");
 	}
 
 	/**
@@ -333,8 +333,8 @@ public class Tesauro {
 	 */
 	private static void prepararConsulta07_2() {
 		disenio = new HashSet<String>();
-		disenio.add("diseñar");
-		disenio.add("diseño de personajes");
+		disenio.add("disenar");
+		disenio.add("diseno de personajes");
 
 		desarrollo = new HashSet<String>();
 		desarrollo.add("desarrollo de videojuegos");
@@ -392,6 +392,7 @@ public class Tesauro {
 			s = s.replaceAll("í", "i");
 			s = s.replaceAll("ó", "o");
 			s = s.replaceAll("ú", "u");
+			s = s.replaceAll("ñ", "n");
 
 			return s;
 		} else {

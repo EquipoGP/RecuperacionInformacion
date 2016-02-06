@@ -101,7 +101,7 @@ public class Modelo {
 		videojuegos.addProperty(RDF.type, concept);
 		videojuegos.addProperty(prefLabel, "Videojuegos");
 
-		Resource diseño = model.createResource(prefix + "Diseño");
+		Resource diseño = model.createResource(prefix + "Diseno");
 		diseño.addProperty(RDF.type, concept);
 		diseño.addProperty(prefLabel, "Diseño");
 

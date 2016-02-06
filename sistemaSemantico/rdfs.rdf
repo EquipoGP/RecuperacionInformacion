@@ -12,51 +12,51 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" 
     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-    xml:base="http://recinfo.org/">
+    xml:base="http://recinfo.org/#">
 	
 	<!-- Classes -->
-	<rdfs:Class rdf:about="#Documento">
+	<rdfs:Class rdf:about="Documento">
 		<rdfs:label>Documento</rdfs:label>
 	</rdfs:Class>
 	
-	<rdfs:Class rdf:about="#Persona">
+	<rdfs:Class rdf:about="Persona">
 		<rdfs:label>Persona</rdfs:label>
 	</rdfs:Class>
 	
 	<!-- Properties -->
-	<rdf:Property rdf:about="#title">
+	<rdf:Property rdf:about="title">
 		<rdfs:label>title</rdfs:label>
-		<rdfs:domain rdf:resource="#Documento"/>
+		<rdfs:domain rdf:resource="Documento"/>
 		<rdfs:range rdf:resource="rdfs:Literal"/>
 	</rdf:Property>
 	
-	<rdf:Property rdf:about="#creator">
+	<rdf:Property rdf:about="creator">
 		<rdfs:label>creator</rdfs:label>
-		<rdfs:domain rdf:resource="#Documento"/>
-		<rdfs:range rdf:resource="#Persona"/>
+		<rdfs:domain rdf:resource="Documento"/>
+		<rdfs:range rdf:resource="Persona"/>
 	</rdf:Property>
 	
-	<rdf:Property rdf:about="#name">
+	<rdf:Property rdf:about="name">
 		<rdfs:label>name</rdfs:label>
-		<rdfs:domain rdf:resource="#Persona"/>
+		<rdfs:domain rdf:resource="Persona"/>
 		<rdfs:range rdf:resource="rdfs:Literal"/>
 	</rdf:Property>
 	
-	<rdf:Property rdf:about="#identifier">
+	<rdf:Property rdf:about="identifier">
 		<rdfs:label>identifier</rdfs:label>
-		<rdfs:domain rdf:resource="#Documento"/>
+		<rdfs:domain rdf:resource="Documento"/>
 		<rdfs:range rdf:resource="rdfs:Literal"/>
 	</rdf:Property>
 	
-	<rdf:Property rdf:about="#date">
+	<rdf:Property rdf:about="date">
 		<rdfs:label>date</rdfs:label>
-		<rdfs:domain rdf:resource="#Documento"/>
+		<rdfs:domain rdf:resource="Documento"/>
 		<rdfs:range rdf:resource="xsd:integer"/>
 	</rdf:Property>
 	
-	<rdf:Property rdf:about="#keyword">
+	<rdf:Property rdf:about="keyword">
 		<rdfs:label>keyword</rdfs:label>
-		<rdfs:domain rdf:resource="#Documento"/>
+		<rdfs:domain rdf:resource="Documento"/>
 		<rdfs:range rdf:resource="skos:Concept"/>
 	</rdf:Property>
     
