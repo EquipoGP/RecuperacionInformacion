@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+    <!ENTITY rdfs 'http://www.w3.org/TR/WD-rdf-schema#'>
+	<!ENTITY skos 'http://www.w3.org/2004/02/skos/core#'>
+	<!ENTITY xsd 'http://www.w3.org/2001/XMLSchema#'>
+]>
+
+<rdf:RDF 
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" 
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xml:base="http://recinfo.org/">
+	
+	<!-- Classes -->
+	<rdfs:Class rdf:about="#Documento">
+		<rdfs:label>Documento</rdfs:label>
+	</rdfs:Class>
+	
+	<rdfs:Class rdf:about="#Persona">
+		<rdfs:label>Persona</rdfs:label>
+	</rdfs:Class>
+	
+	<!-- Properties -->
+	<rdf:Property rdf:about="#title">
+		<rdfs:label>title</rdfs:label>
+		<rdfs:domain rdf:resource="#Documento"/>
+		<rdfs:range rdf:resource="rdfs:Literal"/>
+	</rdf:Property>
+	
+	<rdf:Property rdf:about="#creator">
+		<rdfs:label>creator</rdfs:label>
+		<rdfs:domain rdf:resource="#Documento"/>
+		<rdfs:range rdf:resource="#Persona"/>
+	</rdf:Property>
+	
+	<rdf:Property rdf:about="#name">
+		<rdfs:label>name</rdfs:label>
+		<rdfs:domain rdf:resource="#Persona"/>
+		<rdfs:range rdf:resource="rdfs:Literal"/>
+	</rdf:Property>
+	
+	<rdf:Property rdf:about="#identifier">
+		<rdfs:label>identifier</rdfs:label>
+		<rdfs:domain rdf:resource="#Documento"/>
+		<rdfs:range rdf:resource="rdfs:Literal"/>
+	</rdf:Property>
+	
+	<rdf:Property rdf:about="#date">
+		<rdfs:label>date</rdfs:label>
+		<rdfs:domain rdf:resource="#Documento"/>
+		<rdfs:range rdf:resource="xsd:integer"/>
+	</rdf:Property>
+	
+	<rdf:Property rdf:about="#keyword">
+		<rdfs:label>keyword</rdfs:label>
+		<rdfs:domain rdf:resource="#Documento"/>
+		<rdfs:range rdf:resource="skos:Concept"/>
+	</rdf:Property>
+    
+	<!-- Skos vocabulary -->
+	
+	<!-- Energias renovables -->
+    <skos:Concept rdf:about="EnergiaRenovable">
+		<skos:prefLabel>EnergiaRenovable</skos:prefLabel>
+	</skos:Concept>
+	
+	<!-- Musica y sonido -->
+	<skos:Concept rdf:about="Sonido">
+		<skos:prefLabel>Sonido</skos:prefLabel>
+	</skos:Concept>
+	
+	<skos:Concept rdf:about="Musica">
+		<skos:prefLabel>Musica</skos:prefLabel>
+	</skos:Concept>
+	
+	<!-- Guerra de la Independencia -->
+	<skos:Concept rdf:about="GuerraIndependencia">
+		<skos:prefLabel>GuerraIndependencia</skos:prefLabel>
+	</skos:Concept>
+	
+	<!-- Videojuegos y personajes -->
+	<skos:Concept rdf:about="Videojuegos">
+		<skos:prefLabel>Videojuegos</skos:prefLabel>
+	</skos:Concept>
+	
+	<skos:Concept rdf:about="Diseño">
+		<skos:prefLabel>Diseño</skos:prefLabel>
+	</skos:Concept>
+	
+	<skos:Concept rdf:about="Desarrollo">
+		<skos:prefLabel>Desarrollo</skos:prefLabel>
+	</skos:Concept>
+	
+	<skos:Concept rdf:about="Programacion">
+		<skos:prefLabel>Programacion</skos:prefLabel>
+	</skos:Concept>
+	
+	<!-- Edad Media y Gotico -->
+	<skos:Concept rdf:about="Arquitectura">
+		<skos:prefLabel>Arquitectura</skos:prefLabel>
+	</skos:Concept>
+	
+	<skos:Concept rdf:about="Conservacion">
+		<skos:prefLabel>Conservacion</skos:prefLabel>
+	</skos:Concept>
+	
+	<skos:Concept rdf:about="Epoca">
+		<skos:prefLabel>Epoca</skos:prefLabel>
+	</skos:Concept>
+	
+</rdf:RDF>

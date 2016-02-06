@@ -45,10 +45,10 @@ public class SemanticSearcher {
 			} else if (arg.equals("-rdfs")) {
 				i++;
 				rdfsPath = args[i];
-			} else if (arg.equals("-infoNeedsFile")) {
+			} else if (arg.equals("-infoNeeds")) {
 				i++;
 				infoNeeds = args[i];
-			} else if (arg.equals("-resultsFile")) {
+			} else if (arg.equals("-output")) {
 				i++;
 				resultsFile = args[i];
 			}

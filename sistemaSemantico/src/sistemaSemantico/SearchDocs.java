@@ -69,9 +69,11 @@ public class SearchDocs {
 			if (ids != null) {
 				for (String id : ids) {
 					out.println(info + "\t" + id);
+					System.out.println(info + "\t" + id);
 				}
 			}
 		}
+		out.flush();
 		out.close();
 	}
 
@@ -92,7 +94,7 @@ public class SearchDocs {
 
 		/* iterar sobre los resultados */
 		ResultSet results = qexec.execSelect();
-		while (results.hasNext()) {
+		for (;results.hasNext();) {
 			QuerySolution soln = results.nextSolution();
 			RDFNode id = soln.get("id");
 			ids.add(id.toString());
@@ -117,7 +119,7 @@ public class SearchDocs {
 		Scanner s = new Scanner(new File(infoNeeds));
 		while (s.hasNextLine()) {
 			String line = s.nextLine();
-			String[] splitted = line.split(" ");
+			String[] splitted = line.split("\t");
 
 			String id = splitted[0];
 			String info = "";
