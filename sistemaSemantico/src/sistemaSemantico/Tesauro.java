@@ -245,7 +245,7 @@ public class Tesauro {
 
 		epoca = new HashSet<String>();
 		// epoca.add("epoca");
-		epoca.add("edad media");
+		epoca.add("Edad Media");
 		// epoca.add("medieval");
 		epoca.add("epoca gotica");
 //		epoca.add("oligarquia urbana");
@@ -260,15 +260,19 @@ public class Tesauro {
 	 */
 	private static String normalizar(String s) {
 		if (s != null) {
-			s = s.toLowerCase();
-			s = s.replaceAll("á", "a");
-			s = s.replaceAll("é", "e");
-			s = s.replaceAll("í", "i");
-			s = s.replaceAll("ó", "o");
-			s = s.replaceAll("ú", "u");
-			s = s.replaceAll("ñ", "n");
+			String s1 = s.toLowerCase();
+			s1 = s1.replaceAll("á", "a");
+			s1 = s1.replaceAll("é", "e");
+			s1 = s1.replaceAll("í", "i");
+			s1 = s1.replaceAll("ó", "o");
+			s1 = s1.replaceAll("ú", "u");
+			s1 = s1.replaceAll("ñ", "n");
+			
+			if(s.contains("Edad Media")){
+				s1 = s1.replaceAll("edad media", "Edad Media");
+			}
 
-			return s;
+			return s1;
 		} else {
 			return "";
 		}
