@@ -139,6 +139,10 @@ public class IndexDocs {
 			}
 		}
 		// conceptos del tesauro
+		if(d_identifier.contains("7398")){
+			System.out.println(d_title);
+			System.out.println(d_description);
+		}
 		tesauro(documento, d_title, d_description);
 	}
 
