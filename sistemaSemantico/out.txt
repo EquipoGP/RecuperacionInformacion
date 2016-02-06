@@ -188,10 +188,7 @@
 07-2	oai_zaguan.unizar.es_11628.xml
 07-2	oai_zaguan.unizar.es_9310.xml
 07-2	oai_zaguan.unizar.es_16316.xml
-07-2	oai_zaguan.unizar.es_5279.xml
 07-2	oai_zaguan.unizar.es_13428.xml
-07-2	oai_zaguan.unizar.es_15991.xml
-07-2	oai_zaguan.unizar.es_9435.xml
 07-2	oai_zaguan.unizar.es_13367.xml
 07-2	oai_zaguan.unizar.es_12009.xml
 07-2	oai_zaguan.unizar.es_12144.xml
@@ -202,7 +199,6 @@
 07-2	oai_zaguan.unizar.es_31179.xml
 07-2	oai_zaguan.unizar.es_12991.xml
 07-2	oai_zaguan.unizar.es_31472.xml
-07-2	oai_zaguan.unizar.es_7981.xml
 07-2	oai_zaguan.unizar.es_12962.xml
 07-2	oai_zaguan.unizar.es_11855.xml
 07-2	oai_zaguan.unizar.es_31534.xml
