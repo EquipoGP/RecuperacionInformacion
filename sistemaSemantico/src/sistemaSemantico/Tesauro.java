@@ -292,9 +292,9 @@ public class Tesauro {
 		guerraIndependencia = new HashSet<String>();
 		guerraIndependencia.add("guerra de la independencia");
 //		guerraIndependencia.add("guerra");
-//		guerraIndependencia.add("ejercito");
+		guerraIndependencia.add("ejercito");
 		guerraIndependencia.add("1808-1814");
-//		guerraIndependencia.add("1808");
+		guerraIndependencia.add("1808");
 //		guerraIndependencia.add("espana");
 	}
 
@@ -304,7 +304,7 @@ public class Tesauro {
 	private static void prepararConsulta13_2() {
 		sonido = new HashSet<String>();
 		sonido.add("sonido");
-//		sonido.add("sonoro");
+		sonido.add("sonoro");
 //		sonido.add("audio");
 //		sonido.add("ruido");
 
@@ -334,9 +334,9 @@ public class Tesauro {
 		energiaRenovable.add("eolica");
 		energiaRenovable.add("parques eolicos");
 		energiaRenovable.add("biomasa");
-		energiaRenovable.add("biodiesel");
+//		energiaRenovable.add("biodiesel");
 		energiaRenovable.add("eficiencia energetica");
-		energiaRenovable.add("medio ambiente");
+//		energiaRenovable.add("medio ambiente");
 		energiaRenovable.add("medioambiental");
 //		energiaRenovable.add("cambio climatico");
 	}
@@ -388,7 +388,7 @@ public class Tesauro {
 		epoca = new HashSet<String>();
 		epoca.add("epoca");
 		epoca.add("edad media");
-		epoca.add("medieval");
+//		epoca.add("medieval");
 		epoca.add("epoca gotica");
 		epoca.add("oligarquia urbana");
 
