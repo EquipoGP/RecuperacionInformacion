@@ -203,11 +203,11 @@ public class Tesauro {
 //		energiaRenovable.add("paneles solares");
 		energiaRenovable.add("eolica");
 //		energiaRenovable.add("parques eolicos");
-		energiaRenovable.add("biomasa");
+//		energiaRenovable.add("biomasa");
 		// energiaRenovable.add("biodiesel");
 		// energiaRenovable.add("eficiencia energetica");
 //		 energiaRenovable.add("medio ambiente");
-		 energiaRenovable.add("medioambiental");
+//		 energiaRenovable.add("medioambiental");
 		// energiaRenovable.add("cambio climatico");
 	}
 
