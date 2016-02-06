@@ -63,6 +63,8 @@ public class SearchDocs {
 			String info = entry.getKey();
 			String query = entry.getValue();
 
+			System.out.println("Info: " + info);
+			System.out.println("Query: " + query);
 			List<String> ids = null;
 			ids = executeQuery(query, base);
 
@@ -97,7 +99,7 @@ public class SearchDocs {
 		for (;results.hasNext();) {
 			QuerySolution soln = results.nextSolution();
 			RDFNode id = soln.get("id");
-			ids.add(id.toString());
+			ids.add(id.asLiteral().getString());
 		}
 		qexec.close();
 

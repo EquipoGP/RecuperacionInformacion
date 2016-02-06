@@ -1,5 +1,5 @@
-13-2	prefix ri: <http://example.org/ns/> select ?id where { ?doc ri:identifier ?id. { ?doc ri:keyword ri:Musica } UNION { ?doc ri:keyword ri:Sonido}. ?doc ri:creator ?author. ?author ri:name ?name. FILTER(regex(?name, "Javier", "i"))}
-02-4	prefix ri: <http://example.org/ns/> select ?id where {?doc ri:identifier ?id. ?doc ri:keyword ri:GuerraIndependencia}
-09-3	prefix ri: <http://example.org/ns/> select ?id where {?doc ri:identifier ?id. ?doc ri:keyword ri:EnergiaRenovable. ?doc ri:date ?date. FILTER(?date > 2009 && ?date < 2016)}
-07-2	prefix ri: <http://example.org/ns/> select ?id where {?doc ri:identifier ?id. ?doc ri:keyword ri:Videojuegos. {?doc ri:keyword ri:Diseño} UNION {?doc ri:keyword ri:Desarrollo} UNION {?doc ri:keyword ri:Programacion}. ?doc ri:date ?date. FILTER(?date > 2009 && ?date < 2016)}
-05-5	prefix ri: <http://example.org/ns/> select ?id where {?doc ri:identifier ?id. {?doc ri:keyword ri:Arquitectura} UNION {?doc ri:keyword ri:Conservacion} UNION {?doc ri:keyword ri:Epoca}}
+13-2	prefix ri: <http://recinfo.org/> select ?id where { ?doc ri:#identifier ?id. { ?doc ri:#keyword ri:Musica } UNION { ?doc ri:#keyword ri:Sonido}. ?doc ri:#creator ?author. ?author ri:#name ?name. FILTER(regex(str(?name), "javier"))}
+02-4	prefix ri: <http://recinfo.org/> select ?id where {?doc ri:#identifier ?id. ?doc ri:#keyword ri:GuerraIndependencia}
+09-3	prefix ri: <http://recinfo.org/> select ?id where {?doc ri:#identifier ?id. ?doc ri:#keyword ri:EnergiaRenovable. ?doc ri:#date ?date. FILTER(?date > 2009 && ?date < 2016)}
+07-2	prefix ri: <http://recinfo.org/> select ?id where {?doc ri:#identifier ?id. ?doc ri:#keyword ri:Videojuegos. {?doc ri:#keyword ri:Diseño} UNION {?doc ri:#keyword ri:Desarrollo} UNION {?doc ri:#keyword ri:Programacion}. ?doc ri:#date ?date. FILTER(?date > 2009 && ?date < 2016)}
+05-5	prefix ri: <http://recinfo.org/> select ?id where {?doc ri:#identifier ?id. {?doc ri:#keyword ri:Arquitectura} UNION {?doc ri:#keyword ri:Conservacion} UNION {?doc ri:#keyword ri:Epoca}}

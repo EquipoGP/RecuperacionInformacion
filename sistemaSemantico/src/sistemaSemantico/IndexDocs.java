@@ -231,6 +231,11 @@ public class IndexDocs {
 			owners = new String[creators.getLength()];
 			for (int i = 0; i < creators.getLength(); i++) {
 				owners[i] = creators.item(i).getTextContent();
+				owners[i] = owners[i].toLowerCase()
+						.replaceAll("á", "a").replaceAll("é", "e")
+						.replaceAll("í", "i").replaceAll("ó",  "o")
+						.replaceAll("ú", "u").replaceAll(",", "")
+						.replaceAll(" ", "");
 			}
 		}
 		return owners;
