@@ -253,7 +253,7 @@ public class Tesauro {
 		description = normalizar(description);
 
 		for (String s : epoca) {
-			String regex = ".*^| " + s + "*";
+			String regex = "^|.* " + s + "*";
 			if (title.matches(regex) || description.matches(regex)) {
 				return true;
 			}
