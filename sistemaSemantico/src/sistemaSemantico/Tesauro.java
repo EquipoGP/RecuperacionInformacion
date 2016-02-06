@@ -292,7 +292,7 @@ public class Tesauro {
 		guerraIndependencia = new HashSet<String>();
 		guerraIndependencia.add("guerra de la independencia");
 //		guerraIndependencia.add("guerra");
-		guerraIndependencia.add("ejercito");
+//		guerraIndependencia.add("ejercito");
 		guerraIndependencia.add("1808-1814");
 		guerraIndependencia.add("1808");
 //		guerraIndependencia.add("espana");
@@ -329,7 +329,7 @@ public class Tesauro {
 //		energiaRenovable.add("pilas de combustible");
 //		energiaRenovable.add("energia geotermica");
 //		energiaRenovable.add("energia cinetica");
-		energiaRenovable.add("solar");
+//		energiaRenovable.add("solar");
 		energiaRenovable.add("paneles solares");
 		energiaRenovable.add("eolica");
 		energiaRenovable.add("parques eolicos");
@@ -393,7 +393,7 @@ public class Tesauro {
 		epoca.add("oligarquia urbana");
 
 		conservacion = new HashSet<String>();
-		conservacion.add("conservacion");
+//		conservacion.add("conservacion");
 //		conservacion.add("rehabilitacion");
 //		conservacion.add("restauracion");
 //		conservacion.add("restauraciones");

@@ -1,10 +1,16 @@
 13-2	oai_zaguan.unizar.es_5624.xml
+13-2	oai_zaguan.unizar.es_9612.xml
 13-2	oai_zaguan.unizar.es_14844.xml
 13-2	oai_zaguan.unizar.es_16483.xml
+13-2	oai_zaguan.unizar.es_31074.xml
 13-2	oai_zaguan.unizar.es_8033.xml
+13-2	oai_zaguan.unizar.es_31494.xml
+13-2	oai_zaguan.unizar.es_11909.xml
 13-2	oai_zaguan.unizar.es_9479.xml
+13-2	oai_zaguan.unizar.es_14560.xml
 13-2	oai_zaguan.unizar.es_16316.xml
 13-2	oai_zaguan.unizar.es_8012.xml
+13-2	oai_zaguan.unizar.es_18105.xml
 13-2	oai_zaguan.unizar.es_9286.xml
 09-3	oai_zaguan.unizar.es_5612.xml
 09-3	oai_zaguan.unizar.es_9865.xml
