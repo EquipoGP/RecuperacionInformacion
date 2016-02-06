@@ -141,7 +141,7 @@ public class Tesauro {
 		title = normalizar(title);
 		description = normalizar(description);
 		
-		for(String s : guerraIndependencia){
+		for(String s : conservacion){
 			if(title.contains(s) || description.contains(s)){
 				return true;
 			}
