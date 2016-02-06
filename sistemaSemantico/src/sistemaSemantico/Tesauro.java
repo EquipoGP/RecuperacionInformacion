@@ -290,6 +290,7 @@ public class Tesauro {
 	 */
 	private static void prepararConsulta02_4() {
 		guerraIndependencia = new HashSet<String>();
+		guerraIndependencia.add("guerra de la independencia");
 		guerraIndependencia.add("guerra");
 		guerraIndependencia.add("ejercito");
 		guerraIndependencia.add("1808-1814");
@@ -322,6 +323,8 @@ public class Tesauro {
 		energiaRenovable = new HashSet<String>();
 		energiaRenovable.add("renovable");
 		energiaRenovable.add("energia");
+		energiaRenovable.add("energia renovable");
+		energiaRenovable.add("energias renovables");
 		energiaRenovable.add("combustibles fosiles");
 		energiaRenovable.add("pilas de combustible");
 		energiaRenovable.add("energia geotermica");
@@ -344,17 +347,21 @@ public class Tesauro {
 	 */
 	private static void prepararConsulta07_2() {
 		disenio = new HashSet<String>();
+		disenio.add("diseno");
 		disenio.add("disenar");
 		disenio.add("diseno de personajes");
 
 		desarrollo = new HashSet<String>();
+		desarrollo.add("desarrollo");
 		desarrollo.add("desarrollo de videojuegos");
 
 		programacion = new HashSet<String>();
 		programacion.add("procedural");
 
 		videojuego = new HashSet<String>();
-		videojuego.add("videojuegos");
+		videojuego.add("videojuego");
+		videojuego.add("diseno de personajes");
+		videojuego.add("desarrollo de videojuegos");
 		videojuego.add("agente inteligente");
 		videojuego.add("bots");
 		videojuego.add("motor grafico");
@@ -373,16 +380,19 @@ public class Tesauro {
 	 */
 	private static void prepararConsulta05_5() {
 		arquitectura = new HashSet<String>();
+		arquitectura.add("construccion arquitectoniva");
 		arquitectura.add("edificios");
 		arquitectura.add("escultura");
 
 		epoca = new HashSet<String>();
+		epoca.add("epoca");
 		epoca.add("edad media");
 		epoca.add("medieval");
 		epoca.add("epoca gotica");
 		epoca.add("oligarquia urbana");
 
 		conservacion = new HashSet<String>();
+		conservacion.add("conservacion");
 		conservacion.add("rehabilitacion");
 		conservacion.add("restauracion");
 		conservacion.add("restauraciones");
