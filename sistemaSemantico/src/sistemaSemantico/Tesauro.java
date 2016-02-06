@@ -311,9 +311,9 @@ public class Tesauro {
 		musica = new HashSet<String>();
 		musica.add("musica");
 		musica.add("musical");
-//		musica.add("musico");
+		musica.add("musico");
 		musica.add("cancion");
-//		musica.add("ritmo");
+		musica.add("ritmo");
 	}
 
 	/**
