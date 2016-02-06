@@ -223,7 +223,7 @@ public class Tesauro {
 		videojuego.add("agente inteligente");
 		// videojuego.add("bots");
 		videojuego.add("motor grafico");
-		// videojuego.add("animacion");
+		 videojuego.add("animacion");
 //		videojuego.add("animaciones");
 		// videojuego.add("multiples jugadores");
 		videojuego.add("realidad aumentada");
