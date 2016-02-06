@@ -101,30 +101,14 @@ public class Modelo {
 		videojuegos.addProperty(RDF.type, concept);
 		videojuegos.addProperty(prefLabel, "Videojuegos");
 
-		Resource diseño = model.createResource(prefix + "Diseno");
-		diseño.addProperty(RDF.type, concept);
-		diseño.addProperty(prefLabel, "Diseño");
-
-		Resource desarrollo = model.createResource(prefix + "Desarrollo");
-		desarrollo.addProperty(RDF.type, concept);
-		desarrollo.addProperty(prefLabel, "Desarrollo");
-
-		Resource programacion = model.createResource(prefix + "Programacion");
-		programacion.addProperty(RDF.type, concept);
-		programacion.addProperty(prefLabel, "Programacion");
-
 		/* Edad Media y Gotico */
 		Resource arquitectura = model.createResource(prefix + "Arquitectura");
 		arquitectura.addProperty(RDF.type, concept);
 		arquitectura.addProperty(prefLabel, "Arquitectura");
 
-		Resource conservacion = model.createResource(prefix + "Conservacion");
-		conservacion.addProperty(RDF.type, concept);
-		conservacion.addProperty(prefLabel, "Arquitectura");
-
 		Resource epoca = model.createResource(prefix + "Epoca");
 		epoca.addProperty(RDF.type, concept);
-		epoca.addProperty(prefLabel, "Arquitectura");
+		epoca.addProperty(prefLabel, "Epoca");
 
 		return model;
 	}

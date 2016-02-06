@@ -169,15 +169,9 @@ public class IndexDocs {
 				+ "GuerraIndependencia");
 
 		Resource videojuegos = skos.getResource(Modelo.prefix + "Videojuegos");
-		Resource diseño = skos.getResource(Modelo.prefix + "Diseno");
-		Resource desarrollo = skos.getResource(Modelo.prefix + "Desarrollo");
-		Resource programacion = skos
-				.getResource(Modelo.prefix + "Programacion");
 
 		Resource arquitectura = skos
 				.getResource(Modelo.prefix + "Arquitectura");
-		Resource conservacion = skos
-				.getResource(Modelo.prefix + "Conservacion");
 		Resource epoca = skos.getResource(Modelo.prefix + "Epoca");
 
 		// comprobar en que conceptos va el documento
@@ -196,20 +190,8 @@ public class IndexDocs {
 		if (Tesauro.videojuego(d_description, d_title)) {
 			documento.addProperty(keyword, videojuegos);
 		}
-		if (Tesauro.disenio(d_description, d_title)) {
-			documento.addProperty(keyword, diseño);
-		}
-		if (Tesauro.desarrollo(d_description, d_title)) {
-			documento.addProperty(keyword, desarrollo);
-		}
-		if (Tesauro.programacion(d_description, d_title)) {
-			documento.addProperty(keyword, programacion);
-		}
 		if (Tesauro.arquitectura(d_description, d_title)) {
 			documento.addProperty(keyword, arquitectura);
-		}
-		if (Tesauro.conservacion(d_description, d_title)) {
-			documento.addProperty(keyword, conservacion);
 		}
 		if (Tesauro.epoca(d_description, d_title)) {
 			documento.addProperty(keyword, epoca);

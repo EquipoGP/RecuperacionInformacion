@@ -17,8 +17,7 @@ public class Tesauro {
 
 	/* atributos privados */
 	private static Set<String> guerraIndependencia, sonido, musica,
-			energiaRenovable, disenio, desarrollo, programacion, videojuego,
-			arquitectura, epoca, conservacion;
+			energiaRenovable, videojuego, arquitectura, epoca;
 
 	/**
 	 * Metodo para la inicializacion del tesauro
@@ -125,75 +124,6 @@ public class Tesauro {
 
 	/**
 	 * Comprueba si el documento referenciado por los argumentos se engloba en
-	 * el tema del disenio
-	 * 
-	 * @param description
-	 *            descripcion del documento
-	 * @param title
-	 *            titulo del documento
-	 * @return true si tiene que ver con el tema, false en caso contrario
-	 */
-	public static boolean disenio(String description, String title) {
-		title = normalizar(title);
-		description = normalizar(description);
-
-		for (String s : disenio) {
-			String regex = "^" + s + ".*|.* " + s +".*";
-			if (title.matches(regex) || description.matches(regex)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * Comprueba si el documento referenciado por los argumentos se engloba en
-	 * el tema del desarrollo
-	 * 
-	 * @param description
-	 *            descripcion del documento
-	 * @param title
-	 *            titulo del documento
-	 * @return true si tiene que ver con el tema, false en caso contrario
-	 */
-	public static boolean desarrollo(String description, String title) {
-		title = normalizar(title);
-		description = normalizar(description);
-
-		for (String s : desarrollo) {
-			String regex = "^" + s + ".*|.* " + s +".*";
-			if (title.matches(regex) || description.matches(regex)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * Comprueba si el documento referenciado por los argumentos se engloba en
-	 * el tema de la programacion
-	 * 
-	 * @param description
-	 *            descripcion del documento
-	 * @param title
-	 *            titulo del documento
-	 * @return true si tiene que ver con el tema, false en caso contrario
-	 */
-	public static boolean programacion(String description, String title) {
-		title = normalizar(title);
-		description = normalizar(description);
-
-		for (String s : programacion) {
-			String regex = "^" + s + ".*|.* " + s +".*";
-			if (title.matches(regex) || description.matches(regex)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * Comprueba si el documento referenciado por los argumentos se engloba en
 	 * el tema del videojuego
 	 * 
 	 * @param description
@@ -253,29 +183,6 @@ public class Tesauro {
 		description = normalizar(description);
 
 		for (String s : epoca) {
-			String regex = "^" + s + ".*|.* " + s +".*";
-			if (title.matches(regex) || description.matches(regex)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * Comprueba si el documento referenciado por los argumentos se engloba en
-	 * el tema de la conservacion
-	 * 
-	 * @param description
-	 *            descripcion del documento
-	 * @param title
-	 *            titulo del documento
-	 * @return true si tiene que ver con el tema, false en caso contrario
-	 */
-	public static boolean conservacion(String description, String title) {
-		title = normalizar(title);
-		description = normalizar(description);
-
-		for (String s : conservacion) {
 			String regex = "^" + s + ".*|.* " + s +".*";
 			if (title.matches(regex) || description.matches(regex)) {
 				return true;
@@ -346,19 +253,6 @@ public class Tesauro {
 	 * videojuegos y personajes
 	 */
 	private static void prepararConsulta07_2() {
-		disenio = new HashSet<String>();
-//		disenio.add("diseno");
-//		disenio.add("disenar");
-//		disenio.add("diseno de personajes");
-
-		desarrollo = new HashSet<String>();
-//		desarrollo.add("desarrollo");
-//		desarrollo.add("desarrollo de videojuegos");
-
-		programacion = new HashSet<String>();
-//		programacion.add("programacion");
-//		programacion.add("procedural");
-
 		videojuego = new HashSet<String>();
 		videojuego.add("videojuego");
 		videojuego.add("diseno de personajes");
@@ -391,12 +285,6 @@ public class Tesauro {
 //		epoca.add("medieval");
 		epoca.add("epoca gotica");
 		epoca.add("oligarquia urbana");
-
-		conservacion = new HashSet<String>();
-//		conservacion.add("conservacion");
-//		conservacion.add("rehabilitacion");
-//		conservacion.add("restauracion");
-//		conservacion.add("restauraciones");
 	}
 
 	/**
