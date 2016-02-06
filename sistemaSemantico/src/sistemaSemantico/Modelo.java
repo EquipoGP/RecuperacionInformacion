@@ -1,3 +1,9 @@
+/*
+ * Fichero: Modelo.java
+ * Autores: Patricia Lazaro Tello (554309)
+ * 			Alejandro Royo Amondarain (560285)
+ */
+
 package sistemaSemantico;
 
 import com.hp.hpl.jena.rdf.model.Model;
@@ -8,9 +14,20 @@ import com.hp.hpl.jena.vocabulary.*;
 
 public class Modelo {
 
+	/**
+	 * Clase para la creacion de los modelos RDFS y SKOS
+	 */
+
+	/* atributos publicos */
 	public static final String prefix = "http://recinfo.org/";
 	public static final String skos = "http://www.w3.org/2004/02/skos/core#";
 
+	/**
+	 * Metodo para la creacion del modelo RDFS sobre el que se basaran los datos
+	 * RDF
+	 * 
+	 * @return modelo
+	 */
 	public static Model crearModelo() {
 		Model model = ModelFactory.createDefaultModel();
 
@@ -48,6 +65,11 @@ public class Modelo {
 		return model;
 	}
 
+	/**
+	 * Metodo para la creacion del modelo SKOS
+	 * 
+	 * @return modelo
+	 */
 	public static Model crearSkosModel() {
 		Model model = ModelFactory.createDefaultModel();
 
@@ -55,7 +77,8 @@ public class Modelo {
 		Property prefLabel = model.createProperty(skos + "prefLabel");
 
 		/* energias renovables */
-		Resource energiaRenovable = model.createResource(prefix + "EnergiaRenovable");
+		Resource energiaRenovable = model.createResource(prefix
+				+ "EnergiaRenovable");
 		energiaRenovable.addProperty(RDF.type, concept);
 		energiaRenovable.addProperty(prefLabel, "EnergiaRenovable");
 
@@ -63,7 +86,7 @@ public class Modelo {
 		Resource musica = model.createResource(prefix + "Musica");
 		musica.addProperty(RDF.type, concept);
 		musica.addProperty(prefLabel, "Musica");
-		
+
 		Resource sonido = model.createResource(prefix + "Sonido");
 		sonido.addProperty(RDF.type, concept);
 		sonido.addProperty(prefLabel, "Sonido");
@@ -81,11 +104,11 @@ public class Modelo {
 		Resource diseño = model.createResource(prefix + "Diseño");
 		diseño.addProperty(RDF.type, concept);
 		diseño.addProperty(prefLabel, "Diseño");
-		
+
 		Resource desarrollo = model.createResource(prefix + "Desarrollo");
 		desarrollo.addProperty(RDF.type, concept);
 		desarrollo.addProperty(prefLabel, "Desarrollo");
-		
+
 		Resource programacion = model.createResource(prefix + "Programacion");
 		programacion.addProperty(RDF.type, concept);
 		programacion.addProperty(prefLabel, "Programacion");
@@ -94,11 +117,11 @@ public class Modelo {
 		Resource arquitectura = model.createResource(prefix + "Arquitectura");
 		arquitectura.addProperty(RDF.type, concept);
 		arquitectura.addProperty(prefLabel, "Arquitectura");
-		
+
 		Resource conservacion = model.createResource(prefix + "Conservacion");
 		conservacion.addProperty(RDF.type, concept);
 		conservacion.addProperty(prefLabel, "Arquitectura");
-		
+
 		Resource epoca = model.createResource(prefix + "Epoca");
 		epoca.addProperty(RDF.type, concept);
 		epoca.addProperty(prefLabel, "Arquitectura");

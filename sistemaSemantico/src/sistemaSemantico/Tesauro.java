@@ -1,3 +1,9 @@
+/*
+ * Fichero: Tesauro.java
+ * Autores: Patricia Lazaro Tello (554309)
+ * 			Alejandro Royo Amondarain (560285)
+ */
+
 package sistemaSemantico;
 
 import java.util.HashSet;
@@ -5,10 +11,18 @@ import java.util.Set;
 
 public class Tesauro {
 
-	private static Set<String> guerraIndependencia, sonido, musica, energiaRenovable,
-			disenio, desarrollo, programacion, videojuego, arquitectura, epoca,
-			conservacion;
+	/**
+	 * Clase que emula un tesauro para enlazar los datos con conceptos SKOS
+	 */
 
+	/* atributos privados */
+	private static Set<String> guerraIndependencia, sonido, musica,
+			energiaRenovable, disenio, desarrollo, programacion, videojuego,
+			arquitectura, epoca, conservacion;
+
+	/**
+	 * Metodo para la inicializacion del tesauro
+	 */
 	public static void init() {
 		prepararConsulta02_4();
 		prepararConsulta13_2();
@@ -16,139 +30,253 @@ public class Tesauro {
 		prepararConsulta07_2();
 		prepararConsulta05_5();
 	}
-	
-	public static boolean guerraIndependencia(String description, String title){
+
+	/**
+	 * Comprueba si el documento referenciado por los argumentos se engloba en
+	 * el tema de la guerra de independencia
+	 * 
+	 * @param description
+	 *            descripcion del documento
+	 * @param title
+	 *            titulo del documento
+	 * @return true si tiene que ver con el tema, false en caso contrario
+	 */
+	public static boolean guerraIndependencia(String description, String title) {
 		title = normalizar(title);
 		description = normalizar(description);
-		
-		for(String s : guerraIndependencia){
-			if(title.contains(s) || description.contains(s)){
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public static boolean sonido(String description, String title){
-		title = normalizar(title);
-		description = normalizar(description);
-		
-		for(String s : sonido){
-			if(title.contains(s) || description.contains(s)){
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public static boolean musica(String description, String title){
-		title = normalizar(title);
-		description = normalizar(description);
-		
-		for(String s : musica){
-			if(title.contains(s) || description.contains(s)){
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public static boolean energiaRenovable(String description, String title){
-		title = normalizar(title);
-		description = normalizar(description);
-		
-		for(String s : energiaRenovable){
-			if(title.contains(s) || description.contains(s)){
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public static boolean disenio(String description, String title){
-		title = normalizar(title);
-		description = normalizar(description);
-		
-		for(String s : disenio){
-			if(title.contains(s) || description.contains(s)){
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public static boolean desarrollo(String description, String title){
-		title = normalizar(title);
-		description = normalizar(description);
-		
-		for(String s : desarrollo){
-			if(title.contains(s) || description.contains(s)){
+
+		for (String s : guerraIndependencia) {
+			if (title.contains(s) || description.contains(s)) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-	public static boolean programacion(String description, String title){
+	/**
+	 * Comprueba si el documento referenciado por los argumentos se engloba en
+	 * el tema del sonido
+	 * 
+	 * @param description
+	 *            descripcion del documento
+	 * @param title
+	 *            titulo del documento
+	 * @return true si tiene que ver con el tema, false en caso contrario
+	 */
+	public static boolean sonido(String description, String title) {
 		title = normalizar(title);
 		description = normalizar(description);
-		
-		for(String s : programacion){
-			if(title.contains(s) || description.contains(s)){
+
+		for (String s : sonido) {
+			if (title.contains(s) || description.contains(s)) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
-	public static boolean videojuego(String description, String title){
+
+	/**
+	 * Comprueba si el documento referenciado por los argumentos se engloba en
+	 * el tema de la musica
+	 * 
+	 * @param description
+	 *            descripcion del documento
+	 * @param title
+	 *            titulo del documento
+	 * @return true si tiene que ver con el tema, false en caso contrario
+	 */
+	public static boolean musica(String description, String title) {
 		title = normalizar(title);
 		description = normalizar(description);
-		
-		for(String s : videojuego){
-			if(title.contains(s) || description.contains(s)){
+
+		for (String s : musica) {
+			if (title.contains(s) || description.contains(s)) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
-	public static boolean arquitectura(String description, String title){
+
+	/**
+	 * Comprueba si el documento referenciado por los argumentos se engloba en
+	 * el tema de la energia renovable
+	 * 
+	 * @param description
+	 *            descripcion del documento
+	 * @param title
+	 *            titulo del documento
+	 * @return true si tiene que ver con el tema, false en caso contrario
+	 */
+	public static boolean energiaRenovable(String description, String title) {
 		title = normalizar(title);
 		description = normalizar(description);
-		
-		for(String s : arquitectura){
-			if(title.contains(s) || description.contains(s)){
+
+		for (String s : energiaRenovable) {
+			if (title.contains(s) || description.contains(s)) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
-	public static boolean epoca(String description, String title){
+
+	/**
+	 * Comprueba si el documento referenciado por los argumentos se engloba en
+	 * el tema del disenio
+	 * 
+	 * @param description
+	 *            descripcion del documento
+	 * @param title
+	 *            titulo del documento
+	 * @return true si tiene que ver con el tema, false en caso contrario
+	 */
+	public static boolean disenio(String description, String title) {
 		title = normalizar(title);
 		description = normalizar(description);
-		
-		for(String s : epoca){
-			if(title.contains(s) || description.contains(s)){
+
+		for (String s : disenio) {
+			if (title.contains(s) || description.contains(s)) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
-	public static boolean conservacion(String description, String title){
+
+	/**
+	 * Comprueba si el documento referenciado por los argumentos se engloba en
+	 * el tema del desarrollo
+	 * 
+	 * @param description
+	 *            descripcion del documento
+	 * @param title
+	 *            titulo del documento
+	 * @return true si tiene que ver con el tema, false en caso contrario
+	 */
+	public static boolean desarrollo(String description, String title) {
 		title = normalizar(title);
 		description = normalizar(description);
-		
-		for(String s : conservacion){
-			if(title.contains(s) || description.contains(s)){
+
+		for (String s : desarrollo) {
+			if (title.contains(s) || description.contains(s)) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
+
+	/**
+	 * Comprueba si el documento referenciado por los argumentos se engloba en
+	 * el tema de la programacion
+	 * 
+	 * @param description
+	 *            descripcion del documento
+	 * @param title
+	 *            titulo del documento
+	 * @return true si tiene que ver con el tema, false en caso contrario
+	 */
+	public static boolean programacion(String description, String title) {
+		title = normalizar(title);
+		description = normalizar(description);
+
+		for (String s : programacion) {
+			if (title.contains(s) || description.contains(s)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Comprueba si el documento referenciado por los argumentos se engloba en
+	 * el tema del videojuego
+	 * 
+	 * @param description
+	 *            descripcion del documento
+	 * @param title
+	 *            titulo del documento
+	 * @return true si tiene que ver con el tema, false en caso contrario
+	 */
+	public static boolean videojuego(String description, String title) {
+		title = normalizar(title);
+		description = normalizar(description);
+
+		for (String s : videojuego) {
+			if (title.contains(s) || description.contains(s)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Comprueba si el documento referenciado por los argumentos se engloba en
+	 * el tema de la arquitectura
+	 * 
+	 * @param description
+	 *            descripcion del documento
+	 * @param title
+	 *            titulo del documento
+	 * @return true si tiene que ver con el tema, false en caso contrario
+	 */
+	public static boolean arquitectura(String description, String title) {
+		title = normalizar(title);
+		description = normalizar(description);
+
+		for (String s : arquitectura) {
+			if (title.contains(s) || description.contains(s)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Comprueba si el documento referenciado por los argumentos se engloba en
+	 * el tema de la epoca
+	 * 
+	 * @param description
+	 *            descripcion del documento
+	 * @param title
+	 *            titulo del documento
+	 * @return true si tiene que ver con el tema, false en caso contrario
+	 */
+	public static boolean epoca(String description, String title) {
+		title = normalizar(title);
+		description = normalizar(description);
+
+		for (String s : epoca) {
+			if (title.contains(s) || description.contains(s)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Comprueba si el documento referenciado por los argumentos se engloba en
+	 * el tema de la conservacion
+	 * 
+	 * @param description
+	 *            descripcion del documento
+	 * @param title
+	 *            titulo del documento
+	 * @return true si tiene que ver con el tema, false en caso contrario
+	 */
+	public static boolean conservacion(String description, String title) {
+		title = normalizar(title);
+		description = normalizar(description);
+
+		for (String s : conservacion) {
+			if (title.contains(s) || description.contains(s)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Prepara el tesauro para enlazar documentos con la guerra de la
+	 * independencia
+	 */
 	private static void prepararConsulta02_4() {
 		guerraIndependencia = new HashSet<String>();
 		guerraIndependencia.add("guerra");
@@ -158,6 +286,9 @@ public class Tesauro {
 		guerraIndependencia.add("españa");
 	}
 
+	/**
+	 * Prepara el tesauro para enlazar documentos con la musica y el sonido
+	 */
 	private static void prepararConsulta13_2() {
 		sonido = new HashSet<String>();
 		sonido.add("sonido");
@@ -173,6 +304,9 @@ public class Tesauro {
 		musica.add("ritmo");
 	}
 
+	/**
+	 * Prepara el tesauro para enlazar documentos con la energia renovable
+	 */
 	private static void prepararConsulta09_3() {
 		energiaRenovable = new HashSet<String>();
 		energiaRenovable.add("renovable");
@@ -193,6 +327,10 @@ public class Tesauro {
 		energiaRenovable.add("cambio climatico");
 	}
 
+	/**
+	 * Prepara el tesauro para enlazar documentos con el disenio y desarrollo de
+	 * videojuegos y personajes
+	 */
 	private static void prepararConsulta07_2() {
 		disenio = new HashSet<String>();
 		disenio.add("diseñar");
@@ -218,6 +356,10 @@ public class Tesauro {
 		videojuego.add("pokemon");
 	}
 
+	/**
+	 * Prepara el tesauro para enlazar documentos con la arquitectura
+	 * medio-gotica
+	 */
 	private static void prepararConsulta05_5() {
 		arquitectura = new HashSet<String>();
 		arquitectura.add("edificios");
@@ -234,19 +376,25 @@ public class Tesauro {
 		conservacion.add("restauracion");
 		conservacion.add("restauraciones");
 	}
-	
-	private static String normalizar(String s){
-		if(s != null){
+
+	/**
+	 * Normaliza las cadenas de texto
+	 * 
+	 * @param s
+	 *            cadena a normalizar
+	 * @return la misma cadena de texto en minusculas y sin acentos
+	 */
+	private static String normalizar(String s) {
+		if (s != null) {
 			s = s.toLowerCase();
 			s = s.replaceAll("á", "a");
 			s = s.replaceAll("é", "e");
 			s = s.replaceAll("í", "i");
 			s = s.replaceAll("ó", "o");
 			s = s.replaceAll("ú", "u");
-			
+
 			return s;
-		}
-		else{
+		} else {
 			return "";
 		}
 	}

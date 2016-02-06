@@ -1,3 +1,9 @@
+/*
+ * Fichero: SearchDocs.java
+ * Autores: Patricia Lazaro Tello (554309)
+ * 			Alejandro Royo Amondarain (560285)
+ */
+
 package sistemaSemantico;
 
 import java.io.File;
@@ -23,17 +29,36 @@ import com.hp.hpl.jena.util.FileManager;
 
 public class SearchDocs {
 
+	/**
+	 * Clase auxiliar para la busqueda de elementos en el modelo semantico
+	 */
+
+	/**
+	 * Metodo para la busqueda de queries en el modelo semantico
+	 * 
+	 * @param rdfPath
+	 *            ruta donde se encuentra el fichero de datos RDF
+	 * @param rdfsPath
+	 *            ruta donde se encuentra el modelo RDFS
+	 * @param infoNeeds
+	 *            ruta donde se encuentran las necesidades de informacion
+	 * @param resultsFile
+	 *            ruta donde almacenar los resultados
+	 * @throws FileNotFoundException
+	 */
 	public static void searchDocs(String rdfPath, String rdfsPath,
 			String infoNeeds, String resultsFile) throws FileNotFoundException {
+		/* Preparacion */
 		PrintWriter out = new PrintWriter(resultsFile);
 		Map<String, String> infos = getInfoNeeds(infoNeeds);
 
-		// Load ontologia (RDFS) y datos (RDF)
+		/* Cargar RDFS y datos (RDF) */
 		OntModel base = ModelFactory.createOntologyModel();
 		base.read(rdfsPath, "RDF/XML");
 		Model data = FileManager.get().loadModel(rdfPath);
 		base.add(data);
 
+		/* buscar info de las queries */
 		for (Map.Entry<String, String> entry : infos.entrySet()) {
 			String info = entry.getKey();
 			String query = entry.getValue();
@@ -50,23 +75,42 @@ public class SearchDocs {
 		out.close();
 	}
 
+	/**
+	 * Metodo para la ejecucion de una query
+	 * 
+	 * @param query
+	 *            query a ejecutar
+	 * @param model
+	 *            modelo sobre el que ejecutar la query
+	 * @return una lista con los identificadores de los documentos recuperados
+	 */
 	private static List<String> executeQuery(String query, OntModel model) {
 		List<String> ids = new LinkedList<String>();
+
 		Query q = QueryFactory.create(query);
 		QueryExecution qexec = QueryExecutionFactory.create(q, model);
-		try {
-			ResultSet results = qexec.execSelect();
-			while (results.hasNext()) {
-				QuerySolution soln = results.nextSolution();
-				RDFNode id = soln.get("id");
-				ids.add(id.toString());
-			}
-		} finally {
-			qexec.close();
+
+		/* iterar sobre los resultados */
+		ResultSet results = qexec.execSelect();
+		while (results.hasNext()) {
+			QuerySolution soln = results.nextSolution();
+			RDFNode id = soln.get("id");
+			ids.add(id.toString());
 		}
+		qexec.close();
+
 		return ids;
 	}
 
+	/**
+	 * Metodo para la obtencion de las parejas <id, query> del fichero de
+	 * necesidades de informacion
+	 * 
+	 * @param infoNeeds
+	 *            ruta del fichero de necesidades de informacion
+	 * @return un mapa con los pares <id, query> almacenados
+	 * @throws FileNotFoundException
+	 */
 	private static Map<String, String> getInfoNeeds(String infoNeeds)
 			throws FileNotFoundException {
 		Map<String, String> infos = new HashMap<String, String>();
