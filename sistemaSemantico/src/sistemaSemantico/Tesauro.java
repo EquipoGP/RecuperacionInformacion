@@ -46,7 +46,8 @@ public class Tesauro {
 		description = normalizar(description);
 
 		for (String s : guerraIndependencia) {
-			if (title.matches(s) || description.matches(s)) {
+			String regex = "*^| " + s + "*";
+			if (title.matches(regex) || description.matches(regex)) {
 				return true;
 			}
 		}
@@ -68,7 +69,8 @@ public class Tesauro {
 		description = normalizar(description);
 
 		for (String s : sonido) {
-			if (title.matches(s) || description.matches(s)) {
+			String regex = "*^| " + s + "*";
+			if (title.matches(regex) || description.matches(regex)) {
 				return true;
 			}
 		}
@@ -90,7 +92,8 @@ public class Tesauro {
 		description = normalizar(description);
 
 		for (String s : musica) {
-			if (title.matches(s) || description.matches(s)) {
+			String regex = "*^| " + s + "*";
+			if (title.matches(regex) || description.matches(regex)) {
 				return true;
 			}
 		}
@@ -112,7 +115,8 @@ public class Tesauro {
 		description = normalizar(description);
 
 		for (String s : energiaRenovable) {
-			if (title.matches(s) || description.matches(s)) {
+			String regex = "*^| " + s + "*";
+			if (title.matches(regex) || description.matches(regex)) {
 				return true;
 			}
 		}
@@ -134,7 +138,8 @@ public class Tesauro {
 		description = normalizar(description);
 
 		for (String s : disenio) {
-			if (title.matches(s) || description.matches(s)) {
+			String regex = "*^| " + s + "*";
+			if (title.matches(regex) || description.matches(regex)) {
 				return true;
 			}
 		}
@@ -156,7 +161,8 @@ public class Tesauro {
 		description = normalizar(description);
 
 		for (String s : desarrollo) {
-			if (title.matches(s) || description.matches(s)) {
+			String regex = "*^| " + s + "*";
+			if (title.matches(regex) || description.matches(regex)) {
 				return true;
 			}
 		}
@@ -178,7 +184,8 @@ public class Tesauro {
 		description = normalizar(description);
 
 		for (String s : programacion) {
-			if (title.matches(s) || description.matches(s)) {
+			String regex = "*^| " + s + "*";
+			if (title.matches(regex) || description.matches(regex)) {
 				return true;
 			}
 		}
@@ -200,7 +207,8 @@ public class Tesauro {
 		description = normalizar(description);
 
 		for (String s : videojuego) {
-			if (title.matches(s) || description.matches(s)) {
+			String regex = "*^| " + s + "*";
+			if (title.matches(regex) || description.matches(regex)) {
 				return true;
 			}
 		}
@@ -222,7 +230,8 @@ public class Tesauro {
 		description = normalizar(description);
 
 		for (String s : arquitectura) {
-			if (title.matches(s) || description.matches(s)) {
+			String regex = "*^| " + s + "*";
+			if (title.matches(regex) || description.matches(regex)) {
 				return true;
 			}
 		}
@@ -244,7 +253,8 @@ public class Tesauro {
 		description = normalizar(description);
 
 		for (String s : epoca) {
-			if (title.matches(s) || description.matches(s)) {
+			String regex = "*^| " + s + "*";
+			if (title.matches(regex) || description.matches(regex)) {
 				return true;
 			}
 		}
@@ -266,7 +276,8 @@ public class Tesauro {
 		description = normalizar(description);
 
 		for (String s : conservacion) {
-			if (title.matches(s) || description.matches(s)) {
+			String regex = "*^| " + s + "*";
+			if (title.matches(regex) || description.matches(regex)) {
 				return true;
 			}
 		}
