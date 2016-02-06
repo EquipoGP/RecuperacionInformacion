@@ -250,6 +250,7 @@ public class Tesauro {
 		epoca.add("Edad Media");
 		// epoca.add("medieval");
 		epoca.add("epoca gotica");
+		epoca.add("gotic");
 //		epoca.add("oligarquia urbana");
 	}
 
