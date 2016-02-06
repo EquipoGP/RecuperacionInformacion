@@ -239,9 +239,9 @@ public class Tesauro {
 	private static void prepararConsulta05_5() {
 		arquitectura = new HashSet<String>();
 		arquitectura.add("construccion");
-		arquitectura.add("arquitectura");
-		arquitectura.add("edificio");
-		arquitectura.add("restauracion");
+//		arquitectura.add("arquitectura");
+//		arquitectura.add("edificio");
+//		arquitectura.add("restauracion");
 		arquitectura.add("monasterio");
 //		 arquitectura.add("edificios");
 		// arquitectura.add("escultura");
@@ -250,9 +250,8 @@ public class Tesauro {
 		// epoca.add("epoca");
 		epoca.add("Edad Media");
 		// epoca.add("medieval");
-		epoca.add("epoca gotica");
-		epoca.add("gotic");
-		epoca.add("XV");
+//		epoca.add("epoca gotica");
+//		epoca.add("gotic");
 //		epoca.add("oligarquia urbana");
 	}
 
