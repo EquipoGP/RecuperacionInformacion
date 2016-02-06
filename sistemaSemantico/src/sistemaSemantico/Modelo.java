@@ -20,11 +20,6 @@ public class Modelo {
 
 		/* +++++++++ Propiedades +++++++++ */
 
-		/* Documento -> title -> Literal */
-//		Property title = model.createProperty(prefix + "#title");
-//		title.addProperty(RDFS.domain, documento);
-//		title.addProperty(RDFS.range, RDFS.Literal);
-
 		/* Documento -> creator -> Persona */
 		Property creator = model.createProperty(prefix + "#creator");
 		creator.addProperty(RDFS.domain, documento);
@@ -48,7 +43,7 @@ public class Modelo {
 		/* Documento -> keyword -> SKOS:concept */
 		Property keyword = model.createProperty(prefix + "#keyword");
 		keyword.addProperty(RDFS.domain, documento);
-		keyword.addProperty(RDFS.range, skos + "#Concept");
+		keyword.addProperty(RDFS.range, skos + "Concept");
 
 		return model;
 	}
@@ -58,65 +53,55 @@ public class Modelo {
 
 		Resource concept = model.createResource(skos + "Concept");
 		Property prefLabel = model.createProperty(skos + "prefLabel");
-		Property narrower = model.createProperty(skos + "narrower");
-		Property broader = model.createProperty(skos + "broader");
 
 		/* energias renovables */
 		Resource energiaRenovable = model.createResource(prefix + "EnergiaRenovable");
 		energiaRenovable.addProperty(RDF.type, concept);
 		energiaRenovable.addProperty(prefLabel, "EnergiaRenovable");
 
-		Resource energiaSolar = model.createResource(prefix + "EnergiaSolar");
-		energiaSolar.addProperty(RDF.type, concept);
-		energiaSolar.addProperty(prefLabel, "EnergiaSolar");
-
-		energiaRenovable.addProperty(narrower, energiaSolar);
-
 		/* musica y sonido */
 		Resource musica = model.createResource(prefix + "Musica");
 		musica.addProperty(RDF.type, concept);
 		musica.addProperty(prefLabel, "Musica");
+		
+		Resource sonido = model.createResource(prefix + "Sonido");
+		sonido.addProperty(RDF.type, concept);
+		sonido.addProperty(prefLabel, "Sonido");
 
 		/* Guerra de la Independencia */
 		Resource guerra = model.createResource(prefix + "GuerraIndependencia");
 		guerra.addProperty(RDF.type, concept);
 		guerra.addProperty(prefLabel, "GuerraIndependencia");
 
-		Resource historia = model.createResource(prefix + "Historia");
-		historia.addProperty(RDF.type, concept);
-		historia.addProperty(prefLabel, "Historia");
-
-		guerra.addProperty(broader, historia);
-
 		/* videojuegos y personajes */
 		Resource videojuegos = model.createResource(prefix + "Videojuegos");
 		videojuegos.addProperty(RDF.type, concept);
 		videojuegos.addProperty(prefLabel, "Videojuegos");
 
-		Resource personajes = model.createResource(prefix + "Personajes");
-		personajes.addProperty(RDF.type, concept);
-		personajes.addProperty(prefLabel, "Personajes");
+		Resource diseño = model.createResource(prefix + "Diseño");
+		diseño.addProperty(RDF.type, concept);
+		diseño.addProperty(prefLabel, "Diseño");
+		
+		Resource desarrollo = model.createResource(prefix + "Desarrollo");
+		desarrollo.addProperty(RDF.type, concept);
+		desarrollo.addProperty(prefLabel, "Desarrollo");
+		
+		Resource programacion = model.createResource(prefix + "Programacion");
+		programacion.addProperty(RDF.type, concept);
+		programacion.addProperty(prefLabel, "Programacion");
 
 		/* Edad Media y Gotico */
-		Resource edadMediaGotico = model.createResource(prefix + "EdadMediaGotico");
-		edadMediaGotico.addProperty(RDF.type, concept);
-		edadMediaGotico.addProperty(prefLabel, "EdadMediaGotico");
-
-		Resource edadMedia = model.createResource(prefix + "EdadMedia");
-		edadMedia.addProperty(RDF.type, concept);
-		edadMedia.addProperty(prefLabel, "EdadMedia");
-
-		Resource gotico = model.createResource(prefix + "Gotico");
-		gotico.addProperty(RDF.type, concept);
-		gotico.addProperty(prefLabel, "Gotico");
-
 		Resource arquitectura = model.createResource(prefix + "Arquitectura");
 		arquitectura.addProperty(RDF.type, concept);
 		arquitectura.addProperty(prefLabel, "Arquitectura");
-
-		edadMediaGotico.addProperty(broader, arquitectura);
-		edadMediaGotico.addProperty(narrower, gotico);
-		edadMediaGotico.addProperty(narrower, edadMedia);
+		
+		Resource conservacion = model.createResource(prefix + "Conservacion");
+		conservacion.addProperty(RDF.type, concept);
+		conservacion.addProperty(prefLabel, "Arquitectura");
+		
+		Resource epoca = model.createResource(prefix + "Epoca");
+		epoca.addProperty(RDF.type, concept);
+		epoca.addProperty(prefLabel, "Arquitectura");
 
 		return model;
 	}

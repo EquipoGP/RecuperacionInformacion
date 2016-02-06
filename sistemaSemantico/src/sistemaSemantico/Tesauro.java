@@ -9,7 +9,7 @@ public class Tesauro {
 			disenio, desarrollo, programacion, videojuego, arquitectura, epoca,
 			conservacion;
 
-	public static void Tesauro() {
+	public static void init() {
 		prepararConsulta02_4();
 		prepararConsulta13_2();
 		prepararConsulta09_3();
@@ -18,8 +18,8 @@ public class Tesauro {
 	}
 	
 	public static boolean guerraIndependencia(String description, String title){
-		title = title.toLowerCase();
-		description = description.toLowerCase();
+		title = normalizar(title);
+		description = normalizar(description);
 		
 		for(String s : guerraIndependencia){
 			if(title.contains(s) || description.contains(s)){
@@ -30,8 +30,8 @@ public class Tesauro {
 	}
 	
 	public static boolean sonido(String description, String title){
-		title = title.toLowerCase();
-		description = description.toLowerCase();
+		title = normalizar(title);
+		description = normalizar(description);
 		
 		for(String s : sonido){
 			if(title.contains(s) || description.contains(s)){
@@ -42,8 +42,8 @@ public class Tesauro {
 	}
 	
 	public static boolean musica(String description, String title){
-		title = title.toLowerCase();
-		description = description.toLowerCase();
+		title = normalizar(title);
+		description = normalizar(description);
 		
 		for(String s : musica){
 			if(title.contains(s) || description.contains(s)){
@@ -54,8 +54,8 @@ public class Tesauro {
 	}
 	
 	public static boolean energiaRenovable(String description, String title){
-		title = title.toLowerCase();
-		description = description.toLowerCase();
+		title = normalizar(title);
+		description = normalizar(description);
 		
 		for(String s : energiaRenovable){
 			if(title.contains(s) || description.contains(s)){
@@ -66,8 +66,8 @@ public class Tesauro {
 	}
 	
 	public static boolean disenio(String description, String title){
-		title = title.toLowerCase();
-		description = description.toLowerCase();
+		title = normalizar(title);
+		description = normalizar(description);
 		
 		for(String s : disenio){
 			if(title.contains(s) || description.contains(s)){
@@ -78,8 +78,8 @@ public class Tesauro {
 	}
 	
 	public static boolean desarrollo(String description, String title){
-		title = title.toLowerCase();
-		description = description.toLowerCase();
+		title = normalizar(title);
+		description = normalizar(description);
 		
 		for(String s : desarrollo){
 			if(title.contains(s) || description.contains(s)){
@@ -90,8 +90,8 @@ public class Tesauro {
 	}
 
 	public static boolean programacion(String description, String title){
-		title = title.toLowerCase();
-		description = description.toLowerCase();
+		title = normalizar(title);
+		description = normalizar(description);
 		
 		for(String s : programacion){
 			if(title.contains(s) || description.contains(s)){
@@ -102,8 +102,8 @@ public class Tesauro {
 	}
 	
 	public static boolean videojuego(String description, String title){
-		title = title.toLowerCase();
-		description = description.toLowerCase();
+		title = normalizar(title);
+		description = normalizar(description);
 		
 		for(String s : videojuego){
 			if(title.contains(s) || description.contains(s)){
@@ -114,8 +114,8 @@ public class Tesauro {
 	}
 	
 	public static boolean arquitectura(String description, String title){
-		title = title.toLowerCase();
-		description = description.toLowerCase();
+		title = normalizar(title);
+		description = normalizar(description);
 		
 		for(String s : arquitectura){
 			if(title.contains(s) || description.contains(s)){
@@ -126,8 +126,8 @@ public class Tesauro {
 	}
 	
 	public static boolean epoca(String description, String title){
-		title = title.toLowerCase();
-		description = description.toLowerCase();
+		title = normalizar(title);
+		description = normalizar(description);
 		
 		for(String s : epoca){
 			if(title.contains(s) || description.contains(s)){
@@ -138,8 +138,8 @@ public class Tesauro {
 	}
 	
 	public static boolean conservacion(String description, String title){
-		title = title.toLowerCase();
-		description = description.toLowerCase();
+		title = normalizar(title);
+		description = normalizar(description);
 		
 		for(String s : guerraIndependencia){
 			if(title.contains(s) || description.contains(s)){
@@ -233,6 +233,17 @@ public class Tesauro {
 		conservacion.add("rehabilitacion");
 		conservacion.add("restauracion");
 		conservacion.add("restauraciones");
+	}
+	
+	private static String normalizar(String s){
+		s = s.toLowerCase();
+		s = s.replaceAll("á", "a");
+		s = s.replaceAll("é", "e");
+		s = s.replaceAll("í", "i");
+		s = s.replaceAll("ó", "o");
+		s = s.replaceAll("ú", "u");
+		
+		return s;
 	}
 
 }

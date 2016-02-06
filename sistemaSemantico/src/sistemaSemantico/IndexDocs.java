@@ -36,6 +36,7 @@ public class IndexDocs {
 
 	public static void index(String rdfPath, String skosPath, String docsPath)
 			throws ParserConfigurationException, FileNotFoundException, SAXException, IOException {
+		Tesauro.init();	// inicializar tesauro
 		final File fileDir = new File(docsPath); // directorio corpus
 
 		/* gestion de errores */
