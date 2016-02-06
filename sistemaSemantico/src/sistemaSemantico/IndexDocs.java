@@ -139,10 +139,6 @@ public class IndexDocs {
 			}
 		}
 		// conceptos del tesauro
-		if(d_identifier.contains("7398")){
-			System.out.println(d_title);
-			System.out.println(d_description);
-		}
 		tesauro(documento, d_title, d_description);
 	}
 
@@ -253,7 +249,7 @@ public class IndexDocs {
 	 * @return el titulo del documento (dc:title)
 	 */
 	private static String parseTitle(Document doc) {
-		NodeList titles = doc.getElementsByTagName("doc:title");
+		NodeList titles = doc.getElementsByTagName("dc:title");
 		String title = null;
 
 		if (titles != null && titles.getLength() > 0) {
