@@ -1,5 +1,5 @@
 13-2	prefix ri: <http://recinfo.org/> prefix : <http://recinfo.org/#> select distinct ?id where { ?doc :identifier ?id. { ?doc :keyword ri:Musica } UNION { ?doc :keyword ri:Sonido}. ?doc :creator ?author. ?author :name ?name. FILTER(contains(str(?name), "javi"))}
 02-4	prefix ri: <http://recinfo.org/> prefix : <http://recinfo.org/#> select distinct ?id where {?doc :identifier ?id. ?doc :keyword ri:GuerraIndependencia}
 09-3	prefix ri: <http://recinfo.org/> prefix : <http://recinfo.org/#> select distinct ?id where {?doc :identifier ?id. ?doc :keyword ri:EnergiaRenovable. ?doc :date ?date. FILTER(?date > 2009 && ?date < 2016)}
-07-2	prefix ri: <http://recinfo.org/> prefix : <http://recinfo.org/#> select distinct ?id where {?doc :identifier ?id. {?doc :keyword ri:Videojuegos} UNION {?doc :keyword ri:Diseno} UNION {?doc :keyword ri:Desarrollo} UNION {?doc :keyword ri:Programacion}. ?doc :date ?date. FILTER(?date > 2009 && ?date < 2016)}
-05-5	prefix ri: <http://recinfo.org/> prefix : <http://recinfo.org/#> select distinct ?id where {?doc :identifier ?id. ?doc :keyword ri:Arquitectura. ?doc :keyword ri:Epoca}
+07-2	prefix ri: <http://recinfo.org/> prefix : <http://recinfo.org/#> select distinct ?id where {?doc :identifier ?id. ?doc :keyword ri:Videojuegos. ?doc :date ?date. FILTER(?date > 2009 && ?date < 2016)}
+05-5	prefix ri: <http://recinfo.org/> prefix : <http://recinfo.org/#> select distinct ?id where {?doc :identifier ?id. {?doc :keyword ri:Arquitectura} UNION {?doc :keyword ri:Epoca}}
