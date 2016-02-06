@@ -110,27 +110,60 @@ public class IndexDocs {
 	}
 
 	private static void tesauro(Resource documento, String d_title, String d_description) {
-		// TODO stub SUCH WOW AMAZING LOL NO DEJAR ESTO
+		// Propiedad de asociacion
 		Property keyword = rdfs.getProperty(Modelo.prefix + "#keyword");
 		
-		Resource energiaRenovable = skos.getResource(Modelo.skos + "EnergiaRenovable");
-		Resource energiaSolar = skos.getResource(Modelo.skos + "EnergiaSolar");
+		/* Conceptos SKOS */
+		Resource energiaRenovable = skos.getResource(Modelo.prefix + "EnergiaRenovable");
 		
-		Resource musica = skos.getResource(Modelo.skos + "Musica");
+		Resource musica = skos.getResource(Modelo.prefix + "Musica");
+		Resource sonido = skos.getResource(Modelo.prefix + "Sonido");
 		
-		Resource guerraIndependencia = skos.getResource(Modelo.skos + "GuerraIndependencia");
-		Resource historia = skos.getResource(Modelo.skos + "Historia");
+		Resource guerraIndependencia = skos.getResource(Modelo.prefix + "GuerraIndependencia");
 		
-		Resource videojuegos = skos.getResource(Modelo.skos + "Videojuegos");
-		Resource personajes = skos.getResource(Modelo.skos + "Personajes");
+		Resource videojuegos = skos.getResource(Modelo.prefix + "Videojuegos");
+		Resource diseño = skos.getResource(Modelo.prefix + "Diseño");
+		Resource desarrollo = skos.getResource(Modelo.prefix + "Desarrollo");
+		Resource programacion = skos.getResource(Modelo.prefix + "Programacion");
 		
-		Resource edadMediaGotico = skos.getResource(Modelo.skos + "EdadMediaGotico");
-		Resource edadMedia = skos.getResource(Modelo.skos + "EdadMedia");
-		Resource gotico = skos.getResource(Modelo.skos + "Gotico");
-		Resource arquitectura = skos.getResource(Modelo.skos + "Arquitectura");
+		Resource arquitectura = skos.getResource(Modelo.prefix + "Arquitectura");
+		Resource conservacion = skos.getResource(Modelo.prefix + "Conservacion");
+		Resource epoca = skos.getResource(Modelo.prefix + "Epoca");
 		
-		// Para agregar el concepto de energia renovable a un documento
-		documento.addProperty(keyword, energiaRenovable);
+		// comprobar en que conceptos va el documento
+		if(Tesauro.energiaRenovable(d_description, d_title)){
+			documento.addProperty(keyword, energiaRenovable);
+		}
+		if(Tesauro.musica(d_description, d_title)){
+			documento.addProperty(keyword, musica);
+		}
+		if(Tesauro.sonido(d_description, d_title)){
+			documento.addProperty(keyword, sonido);
+		}
+		if(Tesauro.guerraIndependencia(d_description, d_title)){
+			documento.addProperty(keyword, guerraIndependencia);
+		}
+		if(Tesauro.videojuego(d_description, d_title)){
+			documento.addProperty(keyword, videojuegos);
+		}
+		if(Tesauro.disenio(d_description, d_title)){
+			documento.addProperty(keyword, diseño);
+		}
+		if(Tesauro.desarrollo(d_description, d_title)){
+			documento.addProperty(keyword, desarrollo);
+		}
+		if(Tesauro.programacion(d_description, d_title)){
+			documento.addProperty(keyword, programacion);
+		}
+		if(Tesauro.arquitectura(d_description, d_title)){
+			documento.addProperty(keyword, arquitectura);
+		}
+		if(Tesauro.conservacion(d_description, d_title)){
+			documento.addProperty(keyword, conservacion);
+		}
+		if(Tesauro.epoca(d_description, d_title)){
+			documento.addProperty(keyword, epoca);
+		}
 	}
 
 	/**
