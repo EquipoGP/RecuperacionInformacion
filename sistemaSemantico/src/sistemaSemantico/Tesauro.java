@@ -224,12 +224,12 @@ public class Tesauro {
 		// videojuego.add("bots");
 		videojuego.add("motor grafico");
 		// videojuego.add("animacion");
-		videojuego.add("animaciones");
+//		videojuego.add("animaciones");
 		// videojuego.add("multiples jugadores");
 		videojuego.add("realidad aumentada");
 		videojuego.add("realidad virtual");
 		videojuego.add("videojuego educativo");
-		videojuego.add("pokemon");
+//		videojuego.add("pokemon");
 	}
 
 	/**
