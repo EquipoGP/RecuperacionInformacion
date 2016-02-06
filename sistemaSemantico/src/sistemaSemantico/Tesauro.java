@@ -41,16 +41,7 @@ public class Tesauro {
 	 * @return true si tiene que ver con el tema, false en caso contrario
 	 */
 	public static boolean guerraIndependencia(String description, String title) {
-		title = normalizar(title);
-		description = normalizar(description);
-
-		for (String s : guerraIndependencia) {
-			String regex = "^" + s + ".*|.* " + s +".*|-" + s +".*";
-			if (title.matches(regex) || description.matches(regex)) {
-				return true;
-			}
-		}
-		return false;
+		return buscar(description, title, guerraIndependencia);
 	}
 
 	/**
@@ -64,16 +55,7 @@ public class Tesauro {
 	 * @return true si tiene que ver con el tema, false en caso contrario
 	 */
 	public static boolean sonido(String description, String title) {
-		title = normalizar(title);
-		description = normalizar(description);
-
-		for (String s : sonido) {
-			String regex = "^" + s + ".*|.* " + s +".*|-" + s +".*";
-			if (title.matches(regex) || description.matches(regex)) {
-				return true;
-			}
-		}
-		return false;
+		return buscar(description, title, sonido);
 	}
 
 	/**
@@ -87,16 +69,7 @@ public class Tesauro {
 	 * @return true si tiene que ver con el tema, false en caso contrario
 	 */
 	public static boolean musica(String description, String title) {
-		title = normalizar(title);
-		description = normalizar(description);
-
-		for (String s : musica) {
-			String regex = "^" + s + ".*|.* " + s +".*|-" + s +".*";
-			if (title.matches(regex) || description.matches(regex)) {
-				return true;
-			}
-		}
-		return false;
+		return buscar(description, title, musica);
 	}
 
 	/**
@@ -110,16 +83,7 @@ public class Tesauro {
 	 * @return true si tiene que ver con el tema, false en caso contrario
 	 */
 	public static boolean energiaRenovable(String description, String title) {
-		title = normalizar(title);
-		description = normalizar(description);
-
-		for (String s : energiaRenovable) {
-			String regex = "^" + s + ".*|.* " + s +".*|-" + s +".*";
-			if (title.matches(regex) || description.matches(regex)) {
-				return true;
-			}
-		}
-		return false;
+		return buscar(description, title, energiaRenovable);
 	}
 
 	/**
@@ -133,16 +97,7 @@ public class Tesauro {
 	 * @return true si tiene que ver con el tema, false en caso contrario
 	 */
 	public static boolean videojuego(String description, String title) {
-		title = normalizar(title);
-		description = normalizar(description);
-
-		for (String s : videojuego) {
-			String regex = "^" + s + ".*|.* " + s +".*|-" + s +".*";
-			if (title.matches(regex) || description.matches(regex)) {
-				return true;
-			}
-		}
-		return false;
+		return buscar(description, title, videojuego);
 	}
 
 	/**
@@ -156,16 +111,7 @@ public class Tesauro {
 	 * @return true si tiene que ver con el tema, false en caso contrario
 	 */
 	public static boolean arquitectura(String description, String title) {
-		title = normalizar(title);
-		description = normalizar(description);
-
-		for (String s : arquitectura) {
-			String regex = "^" + s + ".*|.* " + s +".*|-" + s +".*";
-			if (title.matches(regex) || description.matches(regex)) {
-				return true;
-			}
-		}
-		return false;
+		return buscar(description, title, arquitectura);
 	}
 
 	/**
@@ -179,11 +125,28 @@ public class Tesauro {
 	 * @return true si tiene que ver con el tema, false en caso contrario
 	 */
 	public static boolean epoca(String description, String title) {
+		return buscar(description, title, epoca);
+	}
+
+	/**
+	 * Comprueba si el documento referenciado por los argumentos se englobal en
+	 * el tema elegido
+	 * 
+	 * @param description
+	 *            descripcion del documento
+	 * @param title
+	 *            titulo del documento
+	 * @param chosen
+	 *            tema elegido
+	 * @return true si tiene que ver con el tema, false en caso contrario
+	 */
+	private static boolean buscar(String description, String title,
+			Set<String> chosen) {
 		title = normalizar(title);
 		description = normalizar(description);
 
-		for (String s : epoca) {
-			String regex = "^" + s + ".*|.* " + s +".*|-" + s +".*";
+		for (String s : chosen) {
+			String regex = "^" + s + ".*|.* " + s + ".*|.*-" + s + ".*";
 			if (title.matches(regex) || description.matches(regex)) {
 				return true;
 			}
@@ -198,11 +161,11 @@ public class Tesauro {
 	private static void prepararConsulta02_4() {
 		guerraIndependencia = new HashSet<String>();
 		guerraIndependencia.add("guerra de la independencia");
-//		guerraIndependencia.add("guerra");
-//		guerraIndependencia.add("ejercito");
+		// guerraIndependencia.add("guerra");
+		// guerraIndependencia.add("ejercito");
 		guerraIndependencia.add("1808-1814");
 		guerraIndependencia.add("1808");
-//		guerraIndependencia.add("espana");
+		// guerraIndependencia.add("espana");
 	}
 
 	/**
@@ -213,7 +176,7 @@ public class Tesauro {
 		sonido.add("sonido");
 		sonido.add("sonoro");
 		sonido.add("audio");
-//		sonido.add("ruido");
+		// sonido.add("ruido");
 
 		musica = new HashSet<String>();
 		musica.add("musica");
@@ -228,24 +191,24 @@ public class Tesauro {
 	 */
 	private static void prepararConsulta09_3() {
 		energiaRenovable = new HashSet<String>();
-//		energiaRenovable.add("renovable");
-//		energiaRenovable.add("energia");
+		// energiaRenovable.add("renovable");
+		// energiaRenovable.add("energia");
 		energiaRenovable.add("energia renovable");
 		energiaRenovable.add("energias renovables");
-//		energiaRenovable.add("combustibles fosiles");
-//		energiaRenovable.add("pilas de combustible");
-//		energiaRenovable.add("energia geotermica");
-//		energiaRenovable.add("energia cinetica");
-//		energiaRenovable.add("solar");
+		// energiaRenovable.add("combustibles fosiles");
+		// energiaRenovable.add("pilas de combustible");
+		// energiaRenovable.add("energia geotermica");
+		// energiaRenovable.add("energia cinetica");
+		// energiaRenovable.add("solar");
 		energiaRenovable.add("paneles solares");
 		energiaRenovable.add("eolica");
 		energiaRenovable.add("parques eolicos");
 		energiaRenovable.add("biomasa");
-//		energiaRenovable.add("biodiesel");
-//		energiaRenovable.add("eficiencia energetica");
-//		energiaRenovable.add("medio ambiente");
-//		energiaRenovable.add("medioambiental");
-//		energiaRenovable.add("cambio climatico");
+		// energiaRenovable.add("biodiesel");
+		// energiaRenovable.add("eficiencia energetica");
+		// energiaRenovable.add("medio ambiente");
+		// energiaRenovable.add("medioambiental");
+		// energiaRenovable.add("cambio climatico");
 	}
 
 	/**
@@ -258,11 +221,11 @@ public class Tesauro {
 		videojuego.add("diseno de personajes");
 		videojuego.add("desarrollo de videojuegos");
 		videojuego.add("agente inteligente");
-//		videojuego.add("bots");
+		// videojuego.add("bots");
 		videojuego.add("motor grafico");
-//		videojuego.add("animacion");
+		// videojuego.add("animacion");
 		videojuego.add("animaciones");
-//		videojuego.add("multiples jugadores");
+		// videojuego.add("multiples jugadores");
 		videojuego.add("realidad aumentada");
 		videojuego.add("realidad virtual");
 		videojuego.add("videojuego educativo");
@@ -276,13 +239,13 @@ public class Tesauro {
 	private static void prepararConsulta05_5() {
 		arquitectura = new HashSet<String>();
 		arquitectura.add("construccion arquitectoniva");
-//		arquitectura.add("edificios");
-//		arquitectura.add("escultura");
+		// arquitectura.add("edificios");
+		// arquitectura.add("escultura");
 
 		epoca = new HashSet<String>();
-//		epoca.add("epoca");
+		// epoca.add("epoca");
 		epoca.add("edad media");
-//		epoca.add("medieval");
+		// epoca.add("medieval");
 		epoca.add("epoca gotica");
 		epoca.add("oligarquia urbana");
 	}
