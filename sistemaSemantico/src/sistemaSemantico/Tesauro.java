@@ -238,9 +238,11 @@ public class Tesauro {
 	 */
 	private static void prepararConsulta05_5() {
 		arquitectura = new HashSet<String>();
+		arquitectura.add("construccion");
+		arquitectura.add("arquitectura");
 		arquitectura.add("edificio");
 		arquitectura.add("restauracion");
-		// arquitectura.add("edificios");
+//		 arquitectura.add("edificios");
 		// arquitectura.add("escultura");
 
 		epoca = new HashSet<String>();
