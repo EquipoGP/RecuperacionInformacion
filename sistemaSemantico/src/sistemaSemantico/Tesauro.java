@@ -236,14 +236,19 @@ public class Tesauro {
 	}
 	
 	private static String normalizar(String s){
-		s = s.toLowerCase();
-		s = s.replaceAll("á", "a");
-		s = s.replaceAll("é", "e");
-		s = s.replaceAll("í", "i");
-		s = s.replaceAll("ó", "o");
-		s = s.replaceAll("ú", "u");
-		
-		return s;
+		if(s != null){
+			s = s.toLowerCase();
+			s = s.replaceAll("á", "a");
+			s = s.replaceAll("é", "e");
+			s = s.replaceAll("í", "i");
+			s = s.replaceAll("ó", "o");
+			s = s.replaceAll("ú", "u");
+			
+			return s;
+		}
+		else{
+			return "";
+		}
 	}
 
 }
