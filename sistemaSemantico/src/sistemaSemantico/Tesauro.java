@@ -174,16 +174,16 @@ public class Tesauro {
 	private static void prepararConsulta13_2() {
 		sonido = new HashSet<String>();
 		sonido.add("sonido");
-		sonido.add("sonoro");
+//		sonido.add("sonoro");
 		sonido.add("audio");
-		// sonido.add("ruido");
+//		sonido.add("ruido");
 
 		musica = new HashSet<String>();
 		musica.add("musica");
 		musica.add("musical");
-		musica.add("musico");
+		musica.add("musicos");
 		musica.add("cancion");
-		musica.add("ritmo");
+//		musica.add("ritmo");
 	}
 
 	/**
@@ -191,24 +191,24 @@ public class Tesauro {
 	 */
 	private static void prepararConsulta09_3() {
 		energiaRenovable = new HashSet<String>();
-		// energiaRenovable.add("renovable");
-		// energiaRenovable.add("energia");
+//		energiaRenovable.add("renovable");
+//		energiaRenovable.add("energia");
 		energiaRenovable.add("energia renovable");
 		energiaRenovable.add("energias renovables");
-		// energiaRenovable.add("combustibles fosiles");
-		// energiaRenovable.add("pilas de combustible");
-		// energiaRenovable.add("energia geotermica");
-		// energiaRenovable.add("energia cinetica");
-		// energiaRenovable.add("solar");
+//		energiaRenovable.add("combustibles fosiles");
+//		energiaRenovable.add("pilas de combustible");
+//		energiaRenovable.add("energia geotermica");
+//		energiaRenovable.add("energia cinetica");
+		energiaRenovable.add("energia solar");
 //		energiaRenovable.add("paneles solares");
-		energiaRenovable.add("eolica");
+//		energiaRenovable.add("eolica");
 //		energiaRenovable.add("parques eolicos");
 //		energiaRenovable.add("biomasa");
-		// energiaRenovable.add("biodiesel");
-		// energiaRenovable.add("eficiencia energetica");
-//		 energiaRenovable.add("medio ambiente");
-//		 energiaRenovable.add("medioambiental");
-		// energiaRenovable.add("cambio climatico");
+//		energiaRenovable.add("biodiesel");
+		energiaRenovable.add("eficiencia energetica");
+//		energiaRenovable.add("medio ambiente");
+//		energiaRenovable.add("medioambiental");
+//		energiaRenovable.add("cambio climatico");
 	}
 
 	/**
