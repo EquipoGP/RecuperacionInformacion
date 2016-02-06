@@ -9,10 +9,6 @@
     <j.0:prefLabel>Desarrollo</j.0:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://recinfo.org/Diseño">
-    <j.0:prefLabel>Diseño</j.0:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://recinfo.org/Conservacion">
     <j.0:prefLabel>Arquitectura</j.0:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
@@ -43,6 +39,10 @@
   </rdf:Description>
   <rdf:Description rdf:about="http://recinfo.org/Musica">
     <j.0:prefLabel>Musica</j.0:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://recinfo.org/Diseno">
+    <j.0:prefLabel>Diseño</j.0:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
   </rdf:Description>
 </rdf:RDF>
