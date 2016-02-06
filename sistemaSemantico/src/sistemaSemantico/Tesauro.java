@@ -242,6 +242,7 @@ public class Tesauro {
 		arquitectura.add("arquitectura");
 		arquitectura.add("edificio");
 		arquitectura.add("restauracion");
+		arquitectura.add("monasterio");
 //		 arquitectura.add("edificios");
 		// arquitectura.add("escultura");
 
