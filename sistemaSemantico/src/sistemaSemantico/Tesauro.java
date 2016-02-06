@@ -227,7 +227,7 @@ public class Tesauro {
 		epoca.add("edad media");
 		epoca.add("medieval");
 		epoca.add("epoca gotica");
-		epoca.add("oligarquía urbana");
+		epoca.add("oligarquia urbana");
 
 		conservacion = new HashSet<String>();
 		conservacion.add("rehabilitacion");
