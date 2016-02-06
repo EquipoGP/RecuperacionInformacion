@@ -1,9 +1,7 @@
 13-2	oai_zaguan.unizar.es_6780.xml
-13-2	oai_zaguan.unizar.es_6780.xml
 13-2	oai_zaguan.unizar.es_15451.xml
 13-2	oai_zaguan.unizar.es_5624.xml
 13-2	oai_zaguan.unizar.es_6653.xml
-13-2	oai_zaguan.unizar.es_12193.xml
 13-2	oai_zaguan.unizar.es_12193.xml
 13-2	oai_zaguan.unizar.es_30659.xml
 13-2	oai_zaguan.unizar.es_9612.xml
@@ -14,12 +12,10 @@
 13-2	oai_zaguan.unizar.es_6036.xml
 13-2	oai_zaguan.unizar.es_6788.xml
 13-2	oai_zaguan.unizar.es_4576.xml
-13-2	oai_zaguan.unizar.es_4576.xml
 13-2	oai_zaguan.unizar.es_4586.xml
 13-2	oai_zaguan.unizar.es_6868.xml
 13-2	oai_zaguan.unizar.es_11735.xml
 13-2	oai_zaguan.unizar.es_9061.xml
-13-2	oai_zaguan.unizar.es_9224.xml
 13-2	oai_zaguan.unizar.es_9224.xml
 13-2	oai_zaguan.unizar.es_16483.xml
 13-2	oai_zaguan.unizar.es_31074.xml
@@ -33,7 +29,6 @@
 13-2	oai_zaguan.unizar.es_12762.xml
 13-2	oai_zaguan.unizar.es_11854.xml
 13-2	oai_zaguan.unizar.es_12589.xml
-13-2	oai_zaguan.unizar.es_12589.xml
 13-2	oai_zaguan.unizar.es_8909.xml
 13-2	oai_zaguan.unizar.es_6507.xml
 13-2	oai_zaguan.unizar.es_31494.xml
@@ -41,7 +36,6 @@
 13-2	oai_zaguan.unizar.es_14702.xml
 13-2	oai_zaguan.unizar.es_11909.xml
 13-2	oai_zaguan.unizar.es_9479.xml
-13-2	oai_zaguan.unizar.es_16082.xml
 13-2	oai_zaguan.unizar.es_16082.xml
 13-2	oai_zaguan.unizar.es_14560.xml
 13-2	oai_zaguan.unizar.es_16645.xml
@@ -53,8 +47,6 @@
 13-2	oai_zaguan.unizar.es_12088.xml
 13-2	oai_zaguan.unizar.es_31467.xml
 13-2	oai_zaguan.unizar.es_8993.xml
-13-2	oai_zaguan.unizar.es_3385.xml
-13-2	oai_zaguan.unizar.es_3385.xml
 13-2	oai_zaguan.unizar.es_3385.xml
 13-2	oai_zaguan.unizar.es_9988.xml
 13-2	oai_zaguan.unizar.es_15881.xml
@@ -753,7 +745,6 @@
 07-2	oai_zaguan.unizar.es_6757.xml
 07-2	oai_zaguan.unizar.es_10920.xml
 07-2	oai_zaguan.unizar.es_9719.xml
-07-2	oai_zaguan.unizar.es_9719.xml
 07-2	oai_zaguan.unizar.es_5786.xml
 07-2	oai_zaguan.unizar.es_14475.xml
 07-2	oai_zaguan.unizar.es_30990.xml
@@ -770,7 +761,6 @@
 07-2	oai_zaguan.unizar.es_6903.xml
 07-2	oai_zaguan.unizar.es_14455.xml
 07-2	oai_zaguan.unizar.es_13389.xml
-07-2	oai_zaguan.unizar.es_15425.xml
 07-2	oai_zaguan.unizar.es_15425.xml
 07-2	oai_zaguan.unizar.es_11735.xml
 07-2	oai_zaguan.unizar.es_5595.xml
@@ -809,12 +799,10 @@
 07-2	oai_zaguan.unizar.es_4564.xml
 07-2	oai_zaguan.unizar.es_15513.xml
 07-2	oai_zaguan.unizar.es_6140.xml
-07-2	oai_zaguan.unizar.es_6140.xml
 07-2	oai_zaguan.unizar.es_30753.xml
 07-2	oai_zaguan.unizar.es_12391.xml
 07-2	oai_zaguan.unizar.es_12373.xml
 07-2	oai_zaguan.unizar.es_6059.xml
-07-2	oai_zaguan.unizar.es_5342.xml
 07-2	oai_zaguan.unizar.es_5342.xml
 07-2	oai_zaguan.unizar.es_8746.xml
 07-2	oai_zaguan.unizar.es_7815.xml
@@ -834,7 +822,6 @@
 07-2	oai_zaguan.unizar.es_30896.xml
 07-2	oai_zaguan.unizar.es_12883.xml
 07-2	oai_zaguan.unizar.es_15298.xml
-07-2	oai_zaguan.unizar.es_15298.xml
 07-2	oai_zaguan.unizar.es_7848.xml
 07-2	oai_zaguan.unizar.es_5974.xml
 07-2	oai_zaguan.unizar.es_31529.xml
@@ -848,7 +835,6 @@
 07-2	oai_zaguan.unizar.es_12527.xml
 07-2	oai_zaguan.unizar.es_6721.xml
 07-2	oai_zaguan.unizar.es_11905.xml
-07-2	oai_zaguan.unizar.es_31303.xml
 07-2	oai_zaguan.unizar.es_31303.xml
 07-2	oai_zaguan.unizar.es_11557.xml
 07-2	oai_zaguan.unizar.es_13371.xml
@@ -880,8 +866,6 @@
 07-2	oai_zaguan.unizar.es_8412.xml
 07-2	oai_zaguan.unizar.es_7445.xml
 07-2	oai_zaguan.unizar.es_12071.xml
-07-2	oai_zaguan.unizar.es_12071.xml
-07-2	oai_zaguan.unizar.es_6972.xml
 07-2	oai_zaguan.unizar.es_6972.xml
 07-2	oai_zaguan.unizar.es_11733.xml
 07-2	oai_zaguan.unizar.es_15108.xml
@@ -890,7 +874,6 @@
 07-2	oai_zaguan.unizar.es_4928.xml
 07-2	oai_zaguan.unizar.es_11392.xml
 07-2	oai_zaguan.unizar.es_9164.xml
-07-2	oai_zaguan.unizar.es_5945.xml
 07-2	oai_zaguan.unizar.es_5945.xml
 07-2	oai_zaguan.unizar.es_13993.xml
 07-2	oai_zaguan.unizar.es_11736.xml
@@ -911,8 +894,6 @@
 07-2	oai_zaguan.unizar.es_8786.xml
 07-2	oai_zaguan.unizar.es_16924.xml
 07-2	oai_zaguan.unizar.es_13428.xml
-07-2	oai_zaguan.unizar.es_13428.xml
-07-2	oai_zaguan.unizar.es_13428.xml
 07-2	oai_zaguan.unizar.es_15991.xml
 07-2	oai_zaguan.unizar.es_5221.xml
 07-2	oai_zaguan.unizar.es_16927.xml
@@ -921,7 +902,6 @@
 07-2	oai_zaguan.unizar.es_12867.xml
 07-2	oai_zaguan.unizar.es_14694.xml
 07-2	oai_zaguan.unizar.es_9435.xml
-07-2	oai_zaguan.unizar.es_13367.xml
 07-2	oai_zaguan.unizar.es_13367.xml
 07-2	oai_zaguan.unizar.es_6698.xml
 07-2	oai_zaguan.unizar.es_9220.xml
@@ -936,7 +916,6 @@
 07-2	oai_zaguan.unizar.es_5332.xml
 07-2	oai_zaguan.unizar.es_12144.xml
 07-2	oai_zaguan.unizar.es_14434.xml
-07-2	oai_zaguan.unizar.es_16068.xml
 07-2	oai_zaguan.unizar.es_16068.xml
 07-2	oai_zaguan.unizar.es_6885.xml
 07-2	oai_zaguan.unizar.es_10842.xml
@@ -956,10 +935,8 @@
 07-2	oai_zaguan.unizar.es_12975.xml
 07-2	oai_zaguan.unizar.es_6479.xml
 07-2	oai_zaguan.unizar.es_31482.xml
-07-2	oai_zaguan.unizar.es_31482.xml
 07-2	oai_zaguan.unizar.es_30666.xml
 07-2	oai_zaguan.unizar.es_11944.xml
-07-2	oai_zaguan.unizar.es_13567.xml
 07-2	oai_zaguan.unizar.es_13567.xml
 07-2	oai_zaguan.unizar.es_5349.xml
 07-2	oai_zaguan.unizar.es_12547.xml
@@ -972,7 +949,6 @@
 07-2	oai_zaguan.unizar.es_30955.xml
 07-2	oai_zaguan.unizar.es_10705.xml
 07-2	oai_zaguan.unizar.es_14352.xml
-07-2	oai_zaguan.unizar.es_5429.xml
 07-2	oai_zaguan.unizar.es_5429.xml
 07-2	oai_zaguan.unizar.es_31179.xml
 07-2	oai_zaguan.unizar.es_10158.xml
@@ -1025,7 +1001,6 @@
 05-5	oai_zaguan.unizar.es_31308.xml
 05-5	oai_zaguan.unizar.es_7108.xml
 05-5	oai_zaguan.unizar.es_16343.xml
-05-5	oai_zaguan.unizar.es_16343.xml
 05-5	oai_zaguan.unizar.es_6476.xml
 05-5	oai_zaguan.unizar.es_31497.xml
 05-5	oai_zaguan.unizar.es_31114.xml
@@ -1036,7 +1011,6 @@
 05-5	oai_zaguan.unizar.es_15451.xml
 05-5	oai_zaguan.unizar.es_6062.xml
 05-5	oai_zaguan.unizar.es_11563.xml
-05-5	oai_zaguan.unizar.es_14189.xml
 05-5	oai_zaguan.unizar.es_14189.xml
 05-5	oai_zaguan.unizar.es_6336.xml
 05-5	oai_zaguan.unizar.es_15955.xml
@@ -1060,8 +1034,6 @@
 05-5	oai_zaguan.unizar.es_30853.xml
 05-5	oai_zaguan.unizar.es_12330.xml
 05-5	oai_zaguan.unizar.es_7393.xml
-05-5	oai_zaguan.unizar.es_7393.xml
-05-5	oai_zaguan.unizar.es_12792.xml
 05-5	oai_zaguan.unizar.es_12792.xml
 05-5	oai_zaguan.unizar.es_3376.xml
 05-5	oai_zaguan.unizar.es_13518.xml
@@ -1075,7 +1047,6 @@
 05-5	oai_zaguan.unizar.es_7561.xml
 05-5	oai_zaguan.unizar.es_12556.xml
 05-5	oai_zaguan.unizar.es_9651.xml
-05-5	oai_zaguan.unizar.es_6737.xml
 05-5	oai_zaguan.unizar.es_6737.xml
 05-5	oai_zaguan.unizar.es_12557.xml
 05-5	oai_zaguan.unizar.es_31185.xml
@@ -1099,7 +1070,6 @@
 05-5	oai_zaguan.unizar.es_31279.xml
 05-5	oai_zaguan.unizar.es_10466.xml
 05-5	oai_zaguan.unizar.es_11041.xml
-05-5	oai_zaguan.unizar.es_11041.xml
 05-5	oai_zaguan.unizar.es_9035.xml
 05-5	oai_zaguan.unizar.es_9120.xml
 05-5	oai_zaguan.unizar.es_31332.xml
@@ -1109,7 +1079,6 @@
 05-5	oai_zaguan.unizar.es_8708.xml
 05-5	oai_zaguan.unizar.es_31577.xml
 05-5	oai_zaguan.unizar.es_11699.xml
-05-5	oai_zaguan.unizar.es_15489.xml
 05-5	oai_zaguan.unizar.es_15489.xml
 05-5	oai_zaguan.unizar.es_14355.xml
 05-5	oai_zaguan.unizar.es_31347.xml
@@ -1121,7 +1090,6 @@
 05-5	oai_zaguan.unizar.es_12549.xml
 05-5	oai_zaguan.unizar.es_10730.xml
 05-5	oai_zaguan.unizar.es_7403.xml
-05-5	oai_zaguan.unizar.es_31218.xml
 05-5	oai_zaguan.unizar.es_31218.xml
 05-5	oai_zaguan.unizar.es_7489.xml
 05-5	oai_zaguan.unizar.es_6985.xml
@@ -1139,7 +1107,6 @@
 05-5	oai_zaguan.unizar.es_16583.xml
 05-5	oai_zaguan.unizar.es_5303.xml
 05-5	oai_zaguan.unizar.es_7769.xml
-05-5	oai_zaguan.unizar.es_30645.xml
 05-5	oai_zaguan.unizar.es_30645.xml
 05-5	oai_zaguan.unizar.es_15641.xml
 05-5	oai_zaguan.unizar.es_12480.xml
@@ -1164,7 +1131,6 @@
 05-5	oai_zaguan.unizar.es_10557.xml
 05-5	oai_zaguan.unizar.es_8288.xml
 05-5	oai_zaguan.unizar.es_12035.xml
-05-5	oai_zaguan.unizar.es_13346.xml
 05-5	oai_zaguan.unizar.es_13346.xml
 05-5	oai_zaguan.unizar.es_9665.xml
 05-5	oai_zaguan.unizar.es_14065.xml
@@ -1218,8 +1184,6 @@
 05-5	oai_zaguan.unizar.es_14170.xml
 05-5	oai_zaguan.unizar.es_12337.xml
 05-5	oai_zaguan.unizar.es_15271.xml
-05-5	oai_zaguan.unizar.es_15271.xml
-05-5	oai_zaguan.unizar.es_8412.xml
 05-5	oai_zaguan.unizar.es_8412.xml
 05-5	oai_zaguan.unizar.es_5748.xml
 05-5	oai_zaguan.unizar.es_10314.xml
@@ -1235,7 +1199,6 @@
 05-5	oai_zaguan.unizar.es_31153.xml
 05-5	oai_zaguan.unizar.es_13207.xml
 05-5	oai_zaguan.unizar.es_12582.xml
-05-5	oai_zaguan.unizar.es_12582.xml
 05-5	oai_zaguan.unizar.es_17150.xml
 05-5	oai_zaguan.unizar.es_16475.xml
 05-5	oai_zaguan.unizar.es_8534.xml
@@ -1243,7 +1206,6 @@
 05-5	oai_zaguan.unizar.es_12419.xml
 05-5	oai_zaguan.unizar.es_12383.xml
 05-5	oai_zaguan.unizar.es_13595.xml
-05-5	oai_zaguan.unizar.es_31430.xml
 05-5	oai_zaguan.unizar.es_31430.xml
 05-5	oai_zaguan.unizar.es_31539.xml
 05-5	oai_zaguan.unizar.es_16924.xml
@@ -1312,7 +1274,6 @@
 05-5	oai_zaguan.unizar.es_12573.xml
 05-5	oai_zaguan.unizar.es_31316.xml
 05-5	oai_zaguan.unizar.es_16517.xml
-05-5	oai_zaguan.unizar.es_16517.xml
 05-5	oai_zaguan.unizar.es_14288.xml
 05-5	oai_zaguan.unizar.es_14191.xml
 05-5	oai_zaguan.unizar.es_17264.xml
@@ -1329,7 +1290,6 @@
 05-5	oai_zaguan.unizar.es_10267.xml
 05-5	oai_zaguan.unizar.es_17202.xml
 05-5	oai_zaguan.unizar.es_16839.xml
-05-5	oai_zaguan.unizar.es_8007.xml
 05-5	oai_zaguan.unizar.es_8007.xml
 05-5	oai_zaguan.unizar.es_15055.xml
 05-5	oai_zaguan.unizar.es_10903.xml
