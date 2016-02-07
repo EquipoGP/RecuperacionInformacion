@@ -59,47 +59,6 @@
 		<rdfs:domain rdf:resource="#Documento"/>
 		<rdfs:range rdf:resource="skos:Concept"/>
 	</rdf:Property>
-    
-	<!-- Skos vocabulary -->
-	
-	<!-- Energias renovables -->
-    <skos:Concept rdf:about="EnergiaRenovable">
-		<skos:prefLabel>EnergiaRenovable</skos:prefLabel>
-	</skos:Concept>
-	
-	<!-- Musica y sonido -->
-	<skos:Concept rdf:about="Sonido">
-		<skos:prefLabel>Sonido</skos:prefLabel>
-	</skos:Concept>
-	
-	<skos:Concept rdf:about="Musica">
-		<skos:prefLabel>Musica</skos:prefLabel>
-		<skos:broader rdf:resource="Sonido"/>
-	</skos:Concept>
-	
-	<!-- Guerra de la Independencia -->
-	<skos:Concept rdf:about="GuerraIndependencia">
-		<skos:prefLabel>GuerraIndependencia</skos:prefLabel>
-	</skos:Concept>
-	
-	<!-- Videojuegos y personajes -->
-	<skos:Concept rdf:about="Videojuegos">
-		<skos:prefLabel>Videojuegos</skos:prefLabel>
-	</skos:Concept>
-	
-	<!-- Edad Media y Gotico -->
-	<skos:Concept rdf:about="EdadMediaGotica">
-		<skos:prefLabel>EdadMediaGotica</skos:prefLabel>
-		<skos:narrower rdf:resource="Arquitectura"/>
-		<skos:narrower rdf:resource="Sociedad"/>
-	</skos:Concept>
-	
-	<skos:Concept rdf:about="Arquitectura">
-		<skos:prefLabel>Arquitectura</skos:prefLabel>
-	</skos:Concept>
-	
-	<skos:Concept rdf:about="Sociedad">
-		<skos:prefLabel>Sociedad</skos:prefLabel>
-	</skos:Concept>
+
 	
 </rdf:RDF>

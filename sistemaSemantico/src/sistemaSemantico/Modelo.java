@@ -10,6 +10,7 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.vocabulary.*;
 
 public class Modelo {
@@ -68,58 +69,12 @@ public class Modelo {
 	/**
 	 * Metodo para la creacion del modelo SKOS
 	 * 
+	 * @param skos_file
+	 *            fichero skos a partir del cual se genera el modelo
 	 * @return modelo
 	 */
-	public static Model crearSkosModel() {
-		Model model = ModelFactory.createDefaultModel();
-
-		Resource concept = model.createResource(skos + "Concept");
-		Property prefLabel = model.createProperty(skos + "prefLabel");
-		Property narrower = model.createProperty(skos + "narrower");
-		Property broader = model.createProperty(skos + "broader");
-
-		/* energias renovables */
-		Resource energiaRenovable = model.createResource(prefix
-				+ "EnergiaRenovable");
-		energiaRenovable.addProperty(RDF.type, concept);
-		energiaRenovable.addProperty(prefLabel, "EnergiaRenovable");
-
-		/* musica y sonido */
-		Resource musica = model.createResource(prefix + "Musica");
-		musica.addProperty(RDF.type, concept);
-		musica.addProperty(prefLabel, "Musica");
-
-		Resource sonido = model.createResource(prefix + "Sonido");
-		sonido.addProperty(RDF.type, concept);
-		sonido.addProperty(prefLabel, "Sonido");
-		
-		musica.addProperty(broader, sonido);
-
-		/* Guerra de la Independencia */
-		Resource guerra = model.createResource(prefix + "GuerraIndependencia");
-		guerra.addProperty(RDF.type, concept);
-		guerra.addProperty(prefLabel, "GuerraIndependencia");
-
-		/* videojuegos y personajes */
-		Resource videojuegos = model.createResource(prefix + "Videojuegos");
-		videojuegos.addProperty(RDF.type, concept);
-		videojuegos.addProperty(prefLabel, "Videojuegos");
-
-		/* Edad Media y Gotico */
-		Resource edadMediaGotica = model.createResource(prefix + "EdadMediaGotica");
-		edadMediaGotica.addProperty(RDF.type, concept);
-		edadMediaGotica.addProperty(prefLabel, "EdadMediaGotica");
-		
-		Resource arquitectura = model.createResource(prefix + "Arquitectura");
-		arquitectura.addProperty(RDF.type, concept);
-		arquitectura.addProperty(prefLabel, "Arquitectura");
-
-		Resource epoca = model.createResource(prefix + "Sociedad");
-		epoca.addProperty(RDF.type, concept);
-		epoca.addProperty(prefLabel, "Sociedad");
-		
-		edadMediaGotica.addProperty(narrower, arquitectura);
-		edadMediaGotica.addProperty(narrower, epoca);
+	public static Model crearSkosModel(String skos_file) {
+		Model model = FileManager.get().loadModel(skos_file);
 
 		return model;
 	}

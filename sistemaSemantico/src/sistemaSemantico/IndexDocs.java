@@ -68,7 +68,7 @@ public class IndexDocs {
 
 		/* creacion del modelo RDFS y SKOS */
 		rdfs = Modelo.crearModelo();
-		skos = Modelo.crearSkosModel();
+		skos = Modelo.crearSkosModel(skosPath);
 
 		/* Indexar ficheros */
 		for (String file : files) {
@@ -78,7 +78,6 @@ public class IndexDocs {
 
 		/* escribir los modelos */
 		rdfs.write(new FileOutputStream(new File(rdfPath)));
-		skos.write(new FileOutputStream(new File(skosPath)));
 	}
 
 	/**
