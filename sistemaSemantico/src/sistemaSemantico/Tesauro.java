@@ -161,11 +161,8 @@ public class Tesauro {
 	private static void prepararConsulta02_4() {
 		guerraIndependencia = new HashSet<String>();
 		guerraIndependencia.add("guerra de la independencia");
-		// guerraIndependencia.add("guerra");
-		// guerraIndependencia.add("ejercito");
 		guerraIndependencia.add("1808-1814");
 		guerraIndependencia.add("1808");
-		// guerraIndependencia.add("espana");
 	}
 
 	/**
@@ -174,16 +171,13 @@ public class Tesauro {
 	private static void prepararConsulta13_2() {
 		sonido = new HashSet<String>();
 		sonido.add("sonido");
-//		sonido.add("sonoro");
 		sonido.add("audio");
-//		sonido.add("ruido");
 
 		musica = new HashSet<String>();
 		musica.add("musica");
 		musica.add("musical");
 		musica.add("musicos");
 		musica.add("cancion");
-//		musica.add("ritmo");
 	}
 
 	/**
@@ -191,24 +185,10 @@ public class Tesauro {
 	 */
 	private static void prepararConsulta09_3() {
 		energiaRenovable = new HashSet<String>();
-//		energiaRenovable.add("renovable");
-//		energiaRenovable.add("energia");
 		energiaRenovable.add("energia renovable");
 		energiaRenovable.add("energias renovables");
-//		energiaRenovable.add("combustibles fosiles");
-//		energiaRenovable.add("pilas de combustible");
-//		energiaRenovable.add("energia geotermica");
-//		energiaRenovable.add("energia cinetica");
 		energiaRenovable.add("energia solar");
-		energiaRenovable.add("paneles solares");
 		energiaRenovable.add("energia eolica");
-		energiaRenovable.add("parques eolicos");
-		energiaRenovable.add("biomasa");
-		energiaRenovable.add("biodiesel");
-//		energiaRenovable.add("eficiencia energetica");
-//		energiaRenovable.add("medio ambiente");
-//		energiaRenovable.add("medioambiental");
-//		energiaRenovable.add("cambio climatico");
 	}
 
 	/**
@@ -221,15 +201,11 @@ public class Tesauro {
 		videojuego.add("diseno de personajes");
 		videojuego.add("desarrollo de videojuegos");
 		videojuego.add("agente inteligente");
-//		videojuego.add("bots");
 		videojuego.add("motor grafico");
 		videojuego.add("animacion");
-//		videojuego.add("animaciones");
-//		videojuego.add("multiples jugadores");
 		videojuego.add("realidad aumentada");
 		videojuego.add("realidad virtual");
 		videojuego.add("videojuego educativo");
-//		videojuego.add("pokemon");
 	}
 
 	/**
@@ -238,26 +214,14 @@ public class Tesauro {
 	 */
 	private static void prepararConsulta05_5() {
 		arquitectura = new HashSet<String>();
-//		arquitectura.add("construccion");
-//		arquitectura.add("arquitectura");
-//		arquitectura.add("edificio");
-//		arquitectura.add("restauracion");
 		arquitectura.add("monasterio");
 		arquitectura.add("castillo-abadia");
-//		arquitectura.add("edificios");
-//		arquitectura.add("escultura");
 
 		sociedad = new HashSet<String>();
 		sociedad.add("arquitectura social");
 		sociedad.add("oligarquia urbana");
 		sociedad.add("concejo");
 		sociedad.add("patrimonio historico");
-//		epoca.add("epoca");
-//		epoca.add("Edad Media");
-//		epoca.add("medieval");
-//		epoca.add("epoca gotica");
-//		epoca.add("gotic");
-//		epoca.add("oligarquia urbana");
 	}
 
 	/**
