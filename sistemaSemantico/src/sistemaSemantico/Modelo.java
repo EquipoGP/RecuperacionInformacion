@@ -76,6 +76,7 @@ public class Modelo {
 		Resource concept = model.createResource(skos + "Concept");
 		Property prefLabel = model.createProperty(skos + "prefLabel");
 		Property narrower = model.createProperty(skos + "narrower");
+		Property broader = model.createProperty(skos + "broader");
 
 		/* energias renovables */
 		Resource energiaRenovable = model.createResource(prefix
@@ -91,6 +92,8 @@ public class Modelo {
 		Resource sonido = model.createResource(prefix + "Sonido");
 		sonido.addProperty(RDF.type, concept);
 		sonido.addProperty(prefLabel, "Sonido");
+		
+		musica.addProperty(broader, sonido);
 
 		/* Guerra de la Independencia */
 		Resource guerra = model.createResource(prefix + "GuerraIndependencia");
@@ -103,6 +106,10 @@ public class Modelo {
 		videojuegos.addProperty(prefLabel, "Videojuegos");
 
 		/* Edad Media y Gotico */
+		Resource edadMediaGotica = model.createResource(prefix + "EdadMediaGotica");
+		edadMediaGotica.addProperty(RDF.type, concept);
+		edadMediaGotica.addProperty(prefLabel, "EdadMediaGotica");
+		
 		Resource arquitectura = model.createResource(prefix + "Arquitectura");
 		arquitectura.addProperty(RDF.type, concept);
 		arquitectura.addProperty(prefLabel, "Arquitectura");
@@ -111,16 +118,8 @@ public class Modelo {
 		epoca.addProperty(RDF.type, concept);
 		epoca.addProperty(prefLabel, "Sociedad");
 		
-		/* Ejemplo */
-		Resource el = model.createResource(prefix + "El");
-		el.addProperty(RDF.type, concept);
-		el.addProperty(prefLabel, "El");
-
-		Resource determinante = model.createResource(prefix + "Determinante");
-		determinante.addProperty(RDF.type, concept);
-		determinante.addProperty(prefLabel, "Determinante");
-		
-		determinante.addProperty(narrower, el);
+		edadMediaGotica.addProperty(narrower, arquitectura);
+		edadMediaGotica.addProperty(narrower, epoca);
 
 		return model;
 	}

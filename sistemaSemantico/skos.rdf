@@ -5,10 +5,6 @@
     <j.0:prefLabel>Sociedad</j.0:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://recinfo.org/El">
-    <j.0:prefLabel>El</j.0:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://recinfo.org/Arquitectura">
     <j.0:prefLabel>Arquitectura</j.0:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
@@ -25,17 +21,19 @@
     <j.0:prefLabel>Videojuegos</j.0:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://recinfo.org/Determinante">
-    <j.0:narrower rdf:resource="http://recinfo.org/El"/>
-    <j.0:prefLabel>Determinante</j.0:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://recinfo.org/Sonido">
     <j.0:prefLabel>Sonido</j.0:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://recinfo.org/Musica">
+    <j.0:broader rdf:resource="http://recinfo.org/Sonido"/>
     <j.0:prefLabel>Musica</j.0:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://recinfo.org/EdadMediaGotica">
+    <j.0:narrower rdf:resource="http://recinfo.org/Sociedad"/>
+    <j.0:narrower rdf:resource="http://recinfo.org/Arquitectura"/>
+    <j.0:prefLabel>EdadMediaGotica</j.0:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
   </rdf:Description>
 </rdf:RDF>

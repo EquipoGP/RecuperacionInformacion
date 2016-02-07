@@ -74,6 +74,7 @@
 	
 	<skos:Concept rdf:about="Musica">
 		<skos:prefLabel>Musica</skos:prefLabel>
+		<skos:broader rdf:resource="Sonido"/>
 	</skos:Concept>
 	
 	<!-- Guerra de la Independencia -->
@@ -87,22 +88,18 @@
 	</skos:Concept>
 	
 	<!-- Edad Media y Gotico -->
+	<skos:Concept rdf:about="EdadMediaGotica">
+		<skos:prefLabel>EdadMediaGotica</skos:prefLabel>
+		<skos:narrower rdf:resource="Arquitectura"/>
+		<skos:narrower rdf:resource="Sociedad"/>
+	</skos:Concept>
+	
 	<skos:Concept rdf:about="Arquitectura">
 		<skos:prefLabel>Arquitectura</skos:prefLabel>
 	</skos:Concept>
 	
 	<skos:Concept rdf:about="Sociedad">
 		<skos:prefLabel>Sociedad</skos:prefLabel>
-	</skos:Concept>
-	
-	<!-- ejemplo -->
-	<skos:Concept rdf:about="Determinante">
-		<skos:prefLabel>Determinante</skos:prefLabel>
-		<skos:narrower rdf:resource="El"/>
-	</skos:Concept>
-	
-	<skos:Concept rdf:about="El">
-		<skos:prefLabel>El</skos:prefLabel>
 	</skos:Concept>
 	
 </rdf:RDF>
