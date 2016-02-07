@@ -75,6 +75,7 @@ public class Modelo {
 
 		Resource concept = model.createResource(skos + "Concept");
 		Property prefLabel = model.createProperty(skos + "prefLabel");
+		Property narrower = model.createProperty(skos + "narrower");
 
 		/* energias renovables */
 		Resource energiaRenovable = model.createResource(prefix
@@ -109,6 +110,17 @@ public class Modelo {
 		Resource epoca = model.createResource(prefix + "Sociedad");
 		epoca.addProperty(RDF.type, concept);
 		epoca.addProperty(prefLabel, "Sociedad");
+		
+		/* Ejemplo */
+		Resource el = model.createResource(prefix + "El");
+		el.addProperty(RDF.type, concept);
+		el.addProperty(prefLabel, "El");
+
+		Resource determinante = model.createResource(prefix + "Determinante");
+		determinante.addProperty(RDF.type, concept);
+		determinante.addProperty(prefLabel, "Determinante");
+		
+		determinante.addProperty(narrower, el);
 
 		return model;
 	}

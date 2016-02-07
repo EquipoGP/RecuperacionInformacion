@@ -1,3 +1,5 @@
+1-1	prefix ri: <http://recinfo.org/> prefix : <http://recinfo.org/#> select distinct ?id where { ?doc :identifier ?id. ?doc :keyword ri:El}
+0-0	prefix ri: <http://recinfo.org/> prefix : <http://recinfo.org/#> select distinct ?id where { ?doc :identifier ?id. ?doc :keyword ri:Determinante}
 13-2	prefix ri: <http://recinfo.org/> prefix : <http://recinfo.org/#> select distinct ?id where { ?doc :identifier ?id. { ?doc :keyword ri:Musica } UNION { ?doc :keyword ri:Sonido}. ?doc :creator ?author. ?author :name ?name. FILTER(contains(str(?name), "javi"))}
 02-4	prefix ri: <http://recinfo.org/> prefix : <http://recinfo.org/#> select distinct ?id where {?doc :identifier ?id. ?doc :keyword ri:GuerraIndependencia}
 09-3	prefix ri: <http://recinfo.org/> prefix : <http://recinfo.org/#> select distinct ?id where {?doc :identifier ?id. ?doc :keyword ri:EnergiaRenovable. ?doc :date ?date. FILTER(?date > 2009 && ?date < 2016)}

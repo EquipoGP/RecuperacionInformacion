@@ -95,4 +95,14 @@
 		<skos:prefLabel>Sociedad</skos:prefLabel>
 	</skos:Concept>
 	
+	<!-- ejemplo -->
+	<skos:Concept rdf:about="Determinante">
+		<skos:prefLabel>Determinante</skos:prefLabel>
+		<skos:narrower rdf:resource="El"/>
+	</skos:Concept>
+	
+	<skos:Concept rdf:about="El">
+		<skos:prefLabel>El</skos:prefLabel>
+	</skos:Concept>
+	
 </rdf:RDF>
